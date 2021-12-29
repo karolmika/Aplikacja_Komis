@@ -1,0 +1,1 @@
+﻿SELECT Login FROM dbo.UsersTable WHERE Login= 'kmika';

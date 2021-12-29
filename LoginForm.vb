@@ -44,7 +44,6 @@ Public Class FormLogowanie
     Private Sub ButtonUtworzKonto_Click(sender As Object, e As EventArgs) Handles ButtonUtworzKonto.Click
         Dim msg As String
         Dim AddUserQuery As String
-        Dim CountQuery As String
         Dim Num As Integer
         Dim Login As String
         Dim Haslo As String
@@ -77,6 +76,7 @@ Public Class FormLogowanie
 
     Public Sub CreateCommand(ByVal queryString As String, ByVal connectionString As String)
         Using connection As New SqlConnection(connectionString)
+            Dim id As New Integer
             Dim command As New SqlCommand(queryString, connection)
             command.Connection.Open()
             command.ExecuteNonQuery()
@@ -84,7 +84,43 @@ Public Class FormLogowanie
     End Sub
 
     Private Sub ButtonZaloguj_Click(sender As Object, e As EventArgs) Handles ButtonZaloguj.Click
+        Dim msg As String = "SELECT Login, Haslo FROM dbo.UsersTable WHERE Login='{0}';"
+        Dim queryString As String
+        Dim reader As System.Data.SqlClient.SqlDataReader
+        queryString = String.Format(msg, TextBoxLogin.Text)
 
+        Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
+            Dim id As New Integer
+            Dim command As New SqlCommand(queryString, connection)
+            Dim result As Boolean
+            Try
+                command.Connection.Open()
+                result = True
+            Catch ex As Exception
+                MessageBox.Show("Nie można połączyć się z bazą danych")
+                result = False
+            End Try
+
+            If result = True Then
+                Try
+                    reader = command.ExecuteReader()
+                    reader.Read()
+                    Console.WriteLine(reader.FieldCount.ToString())
+                    Console.WriteLine(reader(1))
+                    If reader(1) = TextBoxHaslo.Text Then
+                        MessageBox.Show("Udalo sie zalogowac")
+                        MainForm.Show()
+                    Else
+                        MessageBox.Show("Nie prawidłowe hasło")
+                        TextBoxHaslo.Clear()
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Nie prawidłowy login")
+                    TextBoxLogin.Clear()
+                    TextBoxHaslo.Clear()
+                End Try
+            End If
+        End Using
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -97,9 +133,7 @@ Public Class FormLogowanie
             Dim command As New SqlCommand(queryCount, connection)
             command.Connection.Open()
             reader = command.ExecuteReader()
-
             id = 0
-
             While reader.Read()
                 'TextBox1.AppendText(reader.FieldCount.ToString())
                 'Console.WriteLine(String.Format("ID = {0}, Item(id)= {1}", id.ToString(), reader.GetString(1)))
