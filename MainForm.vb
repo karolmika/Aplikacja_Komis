@@ -106,4 +106,8 @@ Public Class MainForm
         GlobalVariables.SelectedModel = ComboBoxMarka.SelectedIndex
         GetCarModelList(GlobalVariables.SelectedModel + 1)
     End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxLakierMetalik.CheckedChanged
+
+    End Sub
 End Class
