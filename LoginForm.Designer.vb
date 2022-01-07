@@ -70,7 +70,7 @@ Partial Class FormLogowanie
         'TextBoxLogin
         '
         Me.TextBoxLogin.Location = New System.Drawing.Point(441, 71)
-        Me.TextBoxLogin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxLogin.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxLogin.Name = "TextBoxLogin"
         Me.TextBoxLogin.Size = New System.Drawing.Size(199, 22)
         Me.TextBoxLogin.TabIndex = 2
@@ -78,7 +78,7 @@ Partial Class FormLogowanie
         'TextBoxHaslo
         '
         Me.TextBoxHaslo.Location = New System.Drawing.Point(441, 117)
-        Me.TextBoxHaslo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxHaslo.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxHaslo.Name = "TextBoxHaslo"
         Me.TextBoxHaslo.Size = New System.Drawing.Size(199, 22)
         Me.TextBoxHaslo.TabIndex = 3
@@ -86,7 +86,7 @@ Partial Class FormLogowanie
         'ButtonZaloguj
         '
         Me.ButtonZaloguj.Location = New System.Drawing.Point(441, 166)
-        Me.ButtonZaloguj.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonZaloguj.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonZaloguj.Name = "ButtonZaloguj"
         Me.ButtonZaloguj.Size = New System.Drawing.Size(200, 28)
         Me.ButtonZaloguj.TabIndex = 4
@@ -103,9 +103,9 @@ Partial Class FormLogowanie
         Me.GroupBoxRejestracja.Controls.Add(Me.TextBoxNoweHaslo1)
         Me.GroupBoxRejestracja.Controls.Add(Me.TextBoxNowyLogin)
         Me.GroupBoxRejestracja.Location = New System.Drawing.Point(336, 268)
-        Me.GroupBoxRejestracja.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxRejestracja.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxRejestracja.Name = "GroupBoxRejestracja"
-        Me.GroupBoxRejestracja.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxRejestracja.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBoxRejestracja.Size = New System.Drawing.Size(401, 302)
         Me.GroupBoxRejestracja.TabIndex = 5
         Me.GroupBoxRejestracja.TabStop = False
@@ -145,7 +145,7 @@ Partial Class FormLogowanie
         'ButtonUtworzKonto
         '
         Me.ButtonUtworzKonto.Location = New System.Drawing.Point(48, 222)
-        Me.ButtonUtworzKonto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonUtworzKonto.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonUtworzKonto.Name = "ButtonUtworzKonto"
         Me.ButtonUtworzKonto.Size = New System.Drawing.Size(319, 28)
         Me.ButtonUtworzKonto.TabIndex = 7
@@ -155,7 +155,7 @@ Partial Class FormLogowanie
         'TextBoxNoweHaslo2
         '
         Me.TextBoxNoweHaslo2.Location = New System.Drawing.Point(167, 154)
-        Me.TextBoxNoweHaslo2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxNoweHaslo2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxNoweHaslo2.Name = "TextBoxNoweHaslo2"
         Me.TextBoxNoweHaslo2.Size = New System.Drawing.Size(199, 22)
         Me.TextBoxNoweHaslo2.TabIndex = 7
@@ -163,7 +163,7 @@ Partial Class FormLogowanie
         'TextBoxNoweHaslo1
         '
         Me.TextBoxNoweHaslo1.Location = New System.Drawing.Point(167, 106)
-        Me.TextBoxNoweHaslo1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxNoweHaslo1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxNoweHaslo1.Name = "TextBoxNoweHaslo1"
         Me.TextBoxNoweHaslo1.Size = New System.Drawing.Size(199, 22)
         Me.TextBoxNoweHaslo1.TabIndex = 7
@@ -171,7 +171,7 @@ Partial Class FormLogowanie
         'TextBoxNowyLogin
         '
         Me.TextBoxNowyLogin.Location = New System.Drawing.Point(167, 58)
-        Me.TextBoxNowyLogin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBoxNowyLogin.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxNowyLogin.Name = "TextBoxNowyLogin"
         Me.TextBoxNowyLogin.Size = New System.Drawing.Size(199, 22)
         Me.TextBoxNowyLogin.TabIndex = 7
@@ -179,7 +179,7 @@ Partial Class FormLogowanie
         'ButtonRejestracja
         '
         Me.ButtonRejestracja.Location = New System.Drawing.Point(441, 202)
-        Me.ButtonRejestracja.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonRejestracja.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonRejestracja.Name = "ButtonRejestracja"
         Me.ButtonRejestracja.Size = New System.Drawing.Size(200, 28)
         Me.ButtonRejestracja.TabIndex = 6
@@ -189,9 +189,9 @@ Partial Class FormLogowanie
         'GroupBoxLogowanie
         '
         Me.GroupBoxLogowanie.Location = New System.Drawing.Point(336, 36)
-        Me.GroupBoxLogowanie.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxLogowanie.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxLogowanie.Name = "GroupBoxLogowanie"
-        Me.GroupBoxLogowanie.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxLogowanie.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBoxLogowanie.Size = New System.Drawing.Size(401, 225)
         Me.GroupBoxLogowanie.TabIndex = 7
         Me.GroupBoxLogowanie.TabStop = False
@@ -239,7 +239,7 @@ Partial Class FormLogowanie
         Me.Controls.Add(Me.LabelLogin)
         Me.Controls.Add(Me.GroupBoxRejestracja)
         Me.Controls.Add(Me.GroupBoxLogowanie)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormLogowanie"
         Me.Text = "Logowanie"
         Me.GroupBoxRejestracja.ResumeLayout(False)
