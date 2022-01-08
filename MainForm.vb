@@ -2,10 +2,12 @@
 Public Class MainForm
     Public Class GlobalVariables
         Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
-        Public Shared SelectedModel As Integer
+        Public Shared SelectedModel As String
     End Class
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
+        Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
 
         LabelWelcome.Text = "Witaj " + FormLogowanie.PassUserName
         FormLogowanie.Hide()
@@ -13,7 +15,8 @@ Public Class MainForm
     End Sub
 
     Function GetCarBrandList()
-        Dim queryString As String = "SELECT * FROM dbo.CarBrand;"
+        'Dim queryString As String = "SELECT * FROM dbo.CarBrand;"
+        Dim queryString As String = "SELECT * FROM dbo.CarsBrandList ORDER BY Id;"
         Dim reader As System.Data.SqlClient.SqlDataReader
         'queryString = String.Format(msg, TextBoxLogin.Text)
 
@@ -23,6 +26,8 @@ Public Class MainForm
             Dim row_name As String
             Dim command As New SqlCommand(queryString, connection)
             Dim result As Boolean
+            Dim error_cnt As Integer = 0
+
             Try
                 command.Connection.Open()
                 result = True
@@ -43,21 +48,29 @@ Public Class MainForm
                             'Console.WriteLine(row_id.ToString() + "." + row_name.ToString)
                         Else
                             Console.WriteLine("Empty data !")
+                            error_cnt += 1
                         End If
                     End While
                 Catch ex As Exception
-                    MessageBox.Show("Nie udało sie odczytac listy modeli")
+                    MessageBox.Show("Nie udało sie odczytac listy producentow")
+                    error_cnt += 1
                 End Try
+
+                'If error_cnt = 0 Then
+                'tutaj odswiez tabele
+                'End If
             End If
         End Using
     End Function
 
-    Function GetCarModelList(ByVal model_id As Integer)
-        Dim msg As String = "SELECT * FROM dbo.CarModels WHERE brand_id = {0};"
+    Function GetCarModelList(ByVal brand_name As String)
+        'Dim msg As String = "SELECT * FROM dbo.CarModels WHERE brand_id = {0};"
+        Dim msg As String = "SELECT * FROM dbo.CarsModelList WHERE BrandName = '{0}';"
+        'Dim msg As String = "SELECT Id, model FROM dbo.CarsNewTable WHERE brand = '{0}';"
         Dim reader As System.Data.SqlClient.SqlDataReader
         Dim queryString As String
 
-        queryString = String.Format(msg, model_id.ToString())
+        queryString = String.Format(msg, brand_name)
 
 
         Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
@@ -82,7 +95,7 @@ Public Class MainForm
                         row_id = reader(0)
                         row_name = reader(1)
                         If row_id > 0 And row_name IsNot String.Empty Then
-                            'ComboBoxMarka.Items.Insert(row_id - 1, row_name)
+                            ComboBoxModel.Items.Insert(row_id - 1, row_name)
                             Console.WriteLine(row_id.ToString() + "." + row_name.ToString)
                         Else
                             Console.WriteLine("Empty data !")
@@ -98,16 +111,19 @@ Public Class MainForm
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        GetCarModelList(3)
+        GetCarModelList(GlobalVariables.SelectedModel)
     End Sub
 
     Private Sub ComboBoxMarka_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxMarka.SelectedIndexChanged
         Console.WriteLine("Producent Samochodu wybrany !")
-        GlobalVariables.SelectedModel = ComboBoxMarka.SelectedIndex
-        GetCarModelList(GlobalVariables.SelectedModel + 1)
+        Console.WriteLine(ComboBoxMarka.SelectedItem)
+        ComboBoxModel.Enabled = True
+        GlobalVariables.SelectedModel = ComboBoxMarka.SelectedItem
+        GetCarModelList(GlobalVariables.SelectedModel)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxLakierMetalik.CheckedChanged
 
     End Sub
+
 End Class
