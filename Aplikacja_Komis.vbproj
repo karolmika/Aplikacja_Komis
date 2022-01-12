@@ -95,6 +95,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="KomisDBDataSet.vb">
+      <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>

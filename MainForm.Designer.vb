@@ -43,6 +43,7 @@ Partial Class MainForm
         Me.ButtonPoprzedni = New System.Windows.Forms.Button()
         Me.ButtonPoczatek = New System.Windows.Forms.Button()
         Me.DataGridViewPojazdy = New System.Windows.Forms.DataGridView()
+        Me.CarsDatabaseBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ButtonSzukaj = New System.Windows.Forms.Button()
         Me.CheckBoxLakierMetalik = New System.Windows.Forms.CheckBox()
         Me.CheckBoxCzujniki = New System.Windows.Forms.CheckBox()
@@ -55,10 +56,6 @@ Partial Class MainForm
         Me.ButtonDodaj = New System.Windows.Forms.Button()
         Me.ButtonUsun = New System.Windows.Forms.Button()
         Me.ButtonEdytuj = New System.Windows.Forms.Button()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.KomisDBDataSet = New Aplikacja_Komis.KomisDBDataSet()
-        Me.CarsDatabaseBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,13 +68,16 @@ Partial Class MainForm
         Me.EspDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ParkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KeylessDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.KomisDBDataSet = New Aplikacja_Komis.KomisDBDataSet()
+        Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxWyposażenie.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBoxMarka
@@ -109,6 +109,7 @@ Partial Class MainForm
         '
         Me.ComboBoxOcenaPowyzej.Enabled = False
         Me.ComboBoxOcenaPowyzej.FormattingEnabled = True
+        Me.ComboBoxOcenaPowyzej.Items.AddRange(New Object() {"5", "4", "3", "2", "1", "0"})
         Me.ComboBoxOcenaPowyzej.Location = New System.Drawing.Point(26, 242)
         Me.ComboBoxOcenaPowyzej.Name = "ComboBoxOcenaPowyzej"
         Me.ComboBoxOcenaPowyzej.Size = New System.Drawing.Size(293, 24)
@@ -128,15 +129,14 @@ Partial Class MainForm
         Me.LabelOcenaPowyzej.AutoSize = True
         Me.LabelOcenaPowyzej.Location = New System.Drawing.Point(23, 223)
         Me.LabelOcenaPowyzej.Name = "LabelOcenaPowyzej"
-        Me.LabelOcenaPowyzej.Size = New System.Drawing.Size(99, 16)
+        Me.LabelOcenaPowyzej.Size = New System.Drawing.Size(59, 20)
         Me.LabelOcenaPowyzej.TabIndex = 9
-        Me.LabelOcenaPowyzej.Text = "Ocena powyżej"
+        Me.LabelOcenaPowyzej.Text = "Ocena"
         '
         'ComboBoxKolor
         '
         Me.ComboBoxKolor.Enabled = False
         Me.ComboBoxKolor.FormattingEnabled = True
-        Me.ComboBoxKolor.Items.AddRange(New Object() {"-", "biały", "czarny", "czerwony", "niebieski", "pomarańczowy", "srebrny", "zielony", "żółty"})
         Me.ComboBoxKolor.Location = New System.Drawing.Point(26, 181)
         Me.ComboBoxKolor.Name = "ComboBoxKolor"
         Me.ComboBoxKolor.Size = New System.Drawing.Size(293, 24)
@@ -200,7 +200,7 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.Enabled = False
         Me.GroupBoxWynikWyszukiwania.Location = New System.Drawing.Point(59, 429)
         Me.GroupBoxWynikWyszukiwania.Name = "GroupBoxWynikWyszukiwania"
-        Me.GroupBoxWynikWyszukiwania.Size = New System.Drawing.Size(1227, 547)
+        Me.GroupBoxWynikWyszukiwania.Size = New System.Drawing.Size(1233, 547)
         Me.GroupBoxWynikWyszukiwania.TabIndex = 5
         Me.GroupBoxWynikWyszukiwania.TabStop = False
         Me.GroupBoxWynikWyszukiwania.Text = "Lista poasujących pojazdów"
@@ -280,6 +280,11 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.RowTemplate.Height = 24
         Me.DataGridViewPojazdy.Size = New System.Drawing.Size(1207, 414)
         Me.DataGridViewPojazdy.TabIndex = 0
+        '
+        'CarsDatabaseBindingSource
+        '
+        Me.CarsDatabaseBindingSource.DataMember = "CarsDatabase"
+        Me.CarsDatabaseBindingSource.DataSource = Me.BindingSource1
         '
         'ButtonSzukaj
         '
@@ -407,25 +412,6 @@ Partial Class MainForm
         Me.ButtonEdytuj.Text = "Edytuj"
         Me.ButtonEdytuj.UseVisualStyleBackColor = True
         '
-        'BindingSource1
-        '
-        Me.BindingSource1.DataSource = Me.KomisDBDataSet
-        Me.BindingSource1.Position = 0
-        '
-        'KomisDBDataSet
-        '
-        Me.KomisDBDataSet.DataSetName = "KomisDBDataSet"
-        Me.KomisDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'CarsDatabaseBindingSource
-        '
-        Me.CarsDatabaseBindingSource.DataMember = "CarsDatabase"
-        Me.CarsDatabaseBindingSource.DataSource = Me.BindingSource1
-        '
-        'CarsDatabaseTableAdapter
-        '
-        Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
-        '
         'IdDataGridViewTextBoxColumn
         '
         Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
@@ -522,6 +508,20 @@ Partial Class MainForm
         Me.KeylessDataGridViewTextBoxColumn.Name = "KeylessDataGridViewTextBoxColumn"
         Me.KeylessDataGridViewTextBoxColumn.Width = 125
         '
+        'BindingSource1
+        '
+        Me.BindingSource1.DataSource = Me.KomisDBDataSet
+        Me.BindingSource1.Position = 0
+        '
+        'KomisDBDataSet
+        '
+        Me.KomisDBDataSet.DataSetName = "KomisDBDataSet"
+        Me.KomisDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CarsDatabaseTableAdapter
+        '
+        Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -544,11 +544,11 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.ResumeLayout(False)
         Me.GroupBoxWynikWyszukiwania.PerformLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxWyposażenie.ResumeLayout(False)
         Me.GroupBoxWyposażenie.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
