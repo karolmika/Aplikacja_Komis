@@ -124,6 +124,8 @@ Public Class FormLogowanie
                     TextBoxHaslo.Clear()
                 End Try
             End If
+            command.Connection.Close()
+            command.Connection.Dispose()
         End Using
     End Sub
 
