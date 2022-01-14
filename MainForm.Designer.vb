@@ -25,6 +25,10 @@ Partial Class MainForm
         Me.components = New System.ComponentModel.Container()
         Me.ComboBoxMarka = New System.Windows.Forms.ComboBox()
         Me.GroupBoxWybierzPojazd = New System.Windows.Forms.GroupBox()
+        Me.ButtonWyczyscOcena = New System.Windows.Forms.Button()
+        Me.ButtonWyczyscKolor = New System.Windows.Forms.Button()
+        Me.ButtonWyczyscModel = New System.Windows.Forms.Button()
+        Me.ButtonWyczyscMarke = New System.Windows.Forms.Button()
         Me.ComboBoxOcenaPowyzej = New System.Windows.Forms.ComboBox()
         Me.LabelKolor = New System.Windows.Forms.Label()
         Me.LabelOcenaPowyzej = New System.Windows.Forms.Label()
@@ -71,10 +75,8 @@ Partial Class MainForm
         Me.ButtonUsun = New System.Windows.Forms.Button()
         Me.ButtonEdytuj = New System.Windows.Forms.Button()
         Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
-        Me.ButtonWyczyscMarke = New System.Windows.Forms.Button()
-        Me.ButtonWyczyscModel = New System.Windows.Forms.Button()
-        Me.ButtonWyczyscKolor = New System.Windows.Forms.Button()
-        Me.ButtonWyczyscOcena = New System.Windows.Forms.Button()
+        Me.ButtonZapis = New System.Windows.Forms.Button()
+        Me.ButtonAnuluj = New System.Windows.Forms.Button()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +114,42 @@ Partial Class MainForm
         Me.GroupBoxWybierzPojazd.TabIndex = 2
         Me.GroupBoxWybierzPojazd.TabStop = False
         Me.GroupBoxWybierzPojazd.Text = "Wybierz pojazd, który Cię interesuje"
+        '
+        'ButtonWyczyscOcena
+        '
+        Me.ButtonWyczyscOcena.Location = New System.Drawing.Point(342, 234)
+        Me.ButtonWyczyscOcena.Name = "ButtonWyczyscOcena"
+        Me.ButtonWyczyscOcena.Size = New System.Drawing.Size(86, 31)
+        Me.ButtonWyczyscOcena.TabIndex = 13
+        Me.ButtonWyczyscOcena.Text = "Wyczyść"
+        Me.ButtonWyczyscOcena.UseVisualStyleBackColor = True
+        '
+        'ButtonWyczyscKolor
+        '
+        Me.ButtonWyczyscKolor.Location = New System.Drawing.Point(342, 175)
+        Me.ButtonWyczyscKolor.Name = "ButtonWyczyscKolor"
+        Me.ButtonWyczyscKolor.Size = New System.Drawing.Size(86, 29)
+        Me.ButtonWyczyscKolor.TabIndex = 12
+        Me.ButtonWyczyscKolor.Text = "Wyczyść"
+        Me.ButtonWyczyscKolor.UseVisualStyleBackColor = True
+        '
+        'ButtonWyczyscModel
+        '
+        Me.ButtonWyczyscModel.Location = New System.Drawing.Point(342, 121)
+        Me.ButtonWyczyscModel.Name = "ButtonWyczyscModel"
+        Me.ButtonWyczyscModel.Size = New System.Drawing.Size(86, 28)
+        Me.ButtonWyczyscModel.TabIndex = 11
+        Me.ButtonWyczyscModel.Text = "Wyczyść"
+        Me.ButtonWyczyscModel.UseVisualStyleBackColor = True
+        '
+        'ButtonWyczyscMarke
+        '
+        Me.ButtonWyczyscMarke.Location = New System.Drawing.Point(342, 65)
+        Me.ButtonWyczyscMarke.Name = "ButtonWyczyscMarke"
+        Me.ButtonWyczyscMarke.Size = New System.Drawing.Size(86, 29)
+        Me.ButtonWyczyscMarke.TabIndex = 10
+        Me.ButtonWyczyscMarke.Text = "Wyczyść"
+        Me.ButtonWyczyscMarke.UseVisualStyleBackColor = True
         '
         'ComboBoxOcenaPowyzej
         '
@@ -189,11 +227,11 @@ Partial Class MainForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(1186, 370)
+        Me.Button1.Location = New System.Drawing.Point(188, 31)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Wyloguj"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'GroupBoxWynikWyszukiwania
@@ -288,6 +326,7 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.Name = "DataGridViewPojazdy"
         Me.DataGridViewPojazdy.RowHeadersWidth = 51
         Me.DataGridViewPojazdy.RowTemplate.Height = 24
+        Me.DataGridViewPojazdy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewPojazdy.Size = New System.Drawing.Size(1207, 414)
         Me.DataGridViewPojazdy.TabIndex = 0
         '
@@ -517,7 +556,7 @@ Partial Class MainForm
         '
         'ButtonUsun
         '
-        Me.ButtonUsun.Location = New System.Drawing.Point(1125, 268)
+        Me.ButtonUsun.Location = New System.Drawing.Point(1123, 369)
         Me.ButtonUsun.Name = "ButtonUsun"
         Me.ButtonUsun.Size = New System.Drawing.Size(147, 35)
         Me.ButtonUsun.TabIndex = 10
@@ -537,47 +576,31 @@ Partial Class MainForm
         '
         Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
         '
-        'ButtonWyczyscMarke
+        'ButtonZapis
         '
-        Me.ButtonWyczyscMarke.Location = New System.Drawing.Point(342, 65)
-        Me.ButtonWyczyscMarke.Name = "ButtonWyczyscMarke"
-        Me.ButtonWyczyscMarke.Size = New System.Drawing.Size(86, 29)
-        Me.ButtonWyczyscMarke.TabIndex = 10
-        Me.ButtonWyczyscMarke.Text = "Wyczyść"
-        Me.ButtonWyczyscMarke.UseVisualStyleBackColor = True
+        Me.ButtonZapis.Location = New System.Drawing.Point(1125, 262)
+        Me.ButtonZapis.Name = "ButtonZapis"
+        Me.ButtonZapis.Size = New System.Drawing.Size(147, 35)
+        Me.ButtonZapis.TabIndex = 12
+        Me.ButtonZapis.Text = "Zapisz"
+        Me.ButtonZapis.UseVisualStyleBackColor = True
         '
-        'ButtonWyczyscModel
+        'ButtonAnuluj
         '
-        Me.ButtonWyczyscModel.Location = New System.Drawing.Point(342, 121)
-        Me.ButtonWyczyscModel.Name = "ButtonWyczyscModel"
-        Me.ButtonWyczyscModel.Size = New System.Drawing.Size(86, 28)
-        Me.ButtonWyczyscModel.TabIndex = 11
-        Me.ButtonWyczyscModel.Text = "Wyczyść"
-        Me.ButtonWyczyscModel.UseVisualStyleBackColor = True
-        '
-        'ButtonWyczyscKolor
-        '
-        Me.ButtonWyczyscKolor.Location = New System.Drawing.Point(342, 175)
-        Me.ButtonWyczyscKolor.Name = "ButtonWyczyscKolor"
-        Me.ButtonWyczyscKolor.Size = New System.Drawing.Size(86, 29)
-        Me.ButtonWyczyscKolor.TabIndex = 12
-        Me.ButtonWyczyscKolor.Text = "Wyczyść"
-        Me.ButtonWyczyscKolor.UseVisualStyleBackColor = True
-        '
-        'ButtonWyczyscOcena
-        '
-        Me.ButtonWyczyscOcena.Location = New System.Drawing.Point(342, 234)
-        Me.ButtonWyczyscOcena.Name = "ButtonWyczyscOcena"
-        Me.ButtonWyczyscOcena.Size = New System.Drawing.Size(86, 31)
-        Me.ButtonWyczyscOcena.TabIndex = 13
-        Me.ButtonWyczyscOcena.Text = "Wyczyść"
-        Me.ButtonWyczyscOcena.UseVisualStyleBackColor = True
+        Me.ButtonAnuluj.Location = New System.Drawing.Point(1125, 316)
+        Me.ButtonAnuluj.Name = "ButtonAnuluj"
+        Me.ButtonAnuluj.Size = New System.Drawing.Size(147, 35)
+        Me.ButtonAnuluj.TabIndex = 13
+        Me.ButtonAnuluj.Text = "Anuluj"
+        Me.ButtonAnuluj.UseVisualStyleBackColor = True
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1418, 1012)
+        Me.Controls.Add(Me.ButtonAnuluj)
+        Me.Controls.Add(Me.ButtonZapis)
         Me.Controls.Add(Me.ButtonEdytuj)
         Me.Controls.Add(Me.ButtonUsun)
         Me.Controls.Add(Me.ButtonDodaj)
@@ -657,4 +680,6 @@ Partial Class MainForm
     Friend WithEvents ButtonWyczyscOcena As Button
     Friend WithEvents ButtonWyczyscKolor As Button
     Friend WithEvents ButtonWyczyscModel As Button
+    Friend WithEvents ButtonZapis As Button
+    Friend WithEvents ButtonAnuluj As Button
 End Class

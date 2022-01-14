@@ -12,6 +12,7 @@ Public Class MainForm
         'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
         Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
 
+        GroupBoxWynikWyszukiwania.Enabled = True
         LabelWelcome.Text = "Witaj " + FormLogowanie.PassUserName
         FormLogowanie.Hide()
         GetCarBrandList()
@@ -298,7 +299,8 @@ Public Class MainForm
         connection.ConnectionString = GlobalVariables.UsersDatabaseConStr
         connection.Open()
         adp.Fill(ds)
-        DataGridViewPojazdy.DataSource = ds.Tables(0)
+        'DataGridViewPojazdy.DataSource = ds.Tables(0)
+        CarsDatabaseBindingSource.DataSource = ds.Tables(0)
     End Sub
 
     Private Sub ButtonWyczyscMarke_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscMarke.Click
@@ -328,4 +330,21 @@ Public Class MainForm
     Private Sub CheckBoxKlimatyzacja_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxKlimatyzacja.CheckedChanged
 
     End Sub
+
+    Private Sub ButtonNastepny_Click(sender As Object, e As EventArgs) Handles ButtonNastepny.Click
+        CarsDatabaseBindingSource.Position += 1
+    End Sub
+
+    Private Sub ButtonPoprzedni_Click(sender As Object, e As EventArgs) Handles ButtonPoprzedni.Click
+        CarsDatabaseBindingSource.Position -= 1
+    End Sub
+
+    Private Sub ButtonKoniec_Click(sender As Object, e As EventArgs) Handles ButtonKoniec.Click
+        CarsDatabaseBindingSource.Position = CarsDatabaseBindingSource.Count - 1
+    End Sub
+
+    Private Sub ButtonPoczatek_Click(sender As Object, e As EventArgs) Handles ButtonPoczatek.Click
+        CarsDatabaseBindingSource.Position = 0
+    End Sub
+
 End Class
