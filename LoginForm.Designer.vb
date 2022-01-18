@@ -241,6 +241,7 @@ Partial Class FormLogowanie
         Me.Controls.Add(Me.GroupBoxLogowanie)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormLogowanie"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Logowanie"
         Me.GroupBoxRejestracja.ResumeLayout(False)
         Me.GroupBoxRejestracja.PerformLayout()

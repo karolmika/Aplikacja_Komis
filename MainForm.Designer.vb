@@ -47,10 +47,10 @@ Partial Class MainForm
         Me.ButtonPoprzedni = New System.Windows.Forms.Button()
         Me.ButtonPoczatek = New System.Windows.Forms.Button()
         Me.DataGridViewPojazdy = New System.Windows.Forms.DataGridView()
+        Me.rocznik = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GenerationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OcenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MetalicDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -74,9 +74,9 @@ Partial Class MainForm
         Me.ButtonDodaj = New System.Windows.Forms.Button()
         Me.ButtonUsun = New System.Windows.Forms.Button()
         Me.ButtonEdytuj = New System.Windows.Forms.Button()
-        Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.ButtonZapis = New System.Windows.Forms.Button()
         Me.ButtonAnuluj = New System.Windows.Forms.Button()
+        Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,7 +219,7 @@ Partial Class MainForm
         'LabelWelcome
         '
         Me.LabelWelcome.AutoSize = True
-        Me.LabelWelcome.Location = New System.Drawing.Point(34, 38)
+        Me.LabelWelcome.Location = New System.Drawing.Point(171, 38)
         Me.LabelWelcome.Name = "LabelWelcome"
         Me.LabelWelcome.Size = New System.Drawing.Size(37, 16)
         Me.LabelWelcome.TabIndex = 3
@@ -227,9 +227,9 @@ Partial Class MainForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(188, 31)
+        Me.Button1.Location = New System.Drawing.Point(65, 30)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(75, 32)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Wyloguj"
         Me.Button1.UseVisualStyleBackColor = True
@@ -320,15 +320,24 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.AutoGenerateColumns = False
         Me.DataGridViewPojazdy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridViewPojazdy.ColumnHeadersHeight = 29
-        Me.DataGridViewPojazdy.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.BrandDataGridViewTextBoxColumn, Me.ModelDataGridViewTextBoxColumn, Me.GenerationDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OcenaDataGridViewTextBoxColumn, Me.MetalicDataGridViewTextBoxColumn, Me.AcDataGridViewTextBoxColumn, Me.AbsDataGridViewTextBoxColumn, Me.EspDataGridViewTextBoxColumn, Me.ParkDataGridViewTextBoxColumn, Me.KeylessDataGridViewTextBoxColumn})
+        Me.DataGridViewPojazdy.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.rocznik, Me.IdDataGridViewTextBoxColumn, Me.BrandDataGridViewTextBoxColumn, Me.ModelDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OcenaDataGridViewTextBoxColumn, Me.MetalicDataGridViewTextBoxColumn, Me.AcDataGridViewTextBoxColumn, Me.AbsDataGridViewTextBoxColumn, Me.EspDataGridViewTextBoxColumn, Me.ParkDataGridViewTextBoxColumn, Me.KeylessDataGridViewTextBoxColumn})
         Me.DataGridViewPojazdy.DataSource = Me.CarsDatabaseBindingSource
         Me.DataGridViewPojazdy.Location = New System.Drawing.Point(6, 41)
         Me.DataGridViewPojazdy.Name = "DataGridViewPojazdy"
+        Me.DataGridViewPojazdy.ReadOnly = True
         Me.DataGridViewPojazdy.RowHeadersWidth = 51
         Me.DataGridViewPojazdy.RowTemplate.Height = 24
         Me.DataGridViewPojazdy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewPojazdy.Size = New System.Drawing.Size(1207, 414)
         Me.DataGridViewPojazdy.TabIndex = 0
+        '
+        'rocznik
+        '
+        Me.rocznik.DataPropertyName = "rocznik"
+        Me.rocznik.HeaderText = "Rocznik"
+        Me.rocznik.MinimumWidth = 6
+        Me.rocznik.Name = "rocznik"
+        Me.rocznik.Width = 84
         '
         'IdDataGridViewTextBoxColumn
         '
@@ -353,13 +362,6 @@ Partial Class MainForm
         Me.ModelDataGridViewTextBoxColumn.MinimumWidth = 6
         Me.ModelDataGridViewTextBoxColumn.Name = "ModelDataGridViewTextBoxColumn"
         Me.ModelDataGridViewTextBoxColumn.Width = 74
-        '
-        'GenerationDataGridViewTextBoxColumn
-        '
-        Me.GenerationDataGridViewTextBoxColumn.DataPropertyName = "generation"
-        Me.GenerationDataGridViewTextBoxColumn.HeaderText = "generation"
-        Me.GenerationDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.GenerationDataGridViewTextBoxColumn.Name = "GenerationDataGridViewTextBoxColumn"
         '
         'ColorDataGridViewTextBoxColumn
         '
@@ -427,13 +429,12 @@ Partial Class MainForm
         '
         'CarsDatabaseBindingSource
         '
-        Me.CarsDatabaseBindingSource.DataMember = "CarsDatabase"
         Me.CarsDatabaseBindingSource.DataSource = Me.BindingSource1
         '
         'BindingSource1
         '
+        Me.BindingSource1.DataMember = "CarsDatabase"
         Me.BindingSource1.DataSource = Me.KomisDBDataSet
-        Me.BindingSource1.Position = 0
         '
         'KomisDBDataSet
         '
@@ -547,6 +548,7 @@ Partial Class MainForm
         '
         'ButtonDodaj
         '
+        Me.ButtonDodaj.Enabled = False
         Me.ButtonDodaj.Location = New System.Drawing.Point(1125, 152)
         Me.ButtonDodaj.Name = "ButtonDodaj"
         Me.ButtonDodaj.Size = New System.Drawing.Size(147, 35)
@@ -556,7 +558,8 @@ Partial Class MainForm
         '
         'ButtonUsun
         '
-        Me.ButtonUsun.Location = New System.Drawing.Point(1123, 369)
+        Me.ButtonUsun.Enabled = False
+        Me.ButtonUsun.Location = New System.Drawing.Point(1125, 202)
         Me.ButtonUsun.Name = "ButtonUsun"
         Me.ButtonUsun.Size = New System.Drawing.Size(147, 35)
         Me.ButtonUsun.TabIndex = 10
@@ -565,20 +568,18 @@ Partial Class MainForm
         '
         'ButtonEdytuj
         '
-        Me.ButtonEdytuj.Location = New System.Drawing.Point(1125, 207)
+        Me.ButtonEdytuj.Enabled = False
+        Me.ButtonEdytuj.Location = New System.Drawing.Point(1125, 251)
         Me.ButtonEdytuj.Name = "ButtonEdytuj"
         Me.ButtonEdytuj.Size = New System.Drawing.Size(147, 35)
         Me.ButtonEdytuj.TabIndex = 11
         Me.ButtonEdytuj.Text = "Edytuj"
         Me.ButtonEdytuj.UseVisualStyleBackColor = True
         '
-        'CarsDatabaseTableAdapter
-        '
-        Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
-        '
         'ButtonZapis
         '
-        Me.ButtonZapis.Location = New System.Drawing.Point(1125, 262)
+        Me.ButtonZapis.Enabled = False
+        Me.ButtonZapis.Location = New System.Drawing.Point(1123, 368)
         Me.ButtonZapis.Name = "ButtonZapis"
         Me.ButtonZapis.Size = New System.Drawing.Size(147, 35)
         Me.ButtonZapis.TabIndex = 12
@@ -587,12 +588,17 @@ Partial Class MainForm
         '
         'ButtonAnuluj
         '
+        Me.ButtonAnuluj.Enabled = False
         Me.ButtonAnuluj.Location = New System.Drawing.Point(1125, 316)
         Me.ButtonAnuluj.Name = "ButtonAnuluj"
         Me.ButtonAnuluj.Size = New System.Drawing.Size(147, 35)
         Me.ButtonAnuluj.TabIndex = 13
         Me.ButtonAnuluj.Text = "Anuluj"
         Me.ButtonAnuluj.UseVisualStyleBackColor = True
+        '
+        'CarsDatabaseTableAdapter
+        '
+        Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
         '
         'MainForm
         '
@@ -612,6 +618,7 @@ Partial Class MainForm
         Me.Controls.Add(Me.GroupBoxWybierzPojazd)
         Me.Controls.Add(Me.ButtonSzukaj)
         Me.Name = "MainForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MainForm"
         Me.GroupBoxWybierzPojazd.ResumeLayout(False)
         Me.GroupBoxWybierzPojazd.PerformLayout()
@@ -655,7 +662,6 @@ Partial Class MainForm
     Friend WithEvents ButtonNastepny As Button
     Friend WithEvents ButtonPoprzedni As Button
     Friend WithEvents ButtonPoczatek As Button
-    Friend WithEvents DataGridViewPojazdy As DataGridView
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents ButtonDodaj As Button
     Friend WithEvents ButtonUsun As Button
@@ -664,10 +670,18 @@ Partial Class MainForm
     Friend WithEvents KomisDBDataSet As KomisDBDataSet
     Friend WithEvents CarsDatabaseBindingSource As BindingSource
     Friend WithEvents CarsDatabaseTableAdapter As KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter
+    Friend WithEvents ButtonWyczyscMarke As Button
+    Friend WithEvents ButtonWyczyscOcena As Button
+    Friend WithEvents ButtonWyczyscKolor As Button
+    Friend WithEvents ButtonWyczyscModel As Button
+    Friend WithEvents ButtonZapis As Button
+    Friend WithEvents ButtonAnuluj As Button
+    Friend WithEvents DataGridViewPojazdy As DataGridView
+    Friend WithEvents rocznik As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents BrandDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ModelDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents GenerationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents RocznikDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ColorDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents OcenaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents MetalicDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -676,10 +690,4 @@ Partial Class MainForm
     Friend WithEvents EspDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ParkDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents KeylessDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ButtonWyczyscMarke As Button
-    Friend WithEvents ButtonWyczyscOcena As Button
-    Friend WithEvents ButtonWyczyscKolor As Button
-    Friend WithEvents ButtonWyczyscModel As Button
-    Friend WithEvents ButtonZapis As Button
-    Friend WithEvents ButtonAnuluj As Button
 End Class

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class MainForm
     Public Class GlobalVariables
-        Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
         Public Shared SelectedModel As String
         Public Shared SelectedBrand As String
         Public Shared SelectedColor As String
@@ -11,11 +11,19 @@ Public Class MainForm
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
         Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
+        'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
+        ' Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
 
         GroupBoxWynikWyszukiwania.Enabled = True
         LabelWelcome.Text = "Witaj " + FormLogowanie.PassUserName
         FormLogowanie.Hide()
         GetCarBrandList()
+        Console.WriteLine("User type: " + FormLogowanie.PassUserType)
+        If FormLogowanie.PassUserType = "admin" Then
+            ButtonEdytuj.Enabled = True
+            ButtonUsun.Enabled = True
+            ButtonDodaj.Enabled = True
+        End If
     End Sub
 
     Function GetCarBrandList()
@@ -25,7 +33,7 @@ Public Class MainForm
         'queryString = String.Format(msg, TextBoxLogin.Text)
 
 
-        Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
+        Using connection As New SqlConnection(GlobalVariables.DatabaseConStr)
             Dim row_id As Integer
             Dim row_name As String
             Dim command As New SqlCommand(queryString, connection)
@@ -36,7 +44,7 @@ Public Class MainForm
                 command.Connection.Open()
                 result = True
             Catch ex As Exception
-                MessageBox.Show("Nie można połączyć się z bazą danych")
+                MessageBox.Show("Nie można połączyć się z bazą danych w celu odczytania listy producentów")
                 result = False
             End Try
 
@@ -80,7 +88,7 @@ Public Class MainForm
         queryString = String.Format(msg, brand_name)
 
 
-        Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
+        Using connection As New SqlConnection(GlobalVariables.DatabaseConStr)
             Dim row_id As Integer = 0
             Dim row_name As String
             Dim command As New SqlCommand(queryString, connection)
@@ -125,7 +133,7 @@ Public Class MainForm
         'Dim queryString As String = "SELECT * FROM dbo.CarsModelList WHERE BrandName = '' ORDER BY Name;"
         Dim reader As System.Data.SqlClient.SqlDataReader
 
-        Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
+        Using connection As New SqlConnection(GlobalVariables.DatabaseConStr)
             Dim row_id As Integer = 0
             Dim row_name As String
             Dim command As New SqlCommand(queryString, connection)
@@ -226,6 +234,64 @@ Public Class MainForm
     End Sub
 
     Private Sub ButtonSzukaj_Click(sender As Object, e As EventArgs) Handles ButtonSzukaj.Click
+        SzukajPojazdow()
+    End Sub
+
+    Private Sub ButtonWyczyscMarke_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscMarke.Click
+        ComboBoxMarka.SelectedItem = Nothing
+        ComboBoxKolor.Enabled = False
+        ComboBoxModel.Enabled = False
+        CheckBoxABS.Enabled = False
+        CheckBoxCzujniki.Enabled = False
+        CheckBoxESP.Enabled = False
+        CheckBoxKeyless.Enabled = False
+        CheckBoxKlimatyzacja.Enabled = False
+        CheckBoxLakierMetalik.Enabled = False
+    End Sub
+
+    Private Sub ButtonWyczyscModel_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscModel.Click
+        ComboBoxModel.SelectedItem = Nothing
+    End Sub
+
+    Private Sub ButtonWyczyscKolor_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscKolor.Click
+        ComboBoxKolor.SelectedItem = Nothing
+    End Sub
+
+    Private Sub ButtonWyczyscOcena_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscOcena.Click
+        ComboBoxOcenaPowyzej.SelectedItem = Nothing
+    End Sub
+
+    Private Sub CheckBoxKlimatyzacja_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxKlimatyzacja.CheckedChanged
+
+    End Sub
+
+    Private Sub ButtonNastepny_Click(sender As Object, e As EventArgs) Handles ButtonNastepny.Click
+        CarsDatabaseBindingSource.Position += 1
+    End Sub
+
+    Private Sub ButtonPoprzedni_Click(sender As Object, e As EventArgs) Handles ButtonPoprzedni.Click
+        CarsDatabaseBindingSource.Position -= 1
+    End Sub
+
+    Private Sub ButtonKoniec_Click(sender As Object, e As EventArgs) Handles ButtonKoniec.Click
+        CarsDatabaseBindingSource.Position = CarsDatabaseBindingSource.Count - 1
+    End Sub
+
+    Private Sub ButtonPoczatek_Click(sender As Object, e As EventArgs) Handles ButtonPoczatek.Click
+        CarsDatabaseBindingSource.Position = 0
+    End Sub
+
+    Private Sub ButtonEdytuj_Click(sender As Object, e As EventArgs) Handles ButtonEdytuj.Click
+        ButtonZapis.Enabled = True
+        ButtonAnuluj.Enabled = True
+    End Sub
+
+    Private Sub ButtonDodaj_Click(sender As Object, e As EventArgs) Handles ButtonDodaj.Click
+        AddNewCar.Show()
+        'Me.Close()
+    End Sub
+
+    Function SzukajPojazdow()
         Dim queryBase As String = "SELECT * FROM dbo.CarsDatabase"
         Dim queryComplete As String
         'Dim queryString As String = "SELECT * FROM dbo.CarsDatabase WHERE brand = 'Skoda' AND model = 'Fabia' ORDER BY Id;"
@@ -290,61 +356,16 @@ Public Class MainForm
                 queryComplete = queryComplete + keyless_filtr
             End If
         Else
-                queryComplete = queryBase
+            queryComplete = queryBase
         End If
         queryComplete = queryComplete + ";"
 
         Dim adp As SqlDataAdapter = New SqlDataAdapter(queryComplete, connection)
         Console.WriteLine("Query = " + queryComplete)
-        connection.ConnectionString = GlobalVariables.UsersDatabaseConStr
+        connection.ConnectionString = GlobalVariables.DatabaseConStr
         connection.Open()
         adp.Fill(ds)
         'DataGridViewPojazdy.DataSource = ds.Tables(0)
         CarsDatabaseBindingSource.DataSource = ds.Tables(0)
-    End Sub
-
-    Private Sub ButtonWyczyscMarke_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscMarke.Click
-        ComboBoxMarka.SelectedItem = Nothing
-        ComboBoxKolor.Enabled = False
-        ComboBoxModel.Enabled = False
-        CheckBoxABS.Enabled = False
-        CheckBoxCzujniki.Enabled = False
-        CheckBoxESP.Enabled = False
-        CheckBoxKeyless.Enabled = False
-        CheckBoxKlimatyzacja.Enabled = False
-        CheckBoxLakierMetalik.Enabled = False
-    End Sub
-
-    Private Sub ButtonWyczyscModel_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscModel.Click
-        ComboBoxModel.SelectedItem = Nothing
-    End Sub
-
-    Private Sub ButtonWyczyscKolor_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscKolor.Click
-        ComboBoxKolor.SelectedItem = Nothing
-    End Sub
-
-    Private Sub ButtonWyczyscOcena_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscOcena.Click
-        ComboBoxOcenaPowyzej.SelectedItem = Nothing
-    End Sub
-
-    Private Sub CheckBoxKlimatyzacja_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxKlimatyzacja.CheckedChanged
-
-    End Sub
-
-    Private Sub ButtonNastepny_Click(sender As Object, e As EventArgs) Handles ButtonNastepny.Click
-        CarsDatabaseBindingSource.Position += 1
-    End Sub
-
-    Private Sub ButtonPoprzedni_Click(sender As Object, e As EventArgs) Handles ButtonPoprzedni.Click
-        CarsDatabaseBindingSource.Position -= 1
-    End Sub
-
-    Private Sub ButtonKoniec_Click(sender As Object, e As EventArgs) Handles ButtonKoniec.Click
-        CarsDatabaseBindingSource.Position = CarsDatabaseBindingSource.Count - 1
-    End Sub
-
-    Private Sub ButtonPoczatek_Click(sender As Object, e As EventArgs) Handles ButtonPoczatek.Click
-        CarsDatabaseBindingSource.Position = 0
-    End Sub
-
+    End Function
 End Class
