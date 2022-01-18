@@ -96,6 +96,12 @@
     <Compile Include="AddNewCar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditCarForm.Designer.vb">
+      <DependentUpon>EditCarForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditCarForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="KomisDBDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,6 +147,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AddNewCar.resx">
       <DependentUpon>AddNewCar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCarForm.resx">
+      <DependentUpon>EditCarForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>

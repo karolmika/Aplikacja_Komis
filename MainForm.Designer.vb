@@ -252,7 +252,7 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.Size = New System.Drawing.Size(1233, 547)
         Me.GroupBoxWynikWyszukiwania.TabIndex = 5
         Me.GroupBoxWynikWyszukiwania.TabStop = False
-        Me.GroupBoxWynikWyszukiwania.Text = "Lista poasujących pojazdów"
+        Me.GroupBoxWynikWyszukiwania.Text = "Lista pojazdów"
         '
         'TextBox1
         '

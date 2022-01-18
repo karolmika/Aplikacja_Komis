@@ -6,6 +6,17 @@ Public Class MainForm
         Public Shared SelectedBrand As String
         Public Shared SelectedColor As String
         Public Shared SelectedOcena As Integer
+        Public Shared SelectedId As Integer
+        Public Shared RowBrand As String
+        Public Shared RowModel As String
+        Public Shared RowColor As String
+        Public Shared RowGeneration As String
+        Public Shared RowAbs As Integer
+        Public Shared RowEsp As Integer
+        Public Shared RowMetalik As Integer
+        Public Shared RowKlima As Integer
+        Public Shared RowPark As Integer
+        Public Shared RowKeyless As Integer
     End Class
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -266,8 +277,9 @@ Public Class MainForm
     End Sub
 
     Private Sub ButtonEdytuj_Click(sender As Object, e As EventArgs) Handles ButtonEdytuj.Click
-        ButtonZapis.Enabled = True
-        ButtonAnuluj.Enabled = True
+        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
+        GetRow(id)
+        EditCarForm.Show()
     End Sub
 
     Private Sub ButtonDodaj_Click(sender As Object, e As EventArgs) Handles ButtonDodaj.Click
@@ -378,5 +390,51 @@ Public Class MainForm
         Return 1
     End Function
 
+    Function GetRow(ByVal Id As Integer) As Integer
+        'Dim queryString As String = "SELECT * FROM dbo.CarBrand;"
+        Dim queryString As String = "SELECT * FROM dbo.CarsDatabase Where Id={0} ORDER BY Id;"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+        queryString = String.Format(queryString, Id)
 
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim row_id As Integer
+            Dim row_name As String
+            Dim command As New SqlCommand(queryString, connection)
+            Dim result As Boolean
+            Dim error_cnt As Integer = 0
+
+            Try
+                command.Connection.Open()
+                result = True
+            Catch ex As Exception
+                MessageBox.Show("Nie można połączyć się z bazą danych w celu odczytania listy producentów")
+                result = False
+            End Try
+
+            If result = True Then
+                Try
+                    reader = command.ExecuteReader()
+                    'ComboBoxMarka.Items.Clear()
+                    While reader.Read()
+                        Console.WriteLine(reader(0).ToString + "," + reader(1).ToString + "," + reader(2).ToString + "," + reader(3).ToString)
+                        GlobalVariables.RowBrand = reader(1).ToString()
+                        GlobalVariables.RowModel = reader(2).ToString()
+                        GlobalVariables.RowGeneration = reader(3).ToString()
+                        GlobalVariables.RowColor = reader(4).ToString()
+                    End While
+                Catch ex As Exception
+                    MessageBox.Show("Nie udało sie odczytac listy producentow")
+                    error_cnt += 1
+                End Try
+
+                'If error_cnt = 0 Then
+                'tutaj odswiez tabele
+                'End If
+            End If
+            command.Connection.Close()
+            command.Connection.Dispose()
+        End Using
+        Return 1
+    End Function
 End Class
