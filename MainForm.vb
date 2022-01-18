@@ -170,32 +170,9 @@ Public Class MainForm
         End Using
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Me.CarsDatabaseTableAdapter.FiltrMarka(Me.KomisDBDataSet.CarsDatabase, TextBox1.Text)
-        'GetCarModelList(GlobalVariables.SelectedModel)
-        'Dim sql As String = "SELECT * FROM dbo.CarsBrandList ORDER BY Id;"
-        'Dim myDataSet As DataSet = New DataSet()
-
-        'Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
-        'Dim dataadapter As SqlDataAdapter = New SqlDataAdapter(sql, connection)
-        'connection.Open()
-        'dataadapter.Fill(myDataSet)
-        'connection.Close()
-        'DataGridViewPojazdy.Rows.Add("Id", "Brand", "Model")
-        'End Using
-
-        'Dim queryString As String = "SELECT * FROM dbo.CarsDatabase WHERE brand = 'Skoda' AND model = 'Fabia' ORDER BY Id;"
-        'Dim connection As SqlConnection = New SqlConnection()
-        'Dim ds As DataSet = New DataSet()
-        'Dim adp As SqlDataAdapter = New SqlDataAdapter(queryString, connection)
-
-        'connection.ConnectionString = GlobalVariables.UsersDatabaseConStr
-        'connection.Open()
-        'adp.Fill(ds)
-        'DataGridViewPojazdy.DataSource = ds.Tables(0)
-        ComboBoxKolor.SelectedItem = Nothing
-        GetCarColorList()
-    End Sub
+    ''------------------------------------------------------------
+    ''                       Combo Boxe's
+    ''-------------------------------------------------------------
 
     Private Sub ComboBoxMarka_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxMarka.SelectedIndexChanged
         Console.WriteLine("Producent Samochodu wybrany !")
@@ -233,8 +210,15 @@ Public Class MainForm
 
     End Sub
 
+    ''------------------------------------------------------------
+    ''                       BUTTONS
+    ''-------------------------------------------------------------
     Private Sub ButtonSzukaj_Click(sender As Object, e As EventArgs) Handles ButtonSzukaj.Click
         SzukajPojazdow()
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ComboBoxKolor.SelectedItem = Nothing
+        GetCarColorList()
     End Sub
 
     Private Sub ButtonWyczyscMarke_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscMarke.Click
@@ -290,7 +274,14 @@ Public Class MainForm
         AddNewCar.Show()
         'Me.Close()
     End Sub
+    Private Sub ButtonUsun_Click(sender As Object, e As EventArgs) Handles ButtonUsun.Click
+        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
+        DeleteCar(GlobalVariables.DatabaseConStr, id)
+    End Sub
 
+    ''------------------------------------------------------------
+    ''                       FUNCTIONS
+    ''-------------------------------------------------------------
     Function SzukajPojazdow()
         Dim queryBase As String = "SELECT * FROM dbo.CarsDatabase"
         Dim queryComplete As String
@@ -368,4 +359,24 @@ Public Class MainForm
         'DataGridViewPojazdy.DataSource = ds.Tables(0)
         CarsDatabaseBindingSource.DataSource = ds.Tables(0)
     End Function
+
+    Function DeleteCar(ByVal connectionString As String, ByVal car_id As Integer) As Integer
+        Dim queryDelete As String = "DELETE FROM dbo.CarsDatabase WHERE Id={0}"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+
+        queryDelete = String.Format(queryDelete, car_id)
+
+        Try
+            FormLogowanie.CreateCommand(queryDelete, connectionString)
+            MessageBox.Show("Pojazd został usunięty z bazy.", "Potwierdzenie", MessageBoxButtons.OK)
+        Catch ex As Exception
+            MessageBox.Show("Wystąpił błąd podczas usuwania tego pojazdu.", "Blad", MessageBoxButtons.OK)
+            Return 0
+        End Try
+
+        SzukajPojazdow()
+        Return 1
+    End Function
+
+
 End Class

@@ -39,6 +39,7 @@ Partial Class MainForm
         Me.LabelWelcome = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBoxWynikWyszukiwania = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.LabelAktualnyRekord = New System.Windows.Forms.Label()
         Me.LabelUkosnik = New System.Windows.Forms.Label()
         Me.LabelWszystkieRekordy = New System.Windows.Forms.Label()
@@ -47,18 +48,6 @@ Partial Class MainForm
         Me.ButtonPoprzedni = New System.Windows.Forms.Button()
         Me.ButtonPoczatek = New System.Windows.Forms.Button()
         Me.DataGridViewPojazdy = New System.Windows.Forms.DataGridView()
-        Me.rocznik = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OcenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MetalicDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AcDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AbsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EspDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ParkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KeylessDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CarsDatabaseBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.KomisDBDataSet = New Aplikacja_Komis.KomisDBDataSet()
@@ -77,6 +66,18 @@ Partial Class MainForm
         Me.ButtonZapis = New System.Windows.Forms.Button()
         Me.ButtonAnuluj = New System.Windows.Forms.Button()
         Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.rocznik = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OcenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MetalicDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AcDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AbsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EspDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ParkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KeylessDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,6 +237,7 @@ Partial Class MainForm
         '
         'GroupBoxWynikWyszukiwania
         '
+        Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.TextBox1)
         Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.LabelAktualnyRekord)
         Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.LabelUkosnik)
         Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.LabelWszystkieRekordy)
@@ -251,6 +253,13 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.TabIndex = 5
         Me.GroupBoxWynikWyszukiwania.TabStop = False
         Me.GroupBoxWynikWyszukiwania.Text = "Lista poasujących pojazdów"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(103, 486)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 22)
+        Me.TextBox1.TabIndex = 15
         '
         'LabelAktualnyRekord
         '
@@ -320,7 +329,7 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.AutoGenerateColumns = False
         Me.DataGridViewPojazdy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridViewPojazdy.ColumnHeadersHeight = 29
-        Me.DataGridViewPojazdy.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.rocznik, Me.IdDataGridViewTextBoxColumn, Me.BrandDataGridViewTextBoxColumn, Me.ModelDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OcenaDataGridViewTextBoxColumn, Me.MetalicDataGridViewTextBoxColumn, Me.AcDataGridViewTextBoxColumn, Me.AbsDataGridViewTextBoxColumn, Me.EspDataGridViewTextBoxColumn, Me.ParkDataGridViewTextBoxColumn, Me.KeylessDataGridViewTextBoxColumn})
+        Me.DataGridViewPojazdy.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.BrandDataGridViewTextBoxColumn, Me.ModelDataGridViewTextBoxColumn, Me.rocznik, Me.ColorDataGridViewTextBoxColumn, Me.OcenaDataGridViewTextBoxColumn, Me.MetalicDataGridViewTextBoxColumn, Me.AcDataGridViewTextBoxColumn, Me.AbsDataGridViewTextBoxColumn, Me.EspDataGridViewTextBoxColumn, Me.ParkDataGridViewTextBoxColumn, Me.KeylessDataGridViewTextBoxColumn})
         Me.DataGridViewPojazdy.DataSource = Me.CarsDatabaseBindingSource
         Me.DataGridViewPojazdy.Location = New System.Drawing.Point(6, 41)
         Me.DataGridViewPojazdy.Name = "DataGridViewPojazdy"
@@ -330,102 +339,6 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewPojazdy.Size = New System.Drawing.Size(1207, 414)
         Me.DataGridViewPojazdy.TabIndex = 0
-        '
-        'rocznik
-        '
-        Me.rocznik.DataPropertyName = "rocznik"
-        Me.rocznik.HeaderText = "Rocznik"
-        Me.rocznik.MinimumWidth = 6
-        Me.rocznik.Name = "rocznik"
-        Me.rocznik.Width = 84
-        '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.Width = 47
-        '
-        'BrandDataGridViewTextBoxColumn
-        '
-        Me.BrandDataGridViewTextBoxColumn.DataPropertyName = "brand"
-        Me.BrandDataGridViewTextBoxColumn.HeaderText = "brand"
-        Me.BrandDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.BrandDataGridViewTextBoxColumn.Name = "BrandDataGridViewTextBoxColumn"
-        Me.BrandDataGridViewTextBoxColumn.Width = 71
-        '
-        'ModelDataGridViewTextBoxColumn
-        '
-        Me.ModelDataGridViewTextBoxColumn.DataPropertyName = "model"
-        Me.ModelDataGridViewTextBoxColumn.HeaderText = "model"
-        Me.ModelDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ModelDataGridViewTextBoxColumn.Name = "ModelDataGridViewTextBoxColumn"
-        Me.ModelDataGridViewTextBoxColumn.Width = 74
-        '
-        'ColorDataGridViewTextBoxColumn
-        '
-        Me.ColorDataGridViewTextBoxColumn.DataPropertyName = "color"
-        Me.ColorDataGridViewTextBoxColumn.HeaderText = "color"
-        Me.ColorDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ColorDataGridViewTextBoxColumn.Name = "ColorDataGridViewTextBoxColumn"
-        Me.ColorDataGridViewTextBoxColumn.Width = 66
-        '
-        'OcenaDataGridViewTextBoxColumn
-        '
-        Me.OcenaDataGridViewTextBoxColumn.DataPropertyName = "ocena"
-        Me.OcenaDataGridViewTextBoxColumn.HeaderText = "ocena"
-        Me.OcenaDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.OcenaDataGridViewTextBoxColumn.Name = "OcenaDataGridViewTextBoxColumn"
-        Me.OcenaDataGridViewTextBoxColumn.Width = 74
-        '
-        'MetalicDataGridViewTextBoxColumn
-        '
-        Me.MetalicDataGridViewTextBoxColumn.DataPropertyName = "metalic"
-        Me.MetalicDataGridViewTextBoxColumn.HeaderText = "metalic"
-        Me.MetalicDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.MetalicDataGridViewTextBoxColumn.Name = "MetalicDataGridViewTextBoxColumn"
-        Me.MetalicDataGridViewTextBoxColumn.Width = 79
-        '
-        'AcDataGridViewTextBoxColumn
-        '
-        Me.AcDataGridViewTextBoxColumn.DataPropertyName = "ac"
-        Me.AcDataGridViewTextBoxColumn.HeaderText = "ac"
-        Me.AcDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.AcDataGridViewTextBoxColumn.Name = "AcDataGridViewTextBoxColumn"
-        Me.AcDataGridViewTextBoxColumn.Width = 51
-        '
-        'AbsDataGridViewTextBoxColumn
-        '
-        Me.AbsDataGridViewTextBoxColumn.DataPropertyName = "abs"
-        Me.AbsDataGridViewTextBoxColumn.HeaderText = "abs"
-        Me.AbsDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.AbsDataGridViewTextBoxColumn.Name = "AbsDataGridViewTextBoxColumn"
-        Me.AbsDataGridViewTextBoxColumn.Width = 59
-        '
-        'EspDataGridViewTextBoxColumn
-        '
-        Me.EspDataGridViewTextBoxColumn.DataPropertyName = "esp"
-        Me.EspDataGridViewTextBoxColumn.HeaderText = "esp"
-        Me.EspDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.EspDataGridViewTextBoxColumn.Name = "EspDataGridViewTextBoxColumn"
-        Me.EspDataGridViewTextBoxColumn.Width = 59
-        '
-        'ParkDataGridViewTextBoxColumn
-        '
-        Me.ParkDataGridViewTextBoxColumn.DataPropertyName = "park"
-        Me.ParkDataGridViewTextBoxColumn.HeaderText = "park"
-        Me.ParkDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ParkDataGridViewTextBoxColumn.Name = "ParkDataGridViewTextBoxColumn"
-        Me.ParkDataGridViewTextBoxColumn.Width = 63
-        '
-        'KeylessDataGridViewTextBoxColumn
-        '
-        Me.KeylessDataGridViewTextBoxColumn.DataPropertyName = "keyless"
-        Me.KeylessDataGridViewTextBoxColumn.HeaderText = "keyless"
-        Me.KeylessDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.KeylessDataGridViewTextBoxColumn.Name = "KeylessDataGridViewTextBoxColumn"
-        Me.KeylessDataGridViewTextBoxColumn.Width = 83
         '
         'CarsDatabaseBindingSource
         '
@@ -600,6 +513,114 @@ Partial Class MainForm
         '
         Me.CarsDatabaseTableAdapter.ClearBeforeFill = True
         '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
+        Me.IdDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IdDataGridViewTextBoxColumn.Width = 47
+        '
+        'BrandDataGridViewTextBoxColumn
+        '
+        Me.BrandDataGridViewTextBoxColumn.DataPropertyName = "brand"
+        Me.BrandDataGridViewTextBoxColumn.HeaderText = "brand"
+        Me.BrandDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.BrandDataGridViewTextBoxColumn.Name = "BrandDataGridViewTextBoxColumn"
+        Me.BrandDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BrandDataGridViewTextBoxColumn.Width = 71
+        '
+        'ModelDataGridViewTextBoxColumn
+        '
+        Me.ModelDataGridViewTextBoxColumn.DataPropertyName = "model"
+        Me.ModelDataGridViewTextBoxColumn.HeaderText = "model"
+        Me.ModelDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ModelDataGridViewTextBoxColumn.Name = "ModelDataGridViewTextBoxColumn"
+        Me.ModelDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ModelDataGridViewTextBoxColumn.Width = 74
+        '
+        'rocznik
+        '
+        Me.rocznik.DataPropertyName = "rocznik"
+        Me.rocznik.HeaderText = "Rocznik"
+        Me.rocznik.MinimumWidth = 6
+        Me.rocznik.Name = "rocznik"
+        Me.rocznik.ReadOnly = True
+        Me.rocznik.Width = 84
+        '
+        'ColorDataGridViewTextBoxColumn
+        '
+        Me.ColorDataGridViewTextBoxColumn.DataPropertyName = "color"
+        Me.ColorDataGridViewTextBoxColumn.HeaderText = "color"
+        Me.ColorDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ColorDataGridViewTextBoxColumn.Name = "ColorDataGridViewTextBoxColumn"
+        Me.ColorDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ColorDataGridViewTextBoxColumn.Width = 66
+        '
+        'OcenaDataGridViewTextBoxColumn
+        '
+        Me.OcenaDataGridViewTextBoxColumn.DataPropertyName = "ocena"
+        Me.OcenaDataGridViewTextBoxColumn.HeaderText = "ocena"
+        Me.OcenaDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.OcenaDataGridViewTextBoxColumn.Name = "OcenaDataGridViewTextBoxColumn"
+        Me.OcenaDataGridViewTextBoxColumn.ReadOnly = True
+        Me.OcenaDataGridViewTextBoxColumn.Width = 74
+        '
+        'MetalicDataGridViewTextBoxColumn
+        '
+        Me.MetalicDataGridViewTextBoxColumn.DataPropertyName = "metalic"
+        Me.MetalicDataGridViewTextBoxColumn.HeaderText = "metalic"
+        Me.MetalicDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.MetalicDataGridViewTextBoxColumn.Name = "MetalicDataGridViewTextBoxColumn"
+        Me.MetalicDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MetalicDataGridViewTextBoxColumn.Width = 79
+        '
+        'AcDataGridViewTextBoxColumn
+        '
+        Me.AcDataGridViewTextBoxColumn.DataPropertyName = "ac"
+        Me.AcDataGridViewTextBoxColumn.HeaderText = "ac"
+        Me.AcDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.AcDataGridViewTextBoxColumn.Name = "AcDataGridViewTextBoxColumn"
+        Me.AcDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AcDataGridViewTextBoxColumn.Width = 51
+        '
+        'AbsDataGridViewTextBoxColumn
+        '
+        Me.AbsDataGridViewTextBoxColumn.DataPropertyName = "abs"
+        Me.AbsDataGridViewTextBoxColumn.HeaderText = "abs"
+        Me.AbsDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.AbsDataGridViewTextBoxColumn.Name = "AbsDataGridViewTextBoxColumn"
+        Me.AbsDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AbsDataGridViewTextBoxColumn.Width = 59
+        '
+        'EspDataGridViewTextBoxColumn
+        '
+        Me.EspDataGridViewTextBoxColumn.DataPropertyName = "esp"
+        Me.EspDataGridViewTextBoxColumn.HeaderText = "esp"
+        Me.EspDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.EspDataGridViewTextBoxColumn.Name = "EspDataGridViewTextBoxColumn"
+        Me.EspDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EspDataGridViewTextBoxColumn.Width = 59
+        '
+        'ParkDataGridViewTextBoxColumn
+        '
+        Me.ParkDataGridViewTextBoxColumn.DataPropertyName = "park"
+        Me.ParkDataGridViewTextBoxColumn.HeaderText = "park"
+        Me.ParkDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ParkDataGridViewTextBoxColumn.Name = "ParkDataGridViewTextBoxColumn"
+        Me.ParkDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ParkDataGridViewTextBoxColumn.Width = 63
+        '
+        'KeylessDataGridViewTextBoxColumn
+        '
+        Me.KeylessDataGridViewTextBoxColumn.DataPropertyName = "keyless"
+        Me.KeylessDataGridViewTextBoxColumn.HeaderText = "keyless"
+        Me.KeylessDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.KeylessDataGridViewTextBoxColumn.Name = "KeylessDataGridViewTextBoxColumn"
+        Me.KeylessDataGridViewTextBoxColumn.ReadOnly = True
+        Me.KeylessDataGridViewTextBoxColumn.Width = 83
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -677,11 +698,12 @@ Partial Class MainForm
     Friend WithEvents ButtonZapis As Button
     Friend WithEvents ButtonAnuluj As Button
     Friend WithEvents DataGridViewPojazdy As DataGridView
-    Friend WithEvents rocznik As DataGridViewTextBoxColumn
+    Friend WithEvents RocznikDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents BrandDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ModelDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents RocznikDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents rocznik As DataGridViewTextBoxColumn
     Friend WithEvents ColorDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents OcenaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents MetalicDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
