@@ -90,6 +90,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewCar.Designer.vb">
+      <DependentUpon>AddNewCar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewCar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomisDBDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="KomisDBDataSet.vb">
+      <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +139,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddNewCar.resx">
+      <DependentUpon>AddNewCar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +156,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="KomisDBDataSet.xsc">
+      <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KomisDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KomisDBDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KomisDBDataSet.xss">
+      <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

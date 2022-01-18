@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class FormLogowanie
     Public PassUserName As String
+    Public PassUserType As String
     Public Class GlobalVariables
         Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
     End Class
@@ -85,12 +86,13 @@ Public Class FormLogowanie
     End Sub
 
     Private Sub ButtonZaloguj_Click(sender As Object, e As EventArgs) Handles ButtonZaloguj.Click
-        Dim msg As String = "SELECT Login, Haslo FROM dbo.UsersTable WHERE Login='{0}';"
+        Dim msg As String = "SELECT Login, Haslo, Typ FROM dbo.UsersTable WHERE Login='{0}';"
         Dim queryString As String
         Dim reader As System.Data.SqlClient.SqlDataReader
         queryString = String.Format(msg, TextBoxLogin.Text)
 
         PassUserName = "default_login"
+        'PassUserType = "default_type"
 
         Using connection As New SqlConnection(GlobalVariables.UsersDatabaseConStr)
             Dim id As New Integer
@@ -108,22 +110,26 @@ Public Class FormLogowanie
                 Try
                     reader = command.ExecuteReader()
                     reader.Read()
-                    Console.WriteLine(reader.FieldCount.ToString())
-                    Console.WriteLine(reader(1))
+                    PassUserType = reader(2)
+                    'Console.WriteLine(reader.FieldCount.ToString())
+                    'Console.WriteLine("PassUserType" + PassUserType)
                     If reader(1) = TextBoxHaslo.Text Then
-                        MessageBox.Show("Udalo sie zalogowac")
+                        'MessageBox.Show("Udalo sie zalogowac")
                         PassUserName = TextBoxLogin.Text
                         MainForm.Show()
                     Else
                         MessageBox.Show("Nie prawidłowe hasło")
                         TextBoxHaslo.Clear()
                     End If
+
                 Catch ex As Exception
                     MessageBox.Show("Nie prawidłowy login")
                     TextBoxLogin.Clear()
                     TextBoxHaslo.Clear()
                 End Try
             End If
+            command.Connection.Close()
+            command.Connection.Dispose()
         End Using
     End Sub
 
