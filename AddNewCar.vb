@@ -194,7 +194,8 @@ Public Class AddNewCar
         GetCarModelList(NewCar.Brand)
     End Sub
     Function GetNumberOfElements(ByVal connectionString As String) As Integer
-        Dim queryCount As String = "SELECT COUNT(*) FROM dbo.CarsDatabase"
+        ''Dim queryCount As String = "SELECT COUNT(*) FROM dbo.CarsDatabase"
+        Dim queryCount As String = "SELECT MAX(id) FROM dbo.CarsDatabase"
         Dim reader As System.Data.SqlClient.SqlDataReader
         Dim val As Integer
 
@@ -204,6 +205,8 @@ Public Class AddNewCar
             reader = command.ExecuteReader()
             reader.Read()
             val = reader(0)
+            Console.WriteLine("Ostatnie id: " + val.ToString)
+
         End Using
         Return val
     End Function

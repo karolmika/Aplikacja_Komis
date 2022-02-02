@@ -307,6 +307,12 @@ Partial Public Class KomisDBDataSet
         
         Private columnkeyless As Global.System.Data.DataColumn
         
+        Private columniloscocen As Global.System.Data.DataColumn
+        
+        Private columnocena1 As Global.System.Data.DataColumn
+        
+        Private columniloscocen1 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -439,6 +445,30 @@ Partial Public Class KomisDBDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property iloscocenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columniloscocen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ocena1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnocena1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property iloscocen1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columniloscocen1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -475,9 +505,9 @@ Partial Public Class KomisDBDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddCarsDatabaseRow(ByVal Id As Integer, ByVal brand As String, ByVal model As String, ByVal generation As String, ByVal color As String, ByVal ocena As Integer, ByVal metalic As Integer, ByVal ac As Integer, ByVal abs As Integer, ByVal esp As Integer, ByVal park As Integer, ByVal keyless As Integer) As CarsDatabaseRow
+        Public Overloads Function AddCarsDatabaseRow(ByVal Id As Integer, ByVal brand As String, ByVal model As String, ByVal generation As String, ByVal color As String, ByVal ocena As Integer, ByVal metalic As Integer, ByVal ac As Integer, ByVal abs As Integer, ByVal esp As Integer, ByVal park As Integer, ByVal keyless As Integer, ByVal iloscocen As String, ByVal ocena1 As Decimal, ByVal iloscocen1 As Integer) As CarsDatabaseRow
             Dim rowCarsDatabaseRow As CarsDatabaseRow = CType(Me.NewRow,CarsDatabaseRow)
-            Dim columnValuesArray() As Object = New Object() {Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, keyless}
+            Dim columnValuesArray() As Object = New Object() {Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, keyless, iloscocen, ocena1, iloscocen1}
             rowCarsDatabaseRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCarsDatabaseRow)
             Return rowCarsDatabaseRow
@@ -518,6 +548,9 @@ Partial Public Class KomisDBDataSet
             Me.columnesp = MyBase.Columns("esp")
             Me.columnpark = MyBase.Columns("park")
             Me.columnkeyless = MyBase.Columns("keyless")
+            Me.columniloscocen = MyBase.Columns("iloscocen")
+            Me.columnocena1 = MyBase.Columns("ocena1")
+            Me.columniloscocen1 = MyBase.Columns("iloscocen1")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -547,6 +580,12 @@ Partial Public Class KomisDBDataSet
             MyBase.Columns.Add(Me.columnpark)
             Me.columnkeyless = New Global.System.Data.DataColumn("keyless", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnkeyless)
+            Me.columniloscocen = New Global.System.Data.DataColumn("iloscocen", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columniloscocen)
+            Me.columnocena1 = New Global.System.Data.DataColumn("ocena1", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnocena1)
+            Me.columniloscocen1 = New Global.System.Data.DataColumn("iloscocen1", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columniloscocen1)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId}, true))
             Me.columnId.AllowDBNull = false
             Me.columnId.Unique = true
@@ -556,6 +595,8 @@ Partial Public Class KomisDBDataSet
             Me.columnmodel.MaxLength = 50
             Me.columngeneration.MaxLength = 50
             Me.columncolor.MaxLength = 50
+            Me.columnocena1.Caption = "ocena"
+            Me.columniloscocen1.Caption = "iloscocen"
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -870,6 +911,51 @@ Partial Public Class KomisDBDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property iloscocen() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCarsDatabase.iloscocenColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'iloscocen' in table 'CarsDatabase' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCarsDatabase.iloscocenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ocena1() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCarsDatabase.ocena1Column),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ocena1' in table 'CarsDatabase' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCarsDatabase.ocena1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property iloscocen1() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableCarsDatabase.iloscocen1Column),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'iloscocen1' in table 'CarsDatabase' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCarsDatabase.iloscocen1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsgenerationNull() As Boolean
             Return Me.IsNull(Me.tableCarsDatabase.generationColumn)
         End Function
@@ -974,6 +1060,42 @@ Partial Public Class KomisDBDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetkeylessNull()
             Me(Me.tableCarsDatabase.keylessColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsiloscocenNull() As Boolean
+            Return Me.IsNull(Me.tableCarsDatabase.iloscocenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetiloscocenNull()
+            Me(Me.tableCarsDatabase.iloscocenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function Isocena1Null() As Boolean
+            Return Me.IsNull(Me.tableCarsDatabase.ocena1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub Setocena1Null()
+            Me(Me.tableCarsDatabase.ocena1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function Isiloscocen1Null() As Boolean
+            Return Me.IsNull(Me.tableCarsDatabase.iloscocen1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub Setiloscocen1Null()
+            Me(Me.tableCarsDatabase.iloscocen1Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1148,27 +1270,29 @@ Namespace KomisDBDataSetTableAdapters
             tableMapping.ColumnMappings.Add("model", "model")
             tableMapping.ColumnMappings.Add("generation", "generation")
             tableMapping.ColumnMappings.Add("color", "color")
-            tableMapping.ColumnMappings.Add("ocena", "ocena")
             tableMapping.ColumnMappings.Add("metalic", "metalic")
             tableMapping.ColumnMappings.Add("ac", "ac")
             tableMapping.ColumnMappings.Add("abs", "abs")
             tableMapping.ColumnMappings.Add("esp", "esp")
             tableMapping.ColumnMappings.Add("park", "park")
             tableMapping.ColumnMappings.Add("keyless", "keyless")
+            tableMapping.ColumnMappings.Add("ocena", "ocena1")
+            tableMapping.ColumnMappings.Add("iloscocen", "iloscocen1")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[CarsDatabase] WHERE (([Id] = @Original_Id) AND ([brand] = @Ori"& _ 
-                "ginal_brand) AND ([model] = @Original_model) AND ((@IsNull_generation = 1 AND [g"& _ 
-                "eneration] IS NULL) OR ([generation] = @Original_generation)) AND ((@IsNull_colo"& _ 
-                "r = 1 AND [color] IS NULL) OR ([color] = @Original_color)) AND ((@IsNull_ocena ="& _ 
-                " 1 AND [ocena] IS NULL) OR ([ocena] = @Original_ocena)) AND ((@IsNull_metalic = "& _ 
-                "1 AND [metalic] IS NULL) OR ([metalic] = @Original_metalic)) AND ((@IsNull_ac = "& _ 
-                "1 AND [ac] IS NULL) OR ([ac] = @Original_ac)) AND ((@IsNull_abs = 1 AND [abs] IS"& _ 
-                " NULL) OR ([abs] = @Original_abs)) AND ((@IsNull_esp = 1 AND [esp] IS NULL) OR ("& _ 
-                "[esp] = @Original_esp)) AND ((@IsNull_park = 1 AND [park] IS NULL) OR ([park] = "& _ 
-                "@Original_park)) AND ((@IsNull_keyless = 1 AND [keyless] IS NULL) OR ([keyless] "& _ 
-                "= @Original_keyless)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [CarsDatabase] WHERE (([Id] = @Original_Id) AND ([brand] = @Original_"& _ 
+                "brand) AND ([model] = @Original_model) AND ((@IsNull_generation = 1 AND [generat"& _ 
+                "ion] IS NULL) OR ([generation] = @Original_generation)) AND ((@IsNull_color = 1 "& _ 
+                "AND [color] IS NULL) OR ([color] = @Original_color)) AND ((@IsNull_ocena = 1 AND"& _ 
+                " [ocena] IS NULL) OR ([ocena] = @Original_ocena)) AND ((@IsNull_metalic = 1 AND "& _ 
+                "[metalic] IS NULL) OR ([metalic] = @Original_metalic)) AND ((@IsNull_ac = 1 AND "& _ 
+                "[ac] IS NULL) OR ([ac] = @Original_ac)) AND ((@IsNull_abs = 1 AND [abs] IS NULL)"& _ 
+                " OR ([abs] = @Original_abs)) AND ((@IsNull_esp = 1 AND [esp] IS NULL) OR ([esp] "& _ 
+                "= @Original_esp)) AND ((@IsNull_park = 1 AND [park] IS NULL) OR ([park] = @Origi"& _ 
+                "nal_park)) AND ((@IsNull_keyless = 1 AND [keyless] IS NULL) OR ([keyless] = @Ori"& _ 
+                "ginal_keyless)) AND ((@IsNull_iloscocen = 1 AND [iloscocen] IS NULL) OR ([ilosco"& _ 
+                "cen] = @Original_iloscocen)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_brand", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "brand", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -1178,7 +1302,7 @@ Namespace KomisDBDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_color", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_color", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ocena", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "ocena", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ac", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ac", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -1191,56 +1315,62 @@ Namespace KomisDBDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_park", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "park", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CarsDatabase] ([Id], [brand], [model], [generation], [color], "& _ 
-                "[ocena], [metalic], [ac], [abs], [esp], [park], [keyless]) VALUES (@Id, @brand, "& _ 
-                "@model, @generation, @color, @ocena, @metalic, @ac, @abs, @esp, @park, @keyless)"& _ 
-                ";"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, par"& _ 
-                "k, keyless FROM CarsDatabase WHERE (Id = @Id)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [CarsDatabase] ([Id], [brand], [model], [generation], [color], [ocena"& _ 
+                "], [metalic], [ac], [abs], [esp], [park], [keyless], [iloscocen]) VALUES (@Id, @"& _ 
+                "brand, @model, @generation, @color, @ocena, @metalic, @ac, @abs, @esp, @park, @k"& _ 
+                "eyless, @iloscocen);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id, brand, model, generation, color, ocena, metalic"& _ 
+                ", ac, abs, esp, park, keyless, iloscocen FROM CarsDatabase WHERE (Id = @Id)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@brand", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "brand", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@model", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "model", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@generation", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "generation", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@color", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ocena", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "ocena", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ac", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ac", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@abs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "abs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@esp", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "esp", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@park", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "park", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[CarsDatabase] SET [Id] = @Id, [brand] = @brand, [model] = @model, ["& _ 
-                "generation] = @generation, [color] = @color, [ocena] = @ocena, [metalic] = @meta"& _ 
-                "lic, [ac] = @ac, [abs] = @abs, [esp] = @esp, [park] = @park, [keyless] = @keyles"& _ 
-                "s WHERE (([Id] = @Original_Id) AND ([brand] = @Original_brand) AND ([model] = @O"& _ 
-                "riginal_model) AND ((@IsNull_generation = 1 AND [generation] IS NULL) OR ([gener"& _ 
-                "ation] = @Original_generation)) AND ((@IsNull_color = 1 AND [color] IS NULL) OR "& _ 
-                "([color] = @Original_color)) AND ((@IsNull_ocena = 1 AND [ocena] IS NULL) OR ([o"& _ 
-                "cena] = @Original_ocena)) AND ((@IsNull_metalic = 1 AND [metalic] IS NULL) OR (["& _ 
-                "metalic] = @Original_metalic)) AND ((@IsNull_ac = 1 AND [ac] IS NULL) OR ([ac] ="& _ 
-                " @Original_ac)) AND ((@IsNull_abs = 1 AND [abs] IS NULL) OR ([abs] = @Original_a"& _ 
-                "bs)) AND ((@IsNull_esp = 1 AND [esp] IS NULL) OR ([esp] = @Original_esp)) AND (("& _ 
-                "@IsNull_park = 1 AND [park] IS NULL) OR ([park] = @Original_park)) AND ((@IsNull"& _ 
-                "_keyless = 1 AND [keyless] IS NULL) OR ([keyless] = @Original_keyless)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELEC"& _ 
-                "T Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, keyle"& _ 
-                "ss FROM CarsDatabase WHERE (Id = @Id)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [CarsDatabase] SET [Id] = @Id, [brand] = @brand, [model] = @model, [genera"& _ 
+                "tion] = @generation, [color] = @color, [ocena] = @ocena, [metalic] = @metalic, ["& _ 
+                "ac] = @ac, [abs] = @abs, [esp] = @esp, [park] = @park, [keyless] = @keyless, [il"& _ 
+                "oscocen] = @iloscocen WHERE (([Id] = @Original_Id) AND ([brand] = @Original_bran"& _ 
+                "d) AND ([model] = @Original_model) AND ((@IsNull_generation = 1 AND [generation]"& _ 
+                " IS NULL) OR ([generation] = @Original_generation)) AND ((@IsNull_color = 1 AND "& _ 
+                "[color] IS NULL) OR ([color] = @Original_color)) AND ((@IsNull_ocena = 1 AND [oc"& _ 
+                "ena] IS NULL) OR ([ocena] = @Original_ocena)) AND ((@IsNull_metalic = 1 AND [met"& _ 
+                "alic] IS NULL) OR ([metalic] = @Original_metalic)) AND ((@IsNull_ac = 1 AND [ac]"& _ 
+                " IS NULL) OR ([ac] = @Original_ac)) AND ((@IsNull_abs = 1 AND [abs] IS NULL) OR "& _ 
+                "([abs] = @Original_abs)) AND ((@IsNull_esp = 1 AND [esp] IS NULL) OR ([esp] = @O"& _ 
+                "riginal_esp)) AND ((@IsNull_park = 1 AND [park] IS NULL) OR ([park] = @Original_"& _ 
+                "park)) AND ((@IsNull_keyless = 1 AND [keyless] IS NULL) OR ([keyless] = @Origina"& _ 
+                "l_keyless)) AND ((@IsNull_iloscocen = 1 AND [iloscocen] IS NULL) OR ([iloscocen]"& _ 
+                " = @Original_iloscocen)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Id, brand, model, generation, color, ocena, m"& _ 
+                "etalic, ac, abs, esp, park, keyless, iloscocen FROM CarsDatabase WHERE (Id = @Id"& _ 
+                ")"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@brand", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "brand", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@model", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "model", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@generation", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "generation", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@color", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ocena", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "ocena", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ac", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ac", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@abs", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "abs", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@esp", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "esp", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@park", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "park", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_brand", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "brand", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_model", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "model", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -1249,7 +1379,7 @@ Namespace KomisDBDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_color", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_color", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "color", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ocena", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ocena", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ocena", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "ocena", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_metalic", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "metalic", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ac", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ac", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
@@ -1262,6 +1392,8 @@ Namespace KomisDBDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_park", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "park", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_keyless", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "keyless", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_iloscocen", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "iloscocen", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1278,12 +1410,12 @@ Namespace KomisDBDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, k"& _ 
-                "eyless FROM dbo.CarsDatabase"
+                "eyless, iloscocen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     CarsDatabase"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, k"& _ 
-                "eyless FROM dbo.CarsDatabase WHERE brand =@Parameter1"
+            Me._commandCollection(1).CommandText = "SELECT Id, abs, ac, brand, color, esp, generation, iloscocen, keyless, metalic, m"& _ 
+                "odel, ocena, park FROM CarsDatabase WHERE (brand = @Parameter1)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Parameter1", Global.System.Data.SqlDbType.VarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "brand", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -1362,7 +1494,7 @@ Namespace KomisDBDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer, ByVal Original_brand As String, ByVal Original_model As String, ByVal Original_generation As String, ByVal Original_color As String, ByVal Original_ocena As Global.System.Nullable(Of Integer), ByVal Original_metalic As Global.System.Nullable(Of Integer), ByVal Original_ac As Global.System.Nullable(Of Integer), ByVal Original_abs As Global.System.Nullable(Of Integer), ByVal Original_esp As Global.System.Nullable(Of Integer), ByVal Original_park As Global.System.Nullable(Of Integer), ByVal Original_keyless As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer, ByVal Original_brand As String, ByVal Original_model As String, ByVal Original_generation As String, ByVal Original_color As String, ByVal Original_ocena As Global.System.Nullable(Of Decimal), ByVal Original_metalic As Global.System.Nullable(Of Integer), ByVal Original_ac As Global.System.Nullable(Of Integer), ByVal Original_abs As Global.System.Nullable(Of Integer), ByVal Original_esp As Global.System.Nullable(Of Integer), ByVal Original_park As Global.System.Nullable(Of Integer), ByVal Original_keyless As Global.System.Nullable(Of Integer), ByVal Original_iloscocen As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Id,Integer)
             If (Original_brand Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_brand")
@@ -1390,7 +1522,7 @@ Namespace KomisDBDataSetTableAdapters
             End If
             If (Original_ocena.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ocena.Value,Integer)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ocena.Value,Decimal)
             Else
                 Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
@@ -1437,6 +1569,13 @@ Namespace KomisDBDataSetTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
+            If (Original_iloscocen.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_iloscocen.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -1456,7 +1595,7 @@ Namespace KomisDBDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Id As Integer, ByVal brand As String, ByVal model As String, ByVal generation As String, ByVal color As String, ByVal ocena As Global.System.Nullable(Of Integer), ByVal metalic As Global.System.Nullable(Of Integer), ByVal ac As Global.System.Nullable(Of Integer), ByVal abs As Global.System.Nullable(Of Integer), ByVal esp As Global.System.Nullable(Of Integer), ByVal park As Global.System.Nullable(Of Integer), ByVal keyless As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Insert(ByVal Id As Integer, ByVal brand As String, ByVal model As String, ByVal generation As String, ByVal color As String, ByVal ocena As Global.System.Nullable(Of Decimal), ByVal metalic As Global.System.Nullable(Of Integer), ByVal ac As Global.System.Nullable(Of Integer), ByVal abs As Global.System.Nullable(Of Integer), ByVal esp As Global.System.Nullable(Of Integer), ByVal park As Global.System.Nullable(Of Integer), ByVal keyless As Global.System.Nullable(Of Integer), ByVal iloscocen As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(Id,Integer)
             If (brand Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("brand")
@@ -1479,7 +1618,7 @@ Namespace KomisDBDataSetTableAdapters
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(color,String)
             End If
             If (ocena.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ocena.Value,Integer)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ocena.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
@@ -1513,6 +1652,11 @@ Namespace KomisDBDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
+            If (iloscocen.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(iloscocen.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -1538,25 +1682,27 @@ Namespace KomisDBDataSetTableAdapters
                     ByVal model As String,  _
                     ByVal generation As String,  _
                     ByVal color As String,  _
-                    ByVal ocena As Global.System.Nullable(Of Integer),  _
+                    ByVal ocena As Global.System.Nullable(Of Decimal),  _
                     ByVal metalic As Global.System.Nullable(Of Integer),  _
                     ByVal ac As Global.System.Nullable(Of Integer),  _
                     ByVal abs As Global.System.Nullable(Of Integer),  _
                     ByVal esp As Global.System.Nullable(Of Integer),  _
                     ByVal park As Global.System.Nullable(Of Integer),  _
                     ByVal keyless As Global.System.Nullable(Of Integer),  _
+                    ByVal iloscocen As Global.System.Nullable(Of Integer),  _
                     ByVal Original_Id As Integer,  _
                     ByVal Original_brand As String,  _
                     ByVal Original_model As String,  _
                     ByVal Original_generation As String,  _
                     ByVal Original_color As String,  _
-                    ByVal Original_ocena As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ocena As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_metalic As Global.System.Nullable(Of Integer),  _
                     ByVal Original_ac As Global.System.Nullable(Of Integer),  _
                     ByVal Original_abs As Global.System.Nullable(Of Integer),  _
                     ByVal Original_esp As Global.System.Nullable(Of Integer),  _
                     ByVal Original_park As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_keyless As Global.System.Nullable(Of Integer)) As Integer
+                    ByVal Original_keyless As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_iloscocen As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Id,Integer)
             If (brand Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("brand")
@@ -1579,7 +1725,7 @@ Namespace KomisDBDataSetTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(color,String)
             End If
             If (ocena.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ocena.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ocena.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
@@ -1613,79 +1759,91 @@ Namespace KomisDBDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Id,Integer)
+            If (iloscocen.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(iloscocen.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Id,Integer)
             If (Original_brand Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_brand")
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_brand,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_brand,String)
             End If
             If (Original_model Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_model")
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_model,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_model,String)
             End If
             If (Original_generation Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_generation,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_generation,String)
             End If
             If (Original_color Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_color,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_color,String)
             End If
             If (Original_ocena.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_ocena.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_ocena.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             If (Original_metalic.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_metalic.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_metalic.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
             If (Original_ac.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_ac.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_ac.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
             If (Original_abs.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_abs.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_abs.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             If (Original_esp.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_esp.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_esp.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
             If (Original_park.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_park.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_park.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
             End If
             If (Original_keyless.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_keyless.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_keyless.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+            End If
+            If (Original_iloscocen.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_iloscocen.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -1711,26 +1869,28 @@ Namespace KomisDBDataSetTableAdapters
                     ByVal model As String,  _
                     ByVal generation As String,  _
                     ByVal color As String,  _
-                    ByVal ocena As Global.System.Nullable(Of Integer),  _
+                    ByVal ocena As Global.System.Nullable(Of Decimal),  _
                     ByVal metalic As Global.System.Nullable(Of Integer),  _
                     ByVal ac As Global.System.Nullable(Of Integer),  _
                     ByVal abs As Global.System.Nullable(Of Integer),  _
                     ByVal esp As Global.System.Nullable(Of Integer),  _
                     ByVal park As Global.System.Nullable(Of Integer),  _
                     ByVal keyless As Global.System.Nullable(Of Integer),  _
+                    ByVal iloscocen As Global.System.Nullable(Of Integer),  _
                     ByVal Original_Id As Integer,  _
                     ByVal Original_brand As String,  _
                     ByVal Original_model As String,  _
                     ByVal Original_generation As String,  _
                     ByVal Original_color As String,  _
-                    ByVal Original_ocena As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ocena As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_metalic As Global.System.Nullable(Of Integer),  _
                     ByVal Original_ac As Global.System.Nullable(Of Integer),  _
                     ByVal Original_abs As Global.System.Nullable(Of Integer),  _
                     ByVal Original_esp As Global.System.Nullable(Of Integer),  _
                     ByVal Original_park As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_keyless As Global.System.Nullable(Of Integer)) As Integer
-            Return Me.Update(Original_Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, keyless, Original_Id, Original_brand, Original_model, Original_generation, Original_color, Original_ocena, Original_metalic, Original_ac, Original_abs, Original_esp, Original_park, Original_keyless)
+                    ByVal Original_keyless As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_iloscocen As Global.System.Nullable(Of Integer)) As Integer
+            Return Me.Update(Original_Id, brand, model, generation, color, ocena, metalic, ac, abs, esp, park, keyless, iloscocen, Original_Id, Original_brand, Original_model, Original_generation, Original_color, Original_ocena, Original_metalic, Original_ac, Original_abs, Original_esp, Original_park, Original_keyless, Original_iloscocen)
         End Function
     End Class
     

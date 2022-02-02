@@ -14,6 +14,25 @@ Public Class EditCarForm
         ComboBoxKolor.SelectedItem = MainForm.GlobalVariables.RowColor
         TextBoxRocznik.Text = MainForm.GlobalVariables.RowGeneration
 
+        If MainForm.GlobalVariables.RowKlima = "1" Then
+            CheckBoxKlimatyzacja.Checked = True
+        End If
+        If MainForm.GlobalVariables.RowMetalik = "1" Then
+            CheckBoxLakierMetalik.Checked = True
+        End If
+        If MainForm.GlobalVariables.RowPark = "1" Then
+            CheckBoxCzujniki.Checked = True
+        End If
+        If MainForm.GlobalVariables.RowAbs = "1" Then
+            CheckBoxABS.Checked = True
+        End If
+        If MainForm.GlobalVariables.RowEsp = "1" Then
+            CheckBoxESP.Checked = True 
+        End If
+        If MainForm.GlobalVariables.RowKeyless = "1" Then
+            CheckBoxKeyless.Checked = True
+        End If
+
         'GetSelectedCar(MainForm.GlobalVariables.SelectedId)
     End Sub
 
@@ -120,5 +139,55 @@ Public Class EditCarForm
         End Using
     End Function
 
+    Private Sub ButtonZapisz_Click(sender As Object, e As EventArgs) Handles ButtonZapisz.Click
+        Dim UpdateQuery As String = "UPDATE dbo.CarsDatabase SET brand='{0}', model='{1}', generation='{2}', color='{3}', metalic={4}, ac={5}, abs={6}, esp={7}, park={8}, keyless={9} WHERE Id = {10};"
+        Dim id As Integer = MainForm.DataGridViewPojazdy.Rows(MainForm.CarsDatabaseBindingSource.Position).Cells(0).Value
+        Dim metalic_val As Integer = 0
+        Dim klima_val As Integer = 0
+        Dim abs_val As Integer = 0
+        Dim esp_val As Integer = 0
+        Dim park_val As Integer = 0
+        Dim keyless_val As Integer = 0
 
+        If CheckBoxLakierMetalik.Checked = True Then
+            metalic_val = 1
+        End If
+        If CheckBoxKlimatyzacja.Checked = True Then
+            klima_val = 1
+        End If
+        If CheckBoxABS.Checked = True Then
+            abs_val = 1
+        End If
+        If CheckBoxESP.Checked = True Then
+            esp_val = 1
+        End If
+        If CheckBoxCzujniki.Checked = True Then
+            park_val = 1
+        End If
+        If CheckBoxKeyless.Checked = True Then
+            keyless_val = 1
+        End If
+
+        UpdateQuery = String.Format(UpdateQuery, ComboBoxMarka.SelectedItem, ComboBoxModel.SelectedItem, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, metalic_val, klima_val, abs_val, esp_val, park_val, keyless_val, id)
+        Console.WriteLine(UpdateQuery)
+        Try
+            FormLogowanie.CreateCommand(UpdateQuery, MainForm.GlobalVariables.DatabaseConStr)
+            MessageBox.Show("Dane pojazdu zostały zaktualizowane", "Potwierdzenie", MessageBoxButtons.OK)
+        Catch ex As Exception
+            MessageBox.Show("Wystąpił błąd. Dane nie zostały zaktualizowane", "Blad", MessageBoxButtons.OK)
+        End Try
+
+        MainForm.SzukajPojazdow()
+        Me.Close()
+
+    End Sub
+
+    Private Sub ComboBoxMarka_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxMarka.SelectedIndexChanged
+        ComboBoxModel.Items.Clear()
+        GetCarModelList(ComboBoxMarka.SelectedItem)
+    End Sub
+
+    Private Sub ButtonAnuluj_Click(sender As Object, e As EventArgs) Handles ButtonAnuluj.Click
+        Me.Close()
+    End Sub
 End Class

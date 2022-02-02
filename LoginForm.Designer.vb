@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormLogowanie
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormLogowanie
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LabelLogin = New System.Windows.Forms.Label()
@@ -40,8 +40,7 @@ Partial Class FormLogowanie
         Me.GroupBoxLogowanie = New System.Windows.Forms.GroupBox()
         Me.BindingSourceUsers = New System.Windows.Forms.BindingSource(Me.components)
         Me.UsersDataSet = New Aplikacja_Komis.UsersDataSet()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ButtonAnuluj = New System.Windows.Forms.Button()
         Me.GroupBoxRejestracja.SuspendLayout()
         CType(Me.BindingSourceUsers, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UsersDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,7 +49,7 @@ Partial Class FormLogowanie
         'LabelLogin
         '
         Me.LabelLogin.AutoSize = True
-        Me.LabelLogin.Location = New System.Drawing.Point(367, 80)
+        Me.LabelLogin.Location = New System.Drawing.Point(101, 82)
         Me.LabelLogin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelLogin.Name = "LabelLogin"
         Me.LabelLogin.Size = New System.Drawing.Size(47, 16)
@@ -60,7 +59,7 @@ Partial Class FormLogowanie
         'LabelHaslo
         '
         Me.LabelHaslo.AutoSize = True
-        Me.LabelHaslo.Location = New System.Drawing.Point(367, 126)
+        Me.LabelHaslo.Location = New System.Drawing.Point(101, 128)
         Me.LabelHaslo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelHaslo.Name = "LabelHaslo"
         Me.LabelHaslo.Size = New System.Drawing.Size(53, 16)
@@ -69,7 +68,7 @@ Partial Class FormLogowanie
         '
         'TextBoxLogin
         '
-        Me.TextBoxLogin.Location = New System.Drawing.Point(441, 71)
+        Me.TextBoxLogin.Location = New System.Drawing.Point(175, 73)
         Me.TextBoxLogin.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxLogin.Name = "TextBoxLogin"
         Me.TextBoxLogin.Size = New System.Drawing.Size(199, 22)
@@ -77,7 +76,7 @@ Partial Class FormLogowanie
         '
         'TextBoxHaslo
         '
-        Me.TextBoxHaslo.Location = New System.Drawing.Point(441, 117)
+        Me.TextBoxHaslo.Location = New System.Drawing.Point(175, 119)
         Me.TextBoxHaslo.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxHaslo.Name = "TextBoxHaslo"
         Me.TextBoxHaslo.Size = New System.Drawing.Size(199, 22)
@@ -85,7 +84,7 @@ Partial Class FormLogowanie
         '
         'ButtonZaloguj
         '
-        Me.ButtonZaloguj.Location = New System.Drawing.Point(441, 166)
+        Me.ButtonZaloguj.Location = New System.Drawing.Point(175, 168)
         Me.ButtonZaloguj.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonZaloguj.Name = "ButtonZaloguj"
         Me.ButtonZaloguj.Size = New System.Drawing.Size(200, 28)
@@ -95,6 +94,7 @@ Partial Class FormLogowanie
         '
         'GroupBoxRejestracja
         '
+        Me.GroupBoxRejestracja.Controls.Add(Me.ButtonAnuluj)
         Me.GroupBoxRejestracja.Controls.Add(Me.Label3)
         Me.GroupBoxRejestracja.Controls.Add(Me.Label2)
         Me.GroupBoxRejestracja.Controls.Add(Me.Label1)
@@ -102,7 +102,7 @@ Partial Class FormLogowanie
         Me.GroupBoxRejestracja.Controls.Add(Me.TextBoxNoweHaslo2)
         Me.GroupBoxRejestracja.Controls.Add(Me.TextBoxNoweHaslo1)
         Me.GroupBoxRejestracja.Controls.Add(Me.TextBoxNowyLogin)
-        Me.GroupBoxRejestracja.Location = New System.Drawing.Point(336, 268)
+        Me.GroupBoxRejestracja.Location = New System.Drawing.Point(70, 270)
         Me.GroupBoxRejestracja.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxRejestracja.Name = "GroupBoxRejestracja"
         Me.GroupBoxRejestracja.Padding = New System.Windows.Forms.Padding(4)
@@ -178,7 +178,7 @@ Partial Class FormLogowanie
         '
         'ButtonRejestracja
         '
-        Me.ButtonRejestracja.Location = New System.Drawing.Point(441, 202)
+        Me.ButtonRejestracja.Location = New System.Drawing.Point(175, 204)
         Me.ButtonRejestracja.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonRejestracja.Name = "ButtonRejestracja"
         Me.ButtonRejestracja.Size = New System.Drawing.Size(200, 28)
@@ -188,7 +188,7 @@ Partial Class FormLogowanie
         '
         'GroupBoxLogowanie
         '
-        Me.GroupBoxLogowanie.Location = New System.Drawing.Point(336, 36)
+        Me.GroupBoxLogowanie.Location = New System.Drawing.Point(70, 38)
         Me.GroupBoxLogowanie.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxLogowanie.Name = "GroupBoxLogowanie"
         Me.GroupBoxLogowanie.Padding = New System.Windows.Forms.Padding(4)
@@ -207,30 +207,21 @@ Partial Class FormLogowanie
         Me.UsersDataSet.DataSetName = "UsersDataSet"
         Me.UsersDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'TextBox1
+        'ButtonAnuluj
         '
-        Me.TextBox1.Location = New System.Drawing.Point(781, 268)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(324, 302)
-        Me.TextBox1.TabIndex = 8
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(781, 228)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Test"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ButtonAnuluj.Location = New System.Drawing.Point(48, 258)
+        Me.ButtonAnuluj.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonAnuluj.Name = "ButtonAnuluj"
+        Me.ButtonAnuluj.Size = New System.Drawing.Size(319, 28)
+        Me.ButtonAnuluj.TabIndex = 8
+        Me.ButtonAnuluj.Text = "Anuluj"
+        Me.ButtonAnuluj.UseVisualStyleBackColor = True
         '
         'FormLogowanie
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1159, 624)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
+        Me.ClientSize = New System.Drawing.Size(565, 620)
         Me.Controls.Add(Me.ButtonRejestracja)
         Me.Controls.Add(Me.ButtonZaloguj)
         Me.Controls.Add(Me.TextBoxHaslo)
@@ -269,6 +260,5 @@ Partial Class FormLogowanie
     Friend WithEvents GroupBoxLogowanie As GroupBox
     Friend WithEvents BindingSourceUsers As BindingSource
     Friend WithEvents UsersDataSet As UsersDataSet
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonAnuluj As Button
 End Class

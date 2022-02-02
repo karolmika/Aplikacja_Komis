@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class EditCarForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class EditCarForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.ButtonZapisz = New System.Windows.Forms.Button()
         Me.GroupBoxWyposażenie = New System.Windows.Forms.GroupBox()
@@ -34,19 +34,19 @@ Partial Class EditCarForm
         Me.TextBoxRocznik = New System.Windows.Forms.TextBox()
         Me.LabelKolor = New System.Windows.Forms.Label()
         Me.LabelOcenaPowyzej = New System.Windows.Forms.Label()
-        Me.LabelModel = New System.Windows.Forms.Label()
-        Me.LabelMarka = New System.Windows.Forms.Label()
-        Me.ButtonAnuluj = New System.Windows.Forms.Button()
         Me.ComboBoxKolor = New System.Windows.Forms.ComboBox()
+        Me.LabelModel = New System.Windows.Forms.Label()
         Me.ComboBoxModel = New System.Windows.Forms.ComboBox()
+        Me.LabelMarka = New System.Windows.Forms.Label()
         Me.ComboBoxMarka = New System.Windows.Forms.ComboBox()
+        Me.ButtonAnuluj = New System.Windows.Forms.Button()
         Me.GroupBoxWyposażenie.SuspendLayout()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.SuspendLayout()
         '
         'ButtonZapisz
         '
-        Me.ButtonZapisz.Location = New System.Drawing.Point(46, 540)
+        Me.ButtonZapisz.Location = New System.Drawing.Point(46, 544)
         Me.ButtonZapisz.Name = "ButtonZapisz"
         Me.ButtonZapisz.Size = New System.Drawing.Size(184, 37)
         Me.ButtonZapisz.TabIndex = 13
@@ -61,9 +61,9 @@ Partial Class EditCarForm
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxKlimatyzacja)
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxCzujniki)
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxABS)
-        Me.GroupBoxWyposażenie.Location = New System.Drawing.Point(46, 361)
+        Me.GroupBoxWyposażenie.Location = New System.Drawing.Point(46, 349)
         Me.GroupBoxWyposażenie.Name = "GroupBoxWyposażenie"
-        Me.GroupBoxWyposażenie.Size = New System.Drawing.Size(443, 149)
+        Me.GroupBoxWyposażenie.Size = New System.Drawing.Size(443, 169)
         Me.GroupBoxWyposażenie.TabIndex = 12
         Me.GroupBoxWyposażenie.TabStop = False
         Me.GroupBoxWyposażenie.Text = "Edytuj wyposażenie pojazdu"
@@ -71,7 +71,7 @@ Partial Class EditCarForm
         'CheckBoxLakierMetalik
         '
         Me.CheckBoxLakierMetalik.AutoSize = True
-        Me.CheckBoxLakierMetalik.Location = New System.Drawing.Point(34, 69)
+        Me.CheckBoxLakierMetalik.Location = New System.Drawing.Point(35, 69)
         Me.CheckBoxLakierMetalik.Name = "CheckBoxLakierMetalik"
         Me.CheckBoxLakierMetalik.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxLakierMetalik.Size = New System.Drawing.Size(132, 20)
@@ -104,7 +104,7 @@ Partial Class EditCarForm
         'CheckBoxKlimatyzacja
         '
         Me.CheckBoxKlimatyzacja.AutoSize = True
-        Me.CheckBoxKlimatyzacja.Location = New System.Drawing.Point(62, 38)
+        Me.CheckBoxKlimatyzacja.Location = New System.Drawing.Point(63, 38)
         Me.CheckBoxKlimatyzacja.Name = "CheckBoxKlimatyzacja"
         Me.CheckBoxKlimatyzacja.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxKlimatyzacja.Size = New System.Drawing.Size(104, 20)
@@ -115,7 +115,7 @@ Partial Class EditCarForm
         'CheckBoxCzujniki
         '
         Me.CheckBoxCzujniki.AutoSize = True
-        Me.CheckBoxCzujniki.Location = New System.Drawing.Point(19, 101)
+        Me.CheckBoxCzujniki.Location = New System.Drawing.Point(20, 101)
         Me.CheckBoxCzujniki.Name = "CheckBoxCzujniki"
         Me.CheckBoxCzujniki.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxCzujniki.Size = New System.Drawing.Size(147, 20)
@@ -146,7 +146,7 @@ Partial Class EditCarForm
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ComboBoxMarka)
         Me.GroupBoxWybierzPojazd.Location = New System.Drawing.Point(46, 31)
         Me.GroupBoxWybierzPojazd.Name = "GroupBoxWybierzPojazd"
-        Me.GroupBoxWybierzPojazd.Size = New System.Drawing.Size(443, 295)
+        Me.GroupBoxWybierzPojazd.Size = New System.Drawing.Size(443, 312)
         Me.GroupBoxWybierzPojazd.TabIndex = 11
         Me.GroupBoxWybierzPojazd.TabStop = False
         Me.GroupBoxWybierzPojazd.Text = "Edytuj parametry pojazdu"
@@ -176,6 +176,15 @@ Partial Class EditCarForm
         Me.LabelOcenaPowyzej.TabIndex = 9
         Me.LabelOcenaPowyzej.Text = "Rocznik"
         '
+        'ComboBoxKolor
+        '
+        Me.ComboBoxKolor.FormattingEnabled = True
+        Me.ComboBoxKolor.Items.AddRange(New Object() {"biały", "brązowy", "czarny", "czerwony", "fioletowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "zielony", "złoty", "żółty"})
+        Me.ComboBoxKolor.Location = New System.Drawing.Point(26, 181)
+        Me.ComboBoxKolor.Name = "ComboBoxKolor"
+        Me.ComboBoxKolor.Size = New System.Drawing.Size(386, 24)
+        Me.ComboBoxKolor.TabIndex = 1
+        '
         'LabelModel
         '
         Me.LabelModel.AutoSize = True
@@ -184,6 +193,14 @@ Partial Class EditCarForm
         Me.LabelModel.Size = New System.Drawing.Size(45, 16)
         Me.LabelModel.TabIndex = 5
         Me.LabelModel.Text = "Model"
+        '
+        'ComboBoxModel
+        '
+        Me.ComboBoxModel.FormattingEnabled = True
+        Me.ComboBoxModel.Location = New System.Drawing.Point(26, 120)
+        Me.ComboBoxModel.Name = "ComboBoxModel"
+        Me.ComboBoxModel.Size = New System.Drawing.Size(386, 24)
+        Me.ComboBoxModel.TabIndex = 5
         '
         'LabelMarka
         '
@@ -194,32 +211,6 @@ Partial Class EditCarForm
         Me.LabelMarka.TabIndex = 5
         Me.LabelMarka.Text = "Marka"
         '
-        'ButtonAnuluj
-        '
-        Me.ButtonAnuluj.Location = New System.Drawing.Point(305, 540)
-        Me.ButtonAnuluj.Name = "ButtonAnuluj"
-        Me.ButtonAnuluj.Size = New System.Drawing.Size(184, 37)
-        Me.ButtonAnuluj.TabIndex = 14
-        Me.ButtonAnuluj.Text = "Anuluj"
-        Me.ButtonAnuluj.UseVisualStyleBackColor = True
-        '
-        'ComboBoxKolor
-        '
-        Me.ComboBoxKolor.FormattingEnabled = True
-        Me.ComboBoxKolor.Items.AddRange(New Object() {"biały", "brązowy", "czarny", "czerwony", "fioletowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "zielony", "złoty", "żółty"})
-        Me.ComboBoxKolor.Location = New System.Drawing.Point(26, 181)
-        Me.ComboBoxKolor.Name = "ComboBoxKolor"
-        Me.ComboBoxKolor.Size = New System.Drawing.Size(386, 24)
-        Me.ComboBoxKolor.TabIndex = 1
-        '
-        'ComboBoxModel
-        '
-        Me.ComboBoxModel.FormattingEnabled = True
-        Me.ComboBoxModel.Location = New System.Drawing.Point(26, 120)
-        Me.ComboBoxModel.Name = "ComboBoxModel"
-        Me.ComboBoxModel.Size = New System.Drawing.Size(386, 24)
-        Me.ComboBoxModel.TabIndex = 5
-        '
         'ComboBoxMarka
         '
         Me.ComboBoxMarka.FormattingEnabled = True
@@ -228,11 +219,20 @@ Partial Class EditCarForm
         Me.ComboBoxMarka.Size = New System.Drawing.Size(386, 24)
         Me.ComboBoxMarka.TabIndex = 1
         '
+        'ButtonAnuluj
+        '
+        Me.ButtonAnuluj.Location = New System.Drawing.Point(305, 544)
+        Me.ButtonAnuluj.Name = "ButtonAnuluj"
+        Me.ButtonAnuluj.Size = New System.Drawing.Size(184, 37)
+        Me.ButtonAnuluj.TabIndex = 14
+        Me.ButtonAnuluj.Text = "Anuluj"
+        Me.ButtonAnuluj.UseVisualStyleBackColor = True
+        '
         'EditCarForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(552, 647)
+        Me.ClientSize = New System.Drawing.Size(552, 616)
         Me.Controls.Add(Me.ButtonAnuluj)
         Me.Controls.Add(Me.ButtonZapisz)
         Me.Controls.Add(Me.GroupBoxWyposażenie)

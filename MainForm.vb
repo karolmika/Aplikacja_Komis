@@ -11,20 +11,23 @@ Public Class MainForm
         Public Shared RowModel As String
         Public Shared RowColor As String
         Public Shared RowGeneration As String
-        Public Shared RowAbs As Integer
-        Public Shared RowEsp As Integer
-        Public Shared RowMetalik As Integer
-        Public Shared RowKlima As Integer
-        Public Shared RowPark As Integer
-        Public Shared RowKeyless As Integer
+        Public Shared RowOcena As String
+        Public Shared RowAbs As String
+        Public Shared RowEsp As String
+        Public Shared RowMetalik As String
+        Public Shared RowKlima As String
+        Public Shared RowPark As String
+        Public Shared RowKeyless As String
     End Class
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
-        Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
+        'Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
         'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
         ' Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
-
+        SzukajPojazdow()
+        LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
+        LabelWszystkieRekordy.Text = CarsDatabaseBindingSource.Count()
         GroupBoxWynikWyszukiwania.Enabled = True
         LabelWelcome.Text = "Witaj " + FormLogowanie.PassUserName
         FormLogowanie.Hide()
@@ -227,7 +230,7 @@ Public Class MainForm
     Private Sub ButtonSzukaj_Click(sender As Object, e As EventArgs) Handles ButtonSzukaj.Click
         SzukajPojazdow()
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         ComboBoxKolor.SelectedItem = Nothing
         GetCarColorList()
     End Sub
@@ -262,10 +265,12 @@ Public Class MainForm
 
     Private Sub ButtonNastepny_Click(sender As Object, e As EventArgs) Handles ButtonNastepny.Click
         CarsDatabaseBindingSource.Position += 1
+        LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
     End Sub
 
     Private Sub ButtonPoprzedni_Click(sender As Object, e As EventArgs) Handles ButtonPoprzedni.Click
         CarsDatabaseBindingSource.Position -= 1
+        LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
     End Sub
 
     Private Sub ButtonKoniec_Click(sender As Object, e As EventArgs) Handles ButtonKoniec.Click
@@ -297,7 +302,6 @@ Public Class MainForm
     Function SzukajPojazdow()
         Dim queryBase As String = "SELECT * FROM dbo.CarsDatabase"
         Dim queryComplete As String
-        'Dim queryString As String = "SELECT * FROM dbo.CarsDatabase WHERE brand = 'Skoda' AND model = 'Fabia' ORDER BY Id;"
         Dim connection As SqlConnection = New SqlConnection()
         Dim ds As DataSet = New DataSet()
 
@@ -418,10 +422,18 @@ Public Class MainForm
                     'ComboBoxMarka.Items.Clear()
                     While reader.Read()
                         Console.WriteLine(reader(0).ToString + "," + reader(1).ToString + "," + reader(2).ToString + "," + reader(3).ToString)
+                        Console.WriteLine(reader(4).ToString + "," + reader(5).ToString + "," + reader(6).ToString + "," + reader(7).ToString)
                         GlobalVariables.RowBrand = reader(1).ToString()
                         GlobalVariables.RowModel = reader(2).ToString()
                         GlobalVariables.RowGeneration = reader(3).ToString()
                         GlobalVariables.RowColor = reader(4).ToString()
+                        GlobalVariables.RowOcena = reader(5).ToString()
+                        GlobalVariables.RowMetalik = reader(6)
+                        GlobalVariables.RowKlima = reader(7)
+                        GlobalVariables.RowAbs = reader(8)
+                        GlobalVariables.RowEsp = reader(9)
+                        GlobalVariables.RowPark = reader(10)
+                        GlobalVariables.RowKeyless = reader(11).ToString()
                     End While
                 Catch ex As Exception
                     MessageBox.Show("Nie udało sie odczytac listy producentow")
@@ -437,4 +449,81 @@ Public Class MainForm
         End Using
         Return 1
     End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
+        Dim ocena As Decimal = Decimal.Parse(TextBox1.Text)
+        Dim queryString As String = "SELECT ocena, ilosc_ocen FROM dbo.CarsDatabase Where Id={0};"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+        Dim srednia As Decimal
+        Dim suma As Decimal
+        Dim ilosc_ocen As Integer
+
+        Console.WriteLine("Id ocenianego pojazdu: " + id.ToString())
+        Console.WriteLine("Ocena po konwersji ze stringa: " + ocena.ToString())
+
+        queryString = String.Format(queryString, id)
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim result As Boolean
+            Dim command As New SqlCommand(queryString, connection)
+            Try
+                Command.Connection.Open()
+                result = True
+                MessageBox.Show("Aktualna ocena odczytana")
+            Catch ex As Exception
+                MessageBox.Show("Nie można połączyć się z bazą danych w celu odczytania ocen")
+                result = False
+            End Try
+
+            If result = True Then
+                Try
+                    reader = command.ExecuteReader()
+                    While reader.Read()
+                        Console.WriteLine("Ocena: " + reader(0).ToString + " Ilość ocen: " + reader(1).ToString)
+                        srednia = reader(0)
+                        ilosc_ocen = reader(1)
+                    End While
+                Catch ex As Exception
+                    MessageBox.Show("Nie udało sie odczytac listy producentow")
+                End Try
+            End If
+        End Using
+
+        suma = srednia * ilosc_ocen
+        suma = suma + ocena
+        ilosc_ocen += 1
+        srednia = (suma / ilosc_ocen)
+        Console.WriteLine("Srednia: " + srednia.ToString() + "  Suma: " + suma.ToString() + " ilosc: " + ilosc_ocen.ToString())
+
+        OcenPojazd(GlobalVariables.DatabaseConStr, id, srednia, ilosc_ocen)
+        SzukajPojazdow()
+
+    End Sub
+
+    Function OcenPojazd(ByVal connectionString As String, ByVal car_id As Integer, ByVal ocena As Decimal, ByVal ilosc_ocen As Integer) As Integer
+        Dim AddRateQuery As String = "UPDATE dbo.CarsDatabase SET ocena=" + ocena.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", ilosc_ocen=" + ilosc_ocen.ToString() + " WHERE Id=" + car_id.ToString() + ";"
+
+        Console.WriteLine(AddRateQuery)
+        'AddRateQuery = String.Format(AddRateQuery, ocena, ilosc_ocen, car_id)
+
+
+
+        Try
+            Using connection As New SqlConnection(connectionString)
+                Dim id As New Integer
+                Dim command As New SqlCommand(AddRateQuery, connection)
+                command.Connection.Open()
+                command.ExecuteNonQuery()
+            End Using
+            MessageBox.Show("Ocena zostala zaktualizowana.", "Potwierdzenie", MessageBoxButtons.OK)
+        Catch ex As Exception
+            MessageBox.Show("Wystąpił błąd podczas dodawania oceny dla tego pojazdu.", "Blad", MessageBoxButtons.OK)
+            Return 0
+        End Try
+
+        Return 1
+    End Function
+
+
 End Class

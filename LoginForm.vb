@@ -61,7 +61,6 @@ Public Class FormLogowanie
             Login = TextBoxNowyLogin.Text
 
             AddUserQuery = String.Format(msg, Num + 1, Login, Haslo)
-            TextBox1.Text = AddUserQuery
             Try
                 CreateCommand(AddUserQuery, GlobalVariables.UsersDatabaseConStr)
                 MessageBox.Show("Konto zostało utworzone, możesz się teraz zalogować.", "Potwierdzenie", MessageBoxButtons.OK)
@@ -133,7 +132,7 @@ Public Class FormLogowanie
         End Using
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         MainForm.Show()
     End Sub
 
@@ -152,4 +151,12 @@ Public Class FormLogowanie
         Return val
     End Function
 
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonAnuluj.Click
+        GuiSwitchLogowanie(True)
+        GuiSwitchRejestracja(False)
+        TextBoxNowyLogin.Clear()
+        TextBoxNoweHaslo1.Clear()
+        TextBoxNoweHaslo2.Clear()
+
+    End Sub
 End Class
