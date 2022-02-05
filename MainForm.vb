@@ -29,7 +29,7 @@ Public Class MainForm
         LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
         LabelWszystkieRekordy.Text = CarsDatabaseBindingSource.Count()
         GroupBoxWynikWyszukiwania.Enabled = True
-        LabelWelcome.Text = "Witaj " + FormLogowanie.PassUserName
+        LabelWelcome.Text = FormLogowanie.PassUserName
         FormLogowanie.Hide()
         GetCarBrandList()
         Console.WriteLine("User type: " + FormLogowanie.PassUserType)
@@ -38,6 +38,7 @@ Public Class MainForm
             ButtonUsun.Enabled = True
             ButtonDodaj.Enabled = True
         End If
+
     End Sub
 
     Function GetCarBrandList()
@@ -468,7 +469,7 @@ Public Class MainForm
             Dim result As Boolean
             Dim command As New SqlCommand(queryString, connection)
             Try
-                Command.Connection.Open()
+                command.Connection.Open()
                 result = True
                 MessageBox.Show("Aktualna ocena odczytana")
             Catch ex As Exception

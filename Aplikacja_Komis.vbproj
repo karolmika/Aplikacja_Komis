@@ -96,6 +96,12 @@
     <Compile Include="AddNewCar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CarRateControl.Designer.vb">
+      <DependentUpon>CarRateControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CarRateControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="EditCarForm.Designer.vb">
       <DependentUpon>EditCarForm.vb</DependentUpon>
     </Compile>
@@ -147,6 +153,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AddNewCar.resx">
       <DependentUpon>AddNewCar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarRateControl.resx">
+      <DependentUpon>CarRateControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCarForm.resx">
       <DependentUpon>EditCarForm.vb</DependentUpon>
@@ -218,6 +227,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="grafika\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
