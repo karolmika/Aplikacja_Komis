@@ -84,7 +84,7 @@ Partial Class MainForm
         Me.EdytujToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WylogujToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CarRateControl1 = New Aplikacja_Komis.CarRateControl()
+        Me.CarRateControlKomis = New Aplikacja_Komis.CarRateControl()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -709,15 +709,15 @@ Partial Class MainForm
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Witaj"
         '
-        'CarRateControl1
+        'CarRateControlKomis
         '
-        Me.CarRateControl1.CarName = ""
-        Me.CarRateControl1.HistoryType = Aplikacja_Komis.CarRateControl.HistoryTypeOptions.Ilosc
-        Me.CarRateControl1.Location = New System.Drawing.Point(395, 55)
-        Me.CarRateControl1.Margin = New System.Windows.Forms.Padding(2)
-        Me.CarRateControl1.Name = "CarRateControl1"
-        Me.CarRateControl1.Size = New System.Drawing.Size(436, 160)
-        Me.CarRateControl1.TabIndex = 16
+        Me.CarRateControlKomis.CarName = ""
+        Me.CarRateControlKomis.HistoryType = Aplikacja_Komis.CarRateControl.HistoryTypeOptions.Ilosc
+        Me.CarRateControlKomis.Location = New System.Drawing.Point(395, 55)
+        Me.CarRateControlKomis.Margin = New System.Windows.Forms.Padding(2)
+        Me.CarRateControlKomis.Name = "CarRateControlKomis"
+        Me.CarRateControlKomis.Size = New System.Drawing.Size(436, 160)
+        Me.CarRateControlKomis.TabIndex = 16
         '
         'MainForm
         '
@@ -726,7 +726,7 @@ Partial Class MainForm
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1064, 933)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.CarRateControl1)
+        Me.Controls.Add(Me.CarRateControlKomis)
         Me.Controls.Add(Me.ButtonAnuluj)
         Me.Controls.Add(Me.ButtonZapis)
         Me.Controls.Add(Me.ButtonEdytuj)
@@ -811,7 +811,7 @@ Partial Class MainForm
     Friend WithEvents IloscocenDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button2 As Button
-    Friend WithEvents CarRateControl1 As CarRateControl
+    Friend WithEvents CarRateControlKomis As CarRateControl
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents BrandDataGridViewTextBoxColumn As DataGridViewTextBoxColumn

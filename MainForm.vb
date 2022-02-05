@@ -526,5 +526,23 @@ Public Class MainForm
         Return 1
     End Function
 
+    Private Sub CarsDatabaseBindingSource_PositionChanged(sender As Object, e As EventArgs) Handles CarsDatabaseBindingSource.PositionChanged
+        Dim spacja As String = " "
+        Dim marka_poj As String = String.Empty
+        Dim model_poj As String = String.Empty
+        Dim rocznik_poj As String = String.Empty
 
+        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(1).Value IsNot DBNull.Value Then
+            marka_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(1).Value
+        End If
+        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(2).Value IsNot DBNull.Value Then
+            model_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(2).Value
+        End If
+        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(3).Value IsNot DBNull.Value Then
+            rocznik_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(3).Value
+        End If
+
+        CarRateControlKomis.CarName = marka_poj + spacja + model_poj + spacja + rocznik_poj
+
+    End Sub
 End Class
