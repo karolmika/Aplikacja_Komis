@@ -1,0 +1,1 @@
+﻿SELECT brand, model, generation, ilosc_ocen FROM dbo.CarsDatabase WHERE Id = 1 ORDER BY ilosc_ocen DESC;

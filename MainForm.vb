@@ -35,6 +35,7 @@ Public Class MainForm
             ButtonDodaj.Enabled = True
         End If
         OdczytOcenianegoPojazdu(DataGridViewPojazdy, CarsDatabaseBindingSource, CarRateControlKomis)
+        Console.WriteLine("Start up path: " + Application.StartupPath)
     End Sub
 
     Function GetCarBrandList()
@@ -616,6 +617,67 @@ Public Class MainForm
         OcenPojazd(GlobalVariables.DatabaseConStr, id, srednia, ilosc_ocen)
         SzukajPojazdow()
 
-        MessageBox.Show("Ocena pojazdu sie zmienila.", "Potwierdzenie", MessageBoxButtons.OK)
+        'MessageBox.Show("Ocena pojazdu sie zmienila.", "Potwierdzenie", MessageBoxButtons.OK)
+        AktualizujHistorieOcen()
     End Sub
+
+    Private Sub AktualizujHistorieOcen()
+        CarRateControlKomis.RateHistory1 = GetRateHistory(CarRateControlKomis.HistoryType, 1)
+        CarRateControlKomis.RateHistory2 = GetRateHistory(CarRateControlKomis.HistoryType, 2)
+        CarRateControlKomis.RateHistory3 = GetRateHistory(CarRateControlKomis.HistoryType, 3)
+    End Sub
+
+    Function GetRateHistory(ByVal name As String, ByVal id As Integer) As String
+        Dim row_str As String
+        Dim column As String
+        Dim brand As String = String.Empty
+        Dim model As String = String.Empty
+        Dim year As String = String.Empty
+        Dim value As String = String.Empty
+        Dim sp As String = " "
+        Dim query As String = "SELECT brand, model, generation, ilosc_ocen From dbo.CarsDatabase WHERE Id ={0} Order By {1} DESC"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+
+        If name = "Ilosc" Then
+            column = "ilosc_ocen"
+        Else
+            column = "ocena"
+        End If
+        query = String.Format(query, id, column)
+        Console.WriteLine(query)
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim result As Boolean
+            Dim command As New SqlCommand(query, connection)
+            Try
+                command.Connection.Open()
+                result = True
+            Catch ex As Exception
+                result = False
+            End Try
+
+
+            If result = True Then
+                reader = command.ExecuteReader()
+                While reader.Read()
+                    If Not reader.IsDBNull(0) Then
+                        brand = reader(0)
+                    End If
+                    If Not reader.IsDBNull(1) Then
+                        model = reader(1)
+                    End If
+                    If Not reader.IsDBNull(2) Then
+                        year = reader(2)
+                    End If
+                    If Not reader.IsDBNull(3) Then
+                        value = reader(3).ToString
+                    End If
+                End While
+            End If
+        End Using
+
+        row_str = brand + sp + model + sp + year + sp + "-" + sp + value
+
+        Return row_str
+    End Function
 End Class

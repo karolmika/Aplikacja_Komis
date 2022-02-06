@@ -98,9 +98,11 @@
     </Compile>
     <Compile Include="CarRateControl.Designer.vb">
       <DependentUpon>CarRateControl.vb</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CarRateControl.vb">
       <SubType>UserControl</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="EditCarForm.Designer.vb">
       <DependentUpon>EditCarForm.vb</DependentUpon>
@@ -156,6 +158,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CarRateControl.resx">
       <DependentUpon>CarRateControl.vb</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EditCarForm.resx">
       <DependentUpon>EditCarForm.vb</DependentUpon>

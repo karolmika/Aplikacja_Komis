@@ -18,8 +18,6 @@
             his = value
         End Set
     End Property
-
-
     Public Property CarName() As String
         Get
             Return LabelCarToRate.Text
@@ -38,6 +36,33 @@
         End Set
     End Property
 
+    Public Property RateHistory1() As String
+        Get
+            Return LabelBest1.Text
+        End Get
+        Set(ByVal value As String)
+            LabelBest1.Text = value
+        End Set
+    End Property
+
+    Public Property RateHistory2() As String
+        Get
+            Return LabelBest2.Text
+        End Get
+        Set(ByVal value As String)
+            LabelBest2.Text = value
+        End Set
+    End Property
+
+    Public Property RateHistory3() As String
+        Get
+            Return LabelBest3.Text
+        End Get
+        Set(ByVal value As String)
+            LabelBest3.Text = value
+        End Set
+    End Property
+
     Private Sub CarRateControl_RateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ButtonRate.Click
         RaiseEvent RateChange(Convert.ToInt32(LabelRateValue.Text))
     End Sub
@@ -47,10 +72,6 @@
         LabelRateValue.Text = TrackBarRate.Value.ToString()
     End Sub
 
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles LabelCarToRate.Click
-
-    End Sub
 
     Private Sub CarRateControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If his = HistoryTypeOptions.Ilosc Then
@@ -64,4 +85,7 @@
         'LabelRateValue.Text = TrackBarRate.Value.ToString()
     End Sub
 
+    Private Sub GroupBoxHistoriaOcen_Enter(sender As Object, e As EventArgs) Handles GroupBoxHistoriaOcen.Enter
+
+    End Sub
 End Class
