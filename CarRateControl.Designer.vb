@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class CarRateControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class CarRateControl
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TrackBarRate = New System.Windows.Forms.TrackBar()
         Me.LabelRateName = New System.Windows.Forms.Label()
@@ -32,7 +32,6 @@ Partial Class CarRateControl
         Me.LabelBest1 = New System.Windows.Forms.Label()
         Me.ButtonRate = New System.Windows.Forms.Button()
         Me.LabelRateValue = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         CType(Me.TrackBarRate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBoxHistoriaOcen.SuspendLayout()
@@ -146,19 +145,10 @@ Partial Class CarRateControl
         Me.LabelRateValue.Text = "0"
         Me.LabelRateValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(86, 300)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 7
-        '
         'CarRateControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.LabelRateValue)
         Me.Controls.Add(Me.ButtonRate)
         Me.Controls.Add(Me.GroupBoxHistoriaOcen)
@@ -167,7 +157,7 @@ Partial Class CarRateControl
         Me.Controls.Add(Me.TrackBarRate)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "CarRateControl"
-        Me.Size = New System.Drawing.Size(438, 361)
+        Me.Size = New System.Drawing.Size(438, 166)
         CType(Me.TrackBarRate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -188,5 +178,4 @@ Partial Class CarRateControl
     Friend WithEvents LabelBest1 As Label
     Friend WithEvents ButtonRate As Button
     Friend WithEvents LabelRateValue As Label
-    Friend WithEvents ComboBox1 As ComboBox
 End Class

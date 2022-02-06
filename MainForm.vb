@@ -21,10 +21,6 @@ Public Class MainForm
     End Class
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
-        'Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
-        'TODO: This line of code loads data into the 'KomisDBDataSet.CarsDatabase' table. You can move, or remove it, as needed.
-        ' Me.CarsDatabaseTableAdapter.Fill(Me.KomisDBDataSet.CarsDatabase)
         SzukajPojazdow()
         LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
         LabelWszystkieRekordy.Text = CarsDatabaseBindingSource.Count()
@@ -38,7 +34,7 @@ Public Class MainForm
             ButtonUsun.Enabled = True
             ButtonDodaj.Enabled = True
         End If
-
+        OdczytOcenianegoPojazdu(DataGridViewPojazdy, CarsDatabaseBindingSource, CarRateControlKomis)
     End Sub
 
     Function GetCarBrandList()
@@ -481,9 +477,19 @@ Public Class MainForm
                 Try
                     reader = command.ExecuteReader()
                     While reader.Read()
-                        Console.WriteLine("Ocena: " + reader(0).ToString + " Ilość ocen: " + reader(1).ToString)
-                        srednia = reader(0)
-                        ilosc_ocen = reader(1)
+                        If reader(0).IsDBNull Then
+                            srednia = 0
+                        Else
+                            srednia = CDec(reader(0))
+                            'srednia = reader(0)
+                        End If
+                        If reader(1).IsDBNull Then
+                            ilosc_ocen = 0
+                        Else
+                            ilosc_ocen = reader(1)
+                            'ilosc_ocen = Conversion.Int(reader(1))
+                        End If
+                        'Console.WriteLine("Ocena: " + srednia.ToString() + " Ilość ocen: " + ilosc_ocen.ToString())
                     End While
                 Catch ex As Exception
                     MessageBox.Show("Nie udało sie odczytac listy producentow")
@@ -527,22 +533,89 @@ Public Class MainForm
     End Function
 
     Private Sub CarsDatabaseBindingSource_PositionChanged(sender As Object, e As EventArgs) Handles CarsDatabaseBindingSource.PositionChanged
+        OdczytOcenianegoPojazdu(DataGridViewPojazdy, CarsDatabaseBindingSource, CarRateControlKomis)
+    End Sub
+
+    Function OdczytOcenianegoPojazdu(ByRef dgv As DataGridView, ByRef bs As BindingSource, ByRef crcontrol As CarRateControl) As Integer
         Dim spacja As String = " "
         Dim marka_poj As String = String.Empty
         Dim model_poj As String = String.Empty
         Dim rocznik_poj As String = String.Empty
 
-        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(1).Value IsNot DBNull.Value Then
-            marka_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(1).Value
+        If dgv.Rows(bs.Position).Cells(1).Value IsNot DBNull.Value Then
+            marka_poj = dgv.Rows(bs.Position).Cells(1).Value
         End If
-        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(2).Value IsNot DBNull.Value Then
-            model_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(2).Value
+        If dgv.Rows(bs.Position).Cells(2).Value IsNot DBNull.Value Then
+            model_poj = dgv.Rows(bs.Position).Cells(2).Value
         End If
-        If DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(3).Value IsNot DBNull.Value Then
-            rocznik_poj = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(3).Value
+        If dgv.Rows(bs.Position).Cells(3).Value IsNot DBNull.Value Then
+            rocznik_poj = dgv.Rows(bs.Position).Cells(3).Value
         End If
 
-        CarRateControlKomis.CarName = marka_poj + spacja + model_poj + spacja + rocznik_poj
+        crcontrol.CarName = marka_poj + spacja + model_poj + spacja + rocznik_poj
+        Return 0
+    End Function
 
+    Private Sub CarRateControlKomis_RateChange(value As Integer) Handles CarRateControlKomis.RateChange
+        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
+        'Dim ocena As Decimal = Decimal.Parse(TextBox1.Text)
+        Dim ocena As Decimal = CDec(CarRateControlKomis.Ocena)
+        Dim queryString As String = "SELECT ocena, ilosc_ocen FROM dbo.CarsDatabase Where Id={0};"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+        Dim srednia As Decimal
+        Dim suma As Decimal
+        Dim ilosc_ocen As Integer
+
+        Console.WriteLine("Id ocenianego pojazdu: " + id.ToString())
+        Console.WriteLine("Ocena po konwersji ze stringa: " + ocena.ToString())
+
+        queryString = String.Format(queryString, id)
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim result As Boolean
+            Dim command As New SqlCommand(queryString, connection)
+            Try
+                command.Connection.Open()
+                result = True
+                MessageBox.Show("Aktualna ocena odczytana")
+            Catch ex As Exception
+                MessageBox.Show("Nie można połączyć się z bazą danych w celu odczytania ocen")
+                result = False
+            End Try
+
+            If result = True Then
+                'Try
+                reader = command.ExecuteReader()
+                While reader.Read()
+                    If reader.IsDBNull(0) Then
+                        srednia = 0.0
+                        Console.WriteLine("sredja jest pusta")
+                    Else
+                        srednia = Convert.ToDecimal(reader(0))
+                    End If
+                    If reader.IsDBNull(1) Then
+                        ilosc_ocen = 0
+                        Console.WriteLine("ilosc ocen jest pusta")
+                    Else
+                        ilosc_ocen = reader(1)
+                    End If
+                    Console.WriteLine("Ocena: " + srednia.ToString() + " Ilość ocen: " + ilosc_ocen.ToString())
+                End While
+                'Catch ex As Exception
+                'MessageBox.Show("Nie udało sie odczytac listy ocen")
+                'End Try
+            End If
+        End Using
+
+        suma = srednia * ilosc_ocen
+        suma = suma + ocena
+        ilosc_ocen += 1
+        srednia = (suma / ilosc_ocen)
+        Console.WriteLine("Srednia: " + srednia.ToString() + "  Suma: " + suma.ToString() + " ilosc: " + ilosc_ocen.ToString())
+
+        OcenPojazd(GlobalVariables.DatabaseConStr, id, srednia, ilosc_ocen)
+        SzukajPojazdow()
+
+        MessageBox.Show("Ocena pojazdu sie zmienila.", "Potwierdzenie", MessageBoxButtons.OK)
     End Sub
 End Class

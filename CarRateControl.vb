@@ -5,6 +5,11 @@
     End Enum
 
     Dim his As HistoryTypeOptions
+    Private CarRate As String
+    Private HistoryTypeValue As Integer
+
+    Public Event RateChange(value As Integer)
+
     Public Property HistoryType() As HistoryTypeOptions
         Get
             Return his
@@ -14,8 +19,7 @@
         End Set
     End Property
 
-    Private CarRate As String
-    Private HistoryTypeValue As Integer
+
     Public Property CarName() As String
         Get
             Return LabelCarToRate.Text
@@ -24,6 +28,19 @@
             LabelCarToRate.Text = value
         End Set
     End Property
+
+    Public Property Ocena() As Integer
+        Get
+            Return Convert.ToInt32(LabelRateValue.Text)
+        End Get
+        Set(value As Integer)
+            LabelRateValue.Text = value.ToString()
+        End Set
+    End Property
+
+    Private Sub CarRateControl_RateChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ButtonRate.Click
+        RaiseEvent RateChange(Convert.ToInt32(LabelRateValue.Text))
+    End Sub
 
 
     Private Sub TrackBarRate_Scroll(sender As Object, e As EventArgs) Handles TrackBarRate.Scroll

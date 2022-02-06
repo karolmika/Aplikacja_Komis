@@ -159,4 +159,9 @@ Public Class FormLogowanie
         TextBoxNoweHaslo2.Clear()
 
     End Sub
+
+    Private Sub TextBoxHaslo_Enter(sender As Object, e As EventArgs) Handles TextBoxHaslo.Enter
+        'MainForm.Show()
+        'RaiseEvent ButtonZaloguj_Click()
+    End Sub
 End Class
