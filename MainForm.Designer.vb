@@ -744,7 +744,7 @@ Partial Class MainForm
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "MainForm"
+        Me.Text = "Aplikacja Komis"
         Me.GroupBoxWybierzPojazd.ResumeLayout(False)
         Me.GroupBoxWybierzPojazd.PerformLayout()
         Me.GroupBoxWynikWyszukiwania.ResumeLayout(False)
