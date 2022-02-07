@@ -622,10 +622,57 @@ Public Class MainForm
     End Sub
 
     Private Sub AktualizujHistorieOcen()
-        CarRateControlKomis.RateHistory1 = GetRateHistory(CarRateControlKomis.HistoryType, 1)
-        CarRateControlKomis.RateHistory2 = GetRateHistory(CarRateControlKomis.HistoryType, 2)
-        CarRateControlKomis.RateHistory3 = GetRateHistory(CarRateControlKomis.HistoryType, 3)
+        Dim car1_id, car2_id, car3_id As Integer
+        Console.WriteLine("History type: " + CarRateControlKomis.HistoryType.ToString())
+        Get3BestId(CarRateControlKomis.HistoryType.ToString(), car1_id, car2_id, car3_id)
+        CarRateControlKomis.RateHistory1 = GetRateHistory(CarRateControlKomis.HistoryType.ToString(), car1_id)
+        CarRateControlKomis.RateHistory2 = GetRateHistory(CarRateControlKomis.HistoryType.ToString(), car2_id)
+        CarRateControlKomis.RateHistory3 = GetRateHistory(CarRateControlKomis.HistoryType.ToString(), car3_id)
     End Sub
+
+    Function Get3BestId(ByVal name As String, ByRef id1 As Integer, ByRef id2 As Integer, ByRef id3 As Integer)
+        Dim column As String
+        Dim query As String = "SELECT TOP (3) WITH ties Id, {0} FROM dbo.CarsDatabase ORDER BY {0} DESC;"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+        Dim i As Integer = 0
+
+        If name = "Ilosc" Then
+            column = "ilosc_ocen"
+        Else
+            column = "ocena"
+        End If
+        query = String.Format(query, column)
+        Console.WriteLine(query)
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim result As Boolean
+            Dim command As New SqlCommand(query, connection)
+            Try
+                command.Connection.Open()
+                result = True
+            Catch ex As Exception
+                result = False
+            End Try
+
+
+            If result = True Then
+                reader = command.ExecuteReader()
+                While reader.Read()
+                    i += 1
+                    'Console.WriteLine(reader(0).ToString() + ", " + reader(1).ToString())
+                    If i = 1 Then
+                        id1 = reader(0)
+                    End If
+                    If i = 2 Then
+                        id2 = reader(0)
+                    End If
+                    If i = 3 Then
+                        id3 = reader(0)
+                    End If
+                End While
+            End If
+        End Using
+    End Function
 
     Function GetRateHistory(ByVal name As String, ByVal id As Integer) As String
         Dim row_str As String
@@ -635,7 +682,8 @@ Public Class MainForm
         Dim year As String = String.Empty
         Dim value As String = String.Empty
         Dim sp As String = " "
-        Dim query As String = "SELECT brand, model, generation, ilosc_ocen From dbo.CarsDatabase WHERE Id ={0} Order By {1} DESC"
+        Dim query As String = "SELECT brand, model, generation, {1} From dbo.CarsDatabase WHERE Id ={0} Order By {1} DESC;"
+        'Dim query As String = "SELECT TOP (3) WITH ties brand, model, generation, ilosc_ocen FROM dbo.CarsDatabase ORDER BY ilosc_ocen DESC;"
         Dim reader As System.Data.SqlClient.SqlDataReader
 
         If name = "Ilosc" Then
