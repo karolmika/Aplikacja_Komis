@@ -1,7 +1,12 @@
 ﻿Imports System.Data.SqlClient
 Public Class MainForm
     Public Class GlobalVariables
-        Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        'Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        Public Shared ImgDir = "C:\Users\Karol\source\repos\Aplikacja_Komis\grafika\"
+        Public Shared database_path As String = "C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf"
+        'Public Shared database_path As String = Application.StartupPath + "\KomisDB.mdf"
+        'Public Shared ImgDir = Application.StartupPath + "\grafika\"
+        Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
         Public Shared SelectedModel As String
         Public Shared SelectedBrand As String
         Public Shared SelectedColor As String
@@ -36,6 +41,8 @@ Public Class MainForm
         End If
         OdczytOcenianegoPojazdu(DataGridViewPojazdy, CarsDatabaseBindingSource, CarRateControlKomis)
         Console.WriteLine("Start up path: " + Application.StartupPath)
+        LoadCarImage()
+        AktualizujHistorieOcen()
     End Sub
 
     Function GetCarBrandList()
@@ -264,19 +271,23 @@ Public Class MainForm
     Private Sub ButtonNastepny_Click(sender As Object, e As EventArgs) Handles ButtonNastepny.Click
         CarsDatabaseBindingSource.Position += 1
         LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
+        LoadCarImage()
     End Sub
 
     Private Sub ButtonPoprzedni_Click(sender As Object, e As EventArgs) Handles ButtonPoprzedni.Click
         CarsDatabaseBindingSource.Position -= 1
         LabelAktualnyRekord.Text = CarsDatabaseBindingSource.Position.ToString()
+        LoadCarImage()
     End Sub
 
     Private Sub ButtonKoniec_Click(sender As Object, e As EventArgs) Handles ButtonKoniec.Click
         CarsDatabaseBindingSource.Position = CarsDatabaseBindingSource.Count - 1
+        LoadCarImage()
     End Sub
 
     Private Sub ButtonPoczatek_Click(sender As Object, e As EventArgs) Handles ButtonPoczatek.Click
         CarsDatabaseBindingSource.Position = 0
+        LoadCarImage()
     End Sub
 
     Private Sub ButtonEdytuj_Click(sender As Object, e As EventArgs) Handles ButtonEdytuj.Click
@@ -448,66 +459,7 @@ Public Class MainForm
         Return 1
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
-        Dim ocena As Decimal = Decimal.Parse(TextBox1.Text)
-        Dim queryString As String = "SELECT ocena, ilosc_ocen FROM dbo.CarsDatabase Where Id={0};"
-        Dim reader As System.Data.SqlClient.SqlDataReader
-        Dim srednia As Decimal
-        Dim suma As Decimal
-        Dim ilosc_ocen As Integer
 
-        Console.WriteLine("Id ocenianego pojazdu: " + id.ToString())
-        Console.WriteLine("Ocena po konwersji ze stringa: " + ocena.ToString())
-
-        queryString = String.Format(queryString, id)
-
-        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
-            Dim result As Boolean
-            Dim command As New SqlCommand(queryString, connection)
-            Try
-                command.Connection.Open()
-                result = True
-                MessageBox.Show("Aktualna ocena odczytana")
-            Catch ex As Exception
-                MessageBox.Show("Nie można połączyć się z bazą danych w celu odczytania ocen")
-                result = False
-            End Try
-
-            If result = True Then
-                Try
-                    reader = command.ExecuteReader()
-                    While reader.Read()
-                        If reader(0).IsDBNull Then
-                            srednia = 0
-                        Else
-                            srednia = CDec(reader(0))
-                            'srednia = reader(0)
-                        End If
-                        If reader(1).IsDBNull Then
-                            ilosc_ocen = 0
-                        Else
-                            ilosc_ocen = reader(1)
-                            'ilosc_ocen = Conversion.Int(reader(1))
-                        End If
-                        'Console.WriteLine("Ocena: " + srednia.ToString() + " Ilość ocen: " + ilosc_ocen.ToString())
-                    End While
-                Catch ex As Exception
-                    MessageBox.Show("Nie udało sie odczytac listy producentow")
-                End Try
-            End If
-        End Using
-
-        suma = srednia * ilosc_ocen
-        suma = suma + ocena
-        ilosc_ocen += 1
-        srednia = (suma / ilosc_ocen)
-        Console.WriteLine("Srednia: " + srednia.ToString() + "  Suma: " + suma.ToString() + " ilosc: " + ilosc_ocen.ToString())
-
-        OcenPojazd(GlobalVariables.DatabaseConStr, id, srednia, ilosc_ocen)
-        SzukajPojazdow()
-
-    End Sub
 
     Function OcenPojazd(ByVal connectionString As String, ByVal car_id As Integer, ByVal ocena As Decimal, ByVal ilosc_ocen As Integer) As Integer
         Dim AddRateQuery As String = "UPDATE dbo.CarsDatabase SET ocena=" + ocena.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", ilosc_ocen=" + ilosc_ocen.ToString() + " WHERE Id=" + car_id.ToString() + ";"
@@ -535,8 +487,25 @@ Public Class MainForm
 
     Private Sub CarsDatabaseBindingSource_PositionChanged(sender As Object, e As EventArgs) Handles CarsDatabaseBindingSource.PositionChanged
         OdczytOcenianegoPojazdu(DataGridViewPojazdy, CarsDatabaseBindingSource, CarRateControlKomis)
+        'LoadCarImage()
+        'Console.WriteLine(DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(12).Value)
+        'PictureBoxCar.Image = Image.FromFile("C:\Users\Karol\source\repos\Aplikacja_Komis\grafika\img1.jpg")
+        'PictureBoxCar.Image = Image.FromFile(GlobalVariables.ImgDir + img)
+
     End Sub
 
+    Function LoadCarImage()
+        Dim id As Integer = DataGridViewPojazdy.Rows(CarsDatabaseBindingSource.Position).Cells(0).Value
+        Dim img As String = GetImageName(id)
+        Console.WriteLine("Id pojazdu: " + id.ToString())
+        Console.WriteLine(GlobalVariables.ImgDir + img)
+        Try
+            PictureBoxCar.Image = Image.FromFile(GlobalVariables.ImgDir + img)
+        Catch ex As Exception
+            Console.WriteLine("Nie mozna zaladowac obrazu")
+            PictureBoxCar.Image = Image.FromFile(GlobalVariables.ImgDir + "default.jpg")
+        End Try
+    End Function
     Function OdczytOcenianegoPojazdu(ByRef dgv As DataGridView, ByRef bs As BindingSource, ByRef crcontrol As CarRateControl) As Integer
         Dim spacja As String = " "
         Dim marka_poj As String = String.Empty
@@ -727,5 +696,38 @@ Public Class MainForm
         row_str = brand + sp + model + sp + year + sp + "-" + sp + value
 
         Return row_str
+    End Function
+
+    Function GetImageName(ByVal id As Integer) As String
+        Dim image_name As String = String.Empty
+        Dim sp As String = " "
+        Dim query As String = "SELECT Id, image From dbo.CarsDatabase WHERE Id ={0};"
+        Dim reader As System.Data.SqlClient.SqlDataReader
+
+        query = String.Format(query, id)
+        Console.WriteLine(query)
+
+        Using connection As New SqlConnection(MainForm.GlobalVariables.DatabaseConStr)
+            Dim result As Boolean
+            Dim command As New SqlCommand(query, connection)
+            Try
+                command.Connection.Open()
+                result = True
+            Catch ex As Exception
+                result = False
+            End Try
+
+
+            If result = True Then
+                reader = command.ExecuteReader()
+                While reader.Read()
+                    If Not reader.IsDBNull(0) Then
+                        image_name = reader(1).ToString()
+                    End If
+                End While
+            End If
+        End Using
+
+        Return image_name
     End Function
 End Class

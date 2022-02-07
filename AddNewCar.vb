@@ -16,13 +16,18 @@ Public Class AddNewCar
         Dim esp As Integer
         Dim park As Integer
         Dim keyless As Integer
+        Dim img As String = "no file"
 
-        AddCarQuery = "INSERT INTO dbo.CarsDatabase(Id, brand, model, generation, color, metalic, ac, abs, esp, park, keyless)" &
-            " VALUES({0}, '{1}', '{2}', '{3}', '{4}', {5}, {6}, {7}, {8}, {9}, {10});"
+        AddCarQuery = "INSERT INTO dbo.CarsDatabase(Id, brand, model, generation, color, metalic, ac, abs, esp, park, keyless, image)" &
+            " VALUES({0}, '{1}', '{2}', '{3}', '{4}', {5}, {6}, {7}, {8}, {9}, {10}, '{11}');"
         ' CountQuery = "SELECT COUNT(*) FROM dbo.UsersTable"
 
         Num = GetNumberOfElements(MainForm.GlobalVariables.DatabaseConStr)
         'TextBox1.Text = Num.ToString()
+
+        If TextBoxImageFile.Text IsNot String.Empty Then
+            img = TextBoxImageFile.Text
+        End If
 
         If CheckBoxLakierMetalik.Checked Then
             metalic = 1
@@ -60,7 +65,7 @@ Public Class AddNewCar
             keyless = 0
         End If
 
-        AddCarQuery = String.Format(AddCarQuery, Num + 1, NewCar.Brand, NewCar.Model, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, metalic, ac, abs, esp, park, keyless)
+        AddCarQuery = String.Format(AddCarQuery, Num + 1, NewCar.Brand, NewCar.Model, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, metalic, ac, abs, esp, park, keyless, TextBoxImageFile.Text)
         'AddCarQuery = String.Format(AddCarQuery, Num + 1, NewCar.Brand, NewCar.Model, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, 0, metalic, ac, abs, esp, park, keyless)
         Console.WriteLine("Zapytanie: " + AddCarQuery)
         Try
@@ -214,4 +219,6 @@ Public Class AddNewCar
     Private Sub ComboBoxModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxModel.SelectedIndexChanged
         NewCar.Model = ComboBoxModel.SelectedItem
     End Sub
+
+
 End Class

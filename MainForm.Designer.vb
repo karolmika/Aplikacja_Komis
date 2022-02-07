@@ -26,8 +26,6 @@ Partial Class MainForm
         Me.ComboBoxMarka = New System.Windows.Forms.ComboBox()
         Me.GroupBoxWybierzPojazd = New System.Windows.Forms.GroupBox()
         Me.ButtonWyczyscOcena = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ButtonWyczyscKolor = New System.Windows.Forms.Button()
         Me.ButtonWyczyscModel = New System.Windows.Forms.Button()
         Me.ButtonWyczyscMarke = New System.Windows.Forms.Button()
@@ -80,12 +78,13 @@ Partial Class MainForm
         Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ProgramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WylogujToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UżytkownikToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EdytujToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WylogujToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PictureBoxCar = New System.Windows.Forms.PictureBox()
         Me.CarRateControlKomis = New Aplikacja_Komis.CarRateControl()
+        Me.ZamknijToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +94,7 @@ Partial Class MainForm
         Me.GroupBoxWyposażenie.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBoxCar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBoxMarka
@@ -109,8 +109,6 @@ Partial Class MainForm
         'GroupBoxWybierzPojazd
         '
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ButtonWyczyscOcena)
-        Me.GroupBoxWybierzPojazd.Controls.Add(Me.Button2)
-        Me.GroupBoxWybierzPojazd.Controls.Add(Me.TextBox1)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ButtonWyczyscKolor)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ButtonWyczyscModel)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ButtonWyczyscMarke)
@@ -140,24 +138,6 @@ Partial Class MainForm
         Me.ButtonWyczyscOcena.TabIndex = 13
         Me.ButtonWyczyscOcena.Text = "Wyczyść"
         Me.ButtonWyczyscOcena.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(161, 22)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(78, 23)
-        Me.Button2.TabIndex = 15
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(256, 27)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(72, 20)
-        Me.TextBox1.TabIndex = 15
         '
         'ButtonWyczyscKolor
         '
@@ -287,7 +267,7 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWynikWyszukiwania.Name = "GroupBoxWynikWyszukiwania"
         Me.GroupBoxWynikWyszukiwania.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBoxWynikWyszukiwania.Size = New System.Drawing.Size(893, 464)
+        Me.GroupBoxWynikWyszukiwania.Size = New System.Drawing.Size(923, 464)
         Me.GroupBoxWynikWyszukiwania.TabIndex = 5
         Me.GroupBoxWynikWyszukiwania.TabStop = False
         Me.GroupBoxWynikWyszukiwania.Text = "Lista pojazdów"
@@ -375,7 +355,7 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.Name = "DataGridViewPojazdy"
         Me.DataGridViewPojazdy.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
         Me.DataGridViewPojazdy.RowTemplate.Height = 24
-        Me.DataGridViewPojazdy.Size = New System.Drawing.Size(848, 344)
+        Me.DataGridViewPojazdy.Size = New System.Drawing.Size(879, 344)
         Me.DataGridViewPojazdy.TabIndex = 15
         '
         'IdDataGridViewTextBoxColumn
@@ -500,10 +480,10 @@ Partial Class MainForm
         '
         'ButtonSzukaj
         '
-        Me.ButtonSzukaj.Location = New System.Drawing.Point(851, 131)
+        Me.ButtonSzukaj.Location = New System.Drawing.Point(850, 131)
         Me.ButtonSzukaj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonSzukaj.Name = "ButtonSzukaj"
-        Me.ButtonSzukaj.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonSzukaj.Size = New System.Drawing.Size(101, 35)
         Me.ButtonSzukaj.TabIndex = 6
         Me.ButtonSzukaj.Text = "Szukaj"
         Me.ButtonSzukaj.UseVisualStyleBackColor = True
@@ -512,7 +492,7 @@ Partial Class MainForm
         '
         Me.CheckBoxLakierMetalik.AutoSize = True
         Me.CheckBoxLakierMetalik.Enabled = False
-        Me.CheckBoxLakierMetalik.Location = New System.Drawing.Point(26, 56)
+        Me.CheckBoxLakierMetalik.Location = New System.Drawing.Point(28, 56)
         Me.CheckBoxLakierMetalik.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxLakierMetalik.Name = "CheckBoxLakierMetalik"
         Me.CheckBoxLakierMetalik.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -525,7 +505,7 @@ Partial Class MainForm
         '
         Me.CheckBoxCzujniki.AutoSize = True
         Me.CheckBoxCzujniki.Enabled = False
-        Me.CheckBoxCzujniki.Location = New System.Drawing.Point(14, 82)
+        Me.CheckBoxCzujniki.Location = New System.Drawing.Point(15, 82)
         Me.CheckBoxCzujniki.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxCzujniki.Name = "CheckBoxCzujniki"
         Me.CheckBoxCzujniki.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -538,7 +518,7 @@ Partial Class MainForm
         '
         Me.CheckBoxESP.AutoSize = True
         Me.CheckBoxESP.Enabled = False
-        Me.CheckBoxESP.Location = New System.Drawing.Point(220, 56)
+        Me.CheckBoxESP.Location = New System.Drawing.Point(222, 56)
         Me.CheckBoxESP.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxESP.Name = "CheckBoxESP"
         Me.CheckBoxESP.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -551,7 +531,7 @@ Partial Class MainForm
         '
         Me.CheckBoxABS.AutoSize = True
         Me.CheckBoxABS.Enabled = False
-        Me.CheckBoxABS.Location = New System.Drawing.Point(220, 31)
+        Me.CheckBoxABS.Location = New System.Drawing.Point(222, 31)
         Me.CheckBoxABS.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxABS.Name = "CheckBoxABS"
         Me.CheckBoxABS.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -564,7 +544,7 @@ Partial Class MainForm
         '
         Me.CheckBoxKlimatyzacja.AutoSize = True
         Me.CheckBoxKlimatyzacja.Enabled = False
-        Me.CheckBoxKlimatyzacja.Location = New System.Drawing.Point(46, 31)
+        Me.CheckBoxKlimatyzacja.Location = New System.Drawing.Point(51, 31)
         Me.CheckBoxKlimatyzacja.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxKlimatyzacja.Name = "CheckBoxKlimatyzacja"
         Me.CheckBoxKlimatyzacja.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -606,10 +586,10 @@ Partial Class MainForm
         'ButtonDodaj
         '
         Me.ButtonDodaj.Enabled = False
-        Me.ButtonDodaj.Location = New System.Drawing.Point(851, 172)
+        Me.ButtonDodaj.Location = New System.Drawing.Point(850, 172)
         Me.ButtonDodaj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonDodaj.Name = "ButtonDodaj"
-        Me.ButtonDodaj.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonDodaj.Size = New System.Drawing.Size(101, 35)
         Me.ButtonDodaj.TabIndex = 9
         Me.ButtonDodaj.Text = "Dodaj"
         Me.ButtonDodaj.UseVisualStyleBackColor = True
@@ -617,10 +597,10 @@ Partial Class MainForm
         'ButtonUsun
         '
         Me.ButtonUsun.Enabled = False
-        Me.ButtonUsun.Location = New System.Drawing.Point(851, 212)
+        Me.ButtonUsun.Location = New System.Drawing.Point(850, 212)
         Me.ButtonUsun.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonUsun.Name = "ButtonUsun"
-        Me.ButtonUsun.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonUsun.Size = New System.Drawing.Size(101, 35)
         Me.ButtonUsun.TabIndex = 10
         Me.ButtonUsun.Text = "Usuń"
         Me.ButtonUsun.UseVisualStyleBackColor = True
@@ -631,7 +611,7 @@ Partial Class MainForm
         Me.ButtonEdytuj.Location = New System.Drawing.Point(850, 251)
         Me.ButtonEdytuj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonEdytuj.Name = "ButtonEdytuj"
-        Me.ButtonEdytuj.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonEdytuj.Size = New System.Drawing.Size(101, 35)
         Me.ButtonEdytuj.TabIndex = 11
         Me.ButtonEdytuj.Text = "Edytuj"
         Me.ButtonEdytuj.UseVisualStyleBackColor = True
@@ -642,7 +622,7 @@ Partial Class MainForm
         Me.ButtonZapis.Location = New System.Drawing.Point(850, 328)
         Me.ButtonZapis.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonZapis.Name = "ButtonZapis"
-        Me.ButtonZapis.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonZapis.Size = New System.Drawing.Size(101, 35)
         Me.ButtonZapis.TabIndex = 12
         Me.ButtonZapis.Text = "Zapisz"
         Me.ButtonZapis.UseVisualStyleBackColor = True
@@ -653,7 +633,7 @@ Partial Class MainForm
         Me.ButtonAnuluj.Location = New System.Drawing.Point(850, 290)
         Me.ButtonAnuluj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonAnuluj.Name = "ButtonAnuluj"
-        Me.ButtonAnuluj.Size = New System.Drawing.Size(70, 35)
+        Me.ButtonAnuluj.Size = New System.Drawing.Size(101, 35)
         Me.ButtonAnuluj.TabIndex = 13
         Me.ButtonAnuluj.Text = "Anuluj"
         Me.ButtonAnuluj.UseVisualStyleBackColor = True
@@ -669,22 +649,16 @@ Partial Class MainForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1064, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1009, 24)
         Me.MenuStrip1.TabIndex = 14
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ProgramToolStripMenuItem
         '
-        Me.ProgramToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WylogujToolStripMenuItem})
+        Me.ProgramToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ZamknijToolStripMenuItem})
         Me.ProgramToolStripMenuItem.Name = "ProgramToolStripMenuItem"
         Me.ProgramToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ProgramToolStripMenuItem.Text = "Program"
-        '
-        'WylogujToolStripMenuItem
-        '
-        Me.WylogujToolStripMenuItem.Name = "WylogujToolStripMenuItem"
-        Me.WylogujToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
-        Me.WylogujToolStripMenuItem.Text = "Wyloguj"
         '
         'UżytkownikToolStripMenuItem
         '
@@ -712,10 +686,20 @@ Partial Class MainForm
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(69, 45)
+        Me.GroupBox1.Size = New System.Drawing.Size(101, 45)
         Me.GroupBox1.TabIndex = 17
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Witaj"
+        '
+        'PictureBoxCar
+        '
+        Me.PictureBoxCar.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.PictureBoxCar.Location = New System.Drawing.Point(417, 230)
+        Me.PictureBoxCar.Name = "PictureBoxCar"
+        Me.PictureBoxCar.Size = New System.Drawing.Size(400, 200)
+        Me.PictureBoxCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBoxCar.TabIndex = 18
+        Me.PictureBoxCar.TabStop = False
         '
         'CarRateControlKomis
         '
@@ -731,12 +715,19 @@ Partial Class MainForm
         Me.CarRateControlKomis.Size = New System.Drawing.Size(436, 160)
         Me.CarRateControlKomis.TabIndex = 16
         '
+        'ZamknijToolStripMenuItem
+        '
+        Me.ZamknijToolStripMenuItem.Name = "ZamknijToolStripMenuItem"
+        Me.ZamknijToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ZamknijToolStripMenuItem.Text = "Zamknij"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1064, 933)
+        Me.ClientSize = New System.Drawing.Size(1009, 933)
+        Me.Controls.Add(Me.PictureBoxCar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.CarRateControlKomis)
         Me.Controls.Add(Me.ButtonAnuluj)
@@ -768,6 +759,7 @@ Partial Class MainForm
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.PictureBoxCar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -816,13 +808,10 @@ Partial Class MainForm
     Friend WithEvents KomisDBDataSet As KomisDBDataSet
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents ProgramToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents WylogujToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UżytkownikToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EdytujToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WylogujToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents IloscocenDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button2 As Button
     Friend WithEvents CarRateControlKomis As CarRateControl
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -838,4 +827,6 @@ Partial Class MainForm
     Friend WithEvents EspDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ParkDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents KeylessDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PictureBoxCar As PictureBox
+    Friend WithEvents ZamknijToolStripMenuItem As ToolStripMenuItem
 End Class

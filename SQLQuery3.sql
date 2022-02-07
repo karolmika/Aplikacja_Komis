@@ -1,1 +1,1 @@
-﻿SELECT TOP (3) WITH ties Id, ilosc_ocen FROM dbo.CarsDatabase ORDER BY ilosc_ocen DESC;
+﻿SELECT Id, image From dbo.CarsDatabase WHERE Id =1;
