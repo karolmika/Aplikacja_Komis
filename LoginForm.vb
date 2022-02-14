@@ -51,10 +51,8 @@ Public Class FormLogowanie
         Dim Haslo As String
         msg = "INSERT INTO dbo.UsersTable (Id, Login, Haslo, Typ)" &
             " VALUES ('{0}', '{1}', '{2}', 'Klient');"
-        ' CountQuery = "SELECT COUNT(*) FROM dbo.UsersTable"
 
         Num = GetNumberOfElements(GlobalVariables.UsersDatabaseConStr)
-        'TextBox1.Text = Num.ToString()
 
         If TextBoxNoweHaslo1.Text = TextBoxNoweHaslo2.Text Then
             Haslo = TextBoxNoweHaslo1.Text
@@ -70,7 +68,7 @@ Public Class FormLogowanie
         Else
             MessageBox.Show("Wprowadzone hasła nie są zgodne", "Blad", MessageBoxButtons.OK)
         End If
-        'CreateCommand(AddUserQuery, GlobalVariables.UsersDatabaseConStr)
+
         GuiSwitchLogowanie(True)
         GuiSwitchRejestracja(False)
     End Sub
@@ -110,10 +108,8 @@ Public Class FormLogowanie
                     reader = command.ExecuteReader()
                     reader.Read()
                     PassUserType = reader(2)
-                    'Console.WriteLine(reader.FieldCount.ToString())
-                    'Console.WriteLine("PassUserType" + PassUserType)
+
                     If reader(1) = TextBoxHaslo.Text Then
-                        'MessageBox.Show("Udalo sie zalogowac")
                         PassUserName = TextBoxLogin.Text
                         MainForm.Show()
                     Else
@@ -160,8 +156,4 @@ Public Class FormLogowanie
 
     End Sub
 
-    Private Sub TextBoxHaslo_Enter(sender As Object, e As EventArgs) Handles TextBoxHaslo.Enter
-        'MainForm.Show()
-        'RaiseEvent ButtonZaloguj_Click()
-    End Sub
 End Class

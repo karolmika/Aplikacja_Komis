@@ -32,7 +32,6 @@ Public Class MainForm
         GroupBoxWynikWyszukiwania.Enabled = True
         LabelWelcome.Text = FormLogowanie.PassUserName
         FormLogowanie.Hide()
-        ''FormLogowanie.Close()
         GetCarBrandList()
         Console.WriteLine("User type: " + FormLogowanie.PassUserType)
         If FormLogowanie.PassUserType = "admin" Then
@@ -47,10 +46,8 @@ Public Class MainForm
     End Sub
 
     Function GetCarBrandList()
-        'Dim queryString As String = "SELECT * FROM dbo.CarBrand;"
         Dim queryString As String = "SELECT * FROM dbo.CarsBrandList ORDER BY Id;"
         Dim reader As System.Data.SqlClient.SqlDataReader
-        'queryString = String.Format(msg, TextBoxLogin.Text)
 
 
         Using connection As New SqlConnection(GlobalVariables.DatabaseConStr)
@@ -73,12 +70,10 @@ Public Class MainForm
                     reader = command.ExecuteReader()
                     ComboBoxMarka.Items.Clear()
                     While reader.Read()
-                        'Console.WriteLine(reader.FieldCount.ToString())
                         row_id = reader(0)
                         row_name = reader(1)
                         If row_id > 0 And row_name IsNot String.Empty Then
                             ComboBoxMarka.Items.Insert(row_id - 1, row_name)
-                            'Console.WriteLine(row_id.ToString() + "." + row_name.ToString)
                         Else
                             Console.WriteLine("Empty data !")
                             error_cnt += 1
@@ -89,9 +84,6 @@ Public Class MainForm
                     error_cnt += 1
                 End Try
 
-                'If error_cnt = 0 Then
-                'tutaj odswiez tabele
-                'End If
             End If
             command.Connection.Close()
             command.Connection.Dispose()
@@ -99,9 +91,7 @@ Public Class MainForm
     End Function
 
     Function GetCarModelList(ByVal brand_name As String)
-        'Dim msg As String = "SELECT * FROM dbo.CarModels WHERE brand_id = {0};"
         Dim msg As String = "SELECT * FROM dbo.CarsModelList WHERE BrandName = '{0}' ORDER BY Name;"
-        'Dim msg As String = "SELECT Id, model FROM dbo.CarsNewTable WHERE brand = '{0}';"
         Dim reader As System.Data.SqlClient.SqlDataReader
         Dim queryString As String
 
@@ -112,7 +102,6 @@ Public Class MainForm
             Dim row_id As Integer = 0
             Dim row_name As String
             Dim command As New SqlCommand(queryString, connection)
-            'Dim command As New SqlCommand(msg, connection)
             Dim result As Boolean
             Try
                 command.Connection.Open()
@@ -150,7 +139,6 @@ Public Class MainForm
 
     Function GetCarColorList()
         Dim queryString As String = "SELECT * FROM dbo.CarsColorlList ORDER BY Name;"
-        'Dim queryString As String = "SELECT * FROM dbo.CarsModelList WHERE BrandName = '' ORDER BY Name;"
         Dim reader As System.Data.SqlClient.SqlDataReader
 
         Using connection As New SqlConnection(GlobalVariables.DatabaseConStr)
@@ -171,16 +159,7 @@ Public Class MainForm
                 Try
                     reader = command.ExecuteReader()
                     Console.WriteLine(reader(0) + "." + reader(1))
-                    'While reader.Read()
-                    'row_name = reader(1)
-                    'If row_name IsNot String.Empty Then
-                    'ComboBoxKolor.Items.Insert(row_id, row_name)
-                    'row_id += 1
-                    'Console.WriteLine(row_id.ToString() + "." + row_name.ToString)
-                    'Else
                     Console.WriteLine("Empty data !")
-                    '    End If
-                    'End While
                 Catch ex As Exception
                     MessageBox.Show("Nie udało sie odczytac listy kolorów")
                 End Try
@@ -208,23 +187,13 @@ Public Class MainForm
         CheckBoxKeyless.Enabled = True
         CheckBoxKlimatyzacja.Enabled = True
         CheckBoxLakierMetalik.Enabled = True
-        'GetCarColorList()
     End Sub
 
     Private Sub ComboBoxModel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxModel.SelectedIndexChanged
         ComboBoxKolor.Enabled = True
         GlobalVariables.SelectedModel = ComboBoxModel.SelectedItem
-        'GetCarColorList()
     End Sub
 
-    Private Sub ComboBoxKolor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxKolor.SelectedIndexChanged
-        ComboBoxOcenaPowyzej.Enabled = True
-        GlobalVariables.SelectedColor = ComboBoxKolor.SelectedItem
-    End Sub
-
-    Private Sub ComboBoxOcenaPowyzej_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxOcenaPowyzej.SelectedIndexChanged
-        GlobalVariables.SelectedOcena = ComboBoxOcenaPowyzej.SelectedItem
-    End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxLakierMetalik.CheckedChanged
 
@@ -259,10 +228,6 @@ Public Class MainForm
 
     Private Sub ButtonWyczyscKolor_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscKolor.Click
         ComboBoxKolor.SelectedItem = Nothing
-    End Sub
-
-    Private Sub ButtonWyczyscOcena_Click(sender As Object, e As EventArgs) Handles ButtonWyczyscOcena.Click
-        ComboBoxOcenaPowyzej.SelectedItem = Nothing
     End Sub
 
     Private Sub CheckBoxKlimatyzacja_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxKlimatyzacja.CheckedChanged
@@ -735,5 +700,16 @@ Public Class MainForm
 
     Private Sub ZamknijToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZamknijToolStripMenuItem.Click
         MainForm.ActiveForm.Close()
+    End Sub
+
+    Private Sub WylogujToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles WylogujToolStripMenuItem1.Click
+        MainForm.ActiveForm.Hide()
+        FormLogowanie.TextBoxLogin.Clear()
+        FormLogowanie.TextBoxHaslo.Clear()
+        FormLogowanie.Show()
+    End Sub
+
+    Private Sub DataGridViewPojazdy_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridViewPojazdy.DataError
+        Console.WriteLine("Data error")
     End Sub
 End Class
