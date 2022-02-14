@@ -2,10 +2,10 @@
 Public Class MainForm
     Public Class GlobalVariables
         'Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
-        Public Shared ImgDir = "C:\Users\Karol\source\repos\Aplikacja_Komis\grafika\"
-        Public Shared database_path As String = "C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf"
-        'Public Shared database_path As String = Application.StartupPath + "\KomisDB.mdf"
-        'Public Shared ImgDir = Application.StartupPath + "\grafika\"
+        'Public Shared ImgDir = "C:\Users\Karol\source\repos\Aplikacja_Komis\grafika\"
+        'Public Shared database_path As String = "C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf"
+        Public Shared database_path As String = Application.StartupPath + "\KomisDB.mdf"
+        Public Shared ImgDir = Application.StartupPath + "\grafika\"
         Public Shared DatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
         Public Shared SelectedModel As String
         Public Shared SelectedBrand As String
@@ -23,6 +23,7 @@ Public Class MainForm
         Public Shared RowKlima As String
         Public Shared RowPark As String
         Public Shared RowKeyless As String
+        Public Shared RowZdjecie As String
     End Class
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -409,6 +410,7 @@ Public Class MainForm
                         GlobalVariables.RowEsp = reader(9)
                         GlobalVariables.RowPark = reader(10)
                         GlobalVariables.RowKeyless = reader(11).ToString()
+                        GlobalVariables.RowZdjecie = reader(13).ToString()
                     End While
                 Catch ex As Exception
                     MessageBox.Show("Nie udało sie odczytac listy producentow")
@@ -711,5 +713,10 @@ Public Class MainForm
 
     Private Sub DataGridViewPojazdy_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridViewPojazdy.DataError
         Console.WriteLine("Data error")
+    End Sub
+
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        FormLogowanie.Close()
+        AddNewCar.Close()
     End Sub
 End Class

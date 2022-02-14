@@ -114,9 +114,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="KomisDBDataSet.vb">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
@@ -179,14 +181,17 @@
   <ItemGroup>
     <None Include="KomisDBDataSet.xsc">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="KomisDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>KomisDBDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="KomisDBDataSet.xss">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

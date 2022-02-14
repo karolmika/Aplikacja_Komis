@@ -3,7 +3,13 @@ Public Class FormLogowanie
     Public PassUserName As String
     Public PassUserType As String
     Public Class GlobalVariables
-        Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        'Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        'Public Shared database_path As String = "C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf"
+        'Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
+        Public Shared database_path As String = Application.StartupPath + "\KomisDB.mdf"
+        Public Shared ImgDir = Application.StartupPath + "\grafika\"
+        Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
+        Public Shared SelectedModel As String
     End Class
 
     Function GuiSwitchLogowanie(ByVal State As Boolean)
@@ -71,6 +77,7 @@ Public Class FormLogowanie
 
         GuiSwitchLogowanie(True)
         GuiSwitchRejestracja(False)
+        Me.Close()
     End Sub
 
     Public Sub CreateCommand(ByVal queryString As String, ByVal connectionString As String)

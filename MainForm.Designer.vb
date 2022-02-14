@@ -43,22 +43,8 @@ Partial Class MainForm
         Me.ButtonPoprzedni = New System.Windows.Forms.Button()
         Me.ButtonPoczatek = New System.Windows.Forms.Button()
         Me.DataGridViewPojazdy = New System.Windows.Forms.DataGridView()
-        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GenerationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OcenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.iloscocen = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MetalicDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AcDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AbsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EspDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ParkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KeylessDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CarsDatabaseBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.KomisDBDataSet = New Aplikacja_Komis.KomisDBDataSet()
         Me.ButtonSzukaj = New System.Windows.Forms.Button()
         Me.CheckBoxLakierMetalik = New System.Windows.Forms.CheckBox()
         Me.CheckBoxCzujniki = New System.Windows.Forms.CheckBox()
@@ -80,18 +66,32 @@ Partial Class MainForm
         Me.WylogujToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PictureBoxCar = New System.Windows.Forms.PictureBox()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BrandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ModelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GenerationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OcenaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MetalicDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AcDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AbsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EspDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ParkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KeylessDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.KomisDBDataSet = New Aplikacja_Komis.KomisDBDataSet()
         Me.CarsDatabaseTableAdapter = New Aplikacja_Komis.KomisDBDataSetTableAdapters.CarsDatabaseTableAdapter()
         Me.CarRateControlKomis = New Aplikacja_Komis.CarRateControl()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.GroupBoxWynikWyszukiwania.SuspendLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxWyposażenie.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBoxCar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBoxMarka
@@ -114,7 +114,7 @@ Partial Class MainForm
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ComboBoxModel)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.LabelMarka)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ComboBoxMarka)
-        Me.GroupBoxWybierzPojazd.Location = New System.Drawing.Point(28, 54)
+        Me.GroupBoxWybierzPojazd.Location = New System.Drawing.Point(24, 43)
         Me.GroupBoxWybierzPojazd.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWybierzPojazd.Name = "GroupBoxWybierzPojazd"
         Me.GroupBoxWybierzPojazd.Padding = New System.Windows.Forms.Padding(2)
@@ -226,7 +226,7 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.ButtonPoczatek)
         Me.GroupBoxWynikWyszukiwania.Controls.Add(Me.DataGridViewPojazdy)
         Me.GroupBoxWynikWyszukiwania.Enabled = False
-        Me.GroupBoxWynikWyszukiwania.Location = New System.Drawing.Point(28, 480)
+        Me.GroupBoxWynikWyszukiwania.Location = New System.Drawing.Point(24, 459)
         Me.GroupBoxWynikWyszukiwania.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWynikWyszukiwania.Name = "GroupBoxWynikWyszukiwania"
         Me.GroupBoxWynikWyszukiwania.Padding = New System.Windows.Forms.Padding(2)
@@ -321,56 +321,6 @@ Partial Class MainForm
         Me.DataGridViewPojazdy.Size = New System.Drawing.Size(879, 344)
         Me.DataGridViewPojazdy.TabIndex = 15
         '
-        'IdDataGridViewTextBoxColumn
-        '
-        Me.IdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-        Me.IdDataGridViewTextBoxColumn.Width = 41
-        '
-        'BrandDataGridViewTextBoxColumn
-        '
-        Me.BrandDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.BrandDataGridViewTextBoxColumn.DataPropertyName = "brand"
-        Me.BrandDataGridViewTextBoxColumn.HeaderText = "Producent"
-        Me.BrandDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.BrandDataGridViewTextBoxColumn.Name = "BrandDataGridViewTextBoxColumn"
-        Me.BrandDataGridViewTextBoxColumn.Width = 81
-        '
-        'ModelDataGridViewTextBoxColumn
-        '
-        Me.ModelDataGridViewTextBoxColumn.DataPropertyName = "model"
-        Me.ModelDataGridViewTextBoxColumn.HeaderText = "Model"
-        Me.ModelDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ModelDataGridViewTextBoxColumn.Name = "ModelDataGridViewTextBoxColumn"
-        Me.ModelDataGridViewTextBoxColumn.Width = 61
-        '
-        'GenerationDataGridViewTextBoxColumn
-        '
-        Me.GenerationDataGridViewTextBoxColumn.DataPropertyName = "generation"
-        Me.GenerationDataGridViewTextBoxColumn.HeaderText = "Rok prod."
-        Me.GenerationDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.GenerationDataGridViewTextBoxColumn.Name = "GenerationDataGridViewTextBoxColumn"
-        Me.GenerationDataGridViewTextBoxColumn.Width = 79
-        '
-        'ColorDataGridViewTextBoxColumn
-        '
-        Me.ColorDataGridViewTextBoxColumn.DataPropertyName = "color"
-        Me.ColorDataGridViewTextBoxColumn.HeaderText = "Kolor"
-        Me.ColorDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ColorDataGridViewTextBoxColumn.Name = "ColorDataGridViewTextBoxColumn"
-        Me.ColorDataGridViewTextBoxColumn.Width = 56
-        '
-        'OcenaDataGridViewTextBoxColumn
-        '
-        Me.OcenaDataGridViewTextBoxColumn.DataPropertyName = "ocena"
-        Me.OcenaDataGridViewTextBoxColumn.HeaderText = "Ocena"
-        Me.OcenaDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.OcenaDataGridViewTextBoxColumn.Name = "OcenaDataGridViewTextBoxColumn"
-        Me.OcenaDataGridViewTextBoxColumn.Width = 64
-        '
         'iloscocen
         '
         Me.iloscocen.DataPropertyName = "ilosc_ocen"
@@ -379,72 +329,14 @@ Partial Class MainForm
         Me.iloscocen.Name = "iloscocen"
         Me.iloscocen.Width = 81
         '
-        'MetalicDataGridViewTextBoxColumn
-        '
-        Me.MetalicDataGridViewTextBoxColumn.DataPropertyName = "metalic"
-        Me.MetalicDataGridViewTextBoxColumn.HeaderText = "Kolor met."
-        Me.MetalicDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.MetalicDataGridViewTextBoxColumn.Name = "MetalicDataGridViewTextBoxColumn"
-        Me.MetalicDataGridViewTextBoxColumn.Width = 79
-        '
-        'AcDataGridViewTextBoxColumn
-        '
-        Me.AcDataGridViewTextBoxColumn.DataPropertyName = "ac"
-        Me.AcDataGridViewTextBoxColumn.HeaderText = "AC"
-        Me.AcDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.AcDataGridViewTextBoxColumn.Name = "AcDataGridViewTextBoxColumn"
-        Me.AcDataGridViewTextBoxColumn.Width = 46
-        '
-        'AbsDataGridViewTextBoxColumn
-        '
-        Me.AbsDataGridViewTextBoxColumn.DataPropertyName = "abs"
-        Me.AbsDataGridViewTextBoxColumn.HeaderText = "ABS"
-        Me.AbsDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.AbsDataGridViewTextBoxColumn.Name = "AbsDataGridViewTextBoxColumn"
-        Me.AbsDataGridViewTextBoxColumn.Width = 53
-        '
-        'EspDataGridViewTextBoxColumn
-        '
-        Me.EspDataGridViewTextBoxColumn.DataPropertyName = "esp"
-        Me.EspDataGridViewTextBoxColumn.HeaderText = "ESP"
-        Me.EspDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.EspDataGridViewTextBoxColumn.Name = "EspDataGridViewTextBoxColumn"
-        Me.EspDataGridViewTextBoxColumn.Width = 53
-        '
-        'ParkDataGridViewTextBoxColumn
-        '
-        Me.ParkDataGridViewTextBoxColumn.DataPropertyName = "park"
-        Me.ParkDataGridViewTextBoxColumn.HeaderText = "Czujniki"
-        Me.ParkDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.ParkDataGridViewTextBoxColumn.Name = "ParkDataGridViewTextBoxColumn"
-        Me.ParkDataGridViewTextBoxColumn.Width = 68
-        '
-        'KeylessDataGridViewTextBoxColumn
-        '
-        Me.KeylessDataGridViewTextBoxColumn.DataPropertyName = "keyless"
-        Me.KeylessDataGridViewTextBoxColumn.HeaderText = "System bezkl."
-        Me.KeylessDataGridViewTextBoxColumn.MinimumWidth = 6
-        Me.KeylessDataGridViewTextBoxColumn.Name = "KeylessDataGridViewTextBoxColumn"
-        Me.KeylessDataGridViewTextBoxColumn.Width = 97
-        '
         'CarsDatabaseBindingSource
         '
         Me.CarsDatabaseBindingSource.DataMember = "CarsDatabase"
         Me.CarsDatabaseBindingSource.DataSource = Me.BindingSource1
         '
-        'BindingSource1
-        '
-        Me.BindingSource1.DataSource = Me.KomisDBDataSet
-        Me.BindingSource1.Position = 0
-        '
-        'KomisDBDataSet
-        '
-        Me.KomisDBDataSet.DataSetName = "KomisDBDataSet"
-        Me.KomisDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'ButtonSzukaj
         '
-        Me.ButtonSzukaj.Location = New System.Drawing.Point(854, 144)
+        Me.ButtonSzukaj.Location = New System.Drawing.Point(843, 127)
         Me.ButtonSzukaj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonSzukaj.Name = "ButtonSzukaj"
         Me.ButtonSzukaj.Size = New System.Drawing.Size(101, 35)
@@ -538,7 +430,7 @@ Partial Class MainForm
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxKlimatyzacja)
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxCzujniki)
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxABS)
-        Me.GroupBoxWyposażenie.Location = New System.Drawing.Point(28, 288)
+        Me.GroupBoxWyposażenie.Location = New System.Drawing.Point(24, 273)
         Me.GroupBoxWyposażenie.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWyposażenie.Name = "GroupBoxWyposażenie"
         Me.GroupBoxWyposażenie.Padding = New System.Windows.Forms.Padding(2)
@@ -550,7 +442,7 @@ Partial Class MainForm
         'ButtonDodaj
         '
         Me.ButtonDodaj.Enabled = False
-        Me.ButtonDodaj.Location = New System.Drawing.Point(854, 185)
+        Me.ButtonDodaj.Location = New System.Drawing.Point(843, 168)
         Me.ButtonDodaj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonDodaj.Name = "ButtonDodaj"
         Me.ButtonDodaj.Size = New System.Drawing.Size(101, 35)
@@ -561,7 +453,7 @@ Partial Class MainForm
         'ButtonUsun
         '
         Me.ButtonUsun.Enabled = False
-        Me.ButtonUsun.Location = New System.Drawing.Point(854, 225)
+        Me.ButtonUsun.Location = New System.Drawing.Point(843, 208)
         Me.ButtonUsun.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonUsun.Name = "ButtonUsun"
         Me.ButtonUsun.Size = New System.Drawing.Size(101, 35)
@@ -572,7 +464,7 @@ Partial Class MainForm
         'ButtonEdytuj
         '
         Me.ButtonEdytuj.Enabled = False
-        Me.ButtonEdytuj.Location = New System.Drawing.Point(854, 264)
+        Me.ButtonEdytuj.Location = New System.Drawing.Point(843, 247)
         Me.ButtonEdytuj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonEdytuj.Name = "ButtonEdytuj"
         Me.ButtonEdytuj.Size = New System.Drawing.Size(101, 35)
@@ -583,7 +475,7 @@ Partial Class MainForm
         'ButtonZapis
         '
         Me.ButtonZapis.Enabled = False
-        Me.ButtonZapis.Location = New System.Drawing.Point(854, 341)
+        Me.ButtonZapis.Location = New System.Drawing.Point(843, 324)
         Me.ButtonZapis.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonZapis.Name = "ButtonZapis"
         Me.ButtonZapis.Size = New System.Drawing.Size(101, 35)
@@ -594,7 +486,7 @@ Partial Class MainForm
         'ButtonAnuluj
         '
         Me.ButtonAnuluj.Enabled = False
-        Me.ButtonAnuluj.Location = New System.Drawing.Point(854, 303)
+        Me.ButtonAnuluj.Location = New System.Drawing.Point(843, 286)
         Me.ButtonAnuluj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonAnuluj.Name = "ButtonAnuluj"
         Me.ButtonAnuluj.Size = New System.Drawing.Size(101, 35)
@@ -609,7 +501,7 @@ Partial Class MainForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1058, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1092, 24)
         Me.MenuStrip1.TabIndex = 14
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -648,7 +540,7 @@ Partial Class MainForm
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.LabelWelcome)
-        Me.GroupBox1.Location = New System.Drawing.Point(854, 89)
+        Me.GroupBox1.Location = New System.Drawing.Point(843, 72)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
@@ -659,12 +551,120 @@ Partial Class MainForm
         '
         'PictureBoxCar
         '
-        Me.PictureBoxCar.Location = New System.Drawing.Point(413, 251)
+        Me.PictureBoxCar.Location = New System.Drawing.Point(394, 236)
         Me.PictureBoxCar.Name = "PictureBoxCar"
         Me.PictureBoxCar.Size = New System.Drawing.Size(400, 200)
         Me.PictureBoxCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.PictureBoxCar.TabIndex = 18
         Me.PictureBoxCar.TabStop = False
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
+        Me.IdDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.Width = 41
+        '
+        'BrandDataGridViewTextBoxColumn
+        '
+        Me.BrandDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.BrandDataGridViewTextBoxColumn.DataPropertyName = "brand"
+        Me.BrandDataGridViewTextBoxColumn.HeaderText = "Producent"
+        Me.BrandDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.BrandDataGridViewTextBoxColumn.Name = "BrandDataGridViewTextBoxColumn"
+        Me.BrandDataGridViewTextBoxColumn.Width = 81
+        '
+        'ModelDataGridViewTextBoxColumn
+        '
+        Me.ModelDataGridViewTextBoxColumn.DataPropertyName = "model"
+        Me.ModelDataGridViewTextBoxColumn.HeaderText = "Model"
+        Me.ModelDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ModelDataGridViewTextBoxColumn.Name = "ModelDataGridViewTextBoxColumn"
+        Me.ModelDataGridViewTextBoxColumn.Width = 61
+        '
+        'GenerationDataGridViewTextBoxColumn
+        '
+        Me.GenerationDataGridViewTextBoxColumn.DataPropertyName = "generation"
+        Me.GenerationDataGridViewTextBoxColumn.HeaderText = "Rok prod."
+        Me.GenerationDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.GenerationDataGridViewTextBoxColumn.Name = "GenerationDataGridViewTextBoxColumn"
+        Me.GenerationDataGridViewTextBoxColumn.Width = 79
+        '
+        'ColorDataGridViewTextBoxColumn
+        '
+        Me.ColorDataGridViewTextBoxColumn.DataPropertyName = "color"
+        Me.ColorDataGridViewTextBoxColumn.HeaderText = "Kolor"
+        Me.ColorDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ColorDataGridViewTextBoxColumn.Name = "ColorDataGridViewTextBoxColumn"
+        Me.ColorDataGridViewTextBoxColumn.Width = 56
+        '
+        'OcenaDataGridViewTextBoxColumn
+        '
+        Me.OcenaDataGridViewTextBoxColumn.DataPropertyName = "ocena"
+        Me.OcenaDataGridViewTextBoxColumn.HeaderText = "Ocena"
+        Me.OcenaDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.OcenaDataGridViewTextBoxColumn.Name = "OcenaDataGridViewTextBoxColumn"
+        Me.OcenaDataGridViewTextBoxColumn.Width = 64
+        '
+        'MetalicDataGridViewTextBoxColumn
+        '
+        Me.MetalicDataGridViewTextBoxColumn.DataPropertyName = "metalic"
+        Me.MetalicDataGridViewTextBoxColumn.HeaderText = "Kolor met."
+        Me.MetalicDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.MetalicDataGridViewTextBoxColumn.Name = "MetalicDataGridViewTextBoxColumn"
+        Me.MetalicDataGridViewTextBoxColumn.Width = 79
+        '
+        'AcDataGridViewTextBoxColumn
+        '
+        Me.AcDataGridViewTextBoxColumn.DataPropertyName = "ac"
+        Me.AcDataGridViewTextBoxColumn.HeaderText = "AC"
+        Me.AcDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.AcDataGridViewTextBoxColumn.Name = "AcDataGridViewTextBoxColumn"
+        Me.AcDataGridViewTextBoxColumn.Width = 46
+        '
+        'AbsDataGridViewTextBoxColumn
+        '
+        Me.AbsDataGridViewTextBoxColumn.DataPropertyName = "abs"
+        Me.AbsDataGridViewTextBoxColumn.HeaderText = "ABS"
+        Me.AbsDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.AbsDataGridViewTextBoxColumn.Name = "AbsDataGridViewTextBoxColumn"
+        Me.AbsDataGridViewTextBoxColumn.Width = 53
+        '
+        'EspDataGridViewTextBoxColumn
+        '
+        Me.EspDataGridViewTextBoxColumn.DataPropertyName = "esp"
+        Me.EspDataGridViewTextBoxColumn.HeaderText = "ESP"
+        Me.EspDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.EspDataGridViewTextBoxColumn.Name = "EspDataGridViewTextBoxColumn"
+        Me.EspDataGridViewTextBoxColumn.Width = 53
+        '
+        'ParkDataGridViewTextBoxColumn
+        '
+        Me.ParkDataGridViewTextBoxColumn.DataPropertyName = "park"
+        Me.ParkDataGridViewTextBoxColumn.HeaderText = "Czujniki"
+        Me.ParkDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.ParkDataGridViewTextBoxColumn.Name = "ParkDataGridViewTextBoxColumn"
+        Me.ParkDataGridViewTextBoxColumn.Width = 68
+        '
+        'KeylessDataGridViewTextBoxColumn
+        '
+        Me.KeylessDataGridViewTextBoxColumn.DataPropertyName = "keyless"
+        Me.KeylessDataGridViewTextBoxColumn.HeaderText = "System bezkl."
+        Me.KeylessDataGridViewTextBoxColumn.MinimumWidth = 6
+        Me.KeylessDataGridViewTextBoxColumn.Name = "KeylessDataGridViewTextBoxColumn"
+        Me.KeylessDataGridViewTextBoxColumn.Width = 97
+        '
+        'BindingSource1
+        '
+        Me.BindingSource1.DataSource = Me.KomisDBDataSet
+        Me.BindingSource1.Position = 0
+        '
+        'KomisDBDataSet
+        '
+        Me.KomisDBDataSet.DataSetName = "KomisDBDataSet"
+        Me.KomisDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'CarsDatabaseTableAdapter
         '
@@ -674,7 +674,7 @@ Partial Class MainForm
         '
         Me.CarRateControlKomis.CarName = ""
         Me.CarRateControlKomis.HistoryType = Aplikacja_Komis.CarRateControl.HistoryTypeOptions.Wartosc
-        Me.CarRateControlKomis.Location = New System.Drawing.Point(399, 62)
+        Me.CarRateControlKomis.Location = New System.Drawing.Point(394, 43)
         Me.CarRateControlKomis.Margin = New System.Windows.Forms.Padding(2)
         Me.CarRateControlKomis.Name = "CarRateControlKomis"
         Me.CarRateControlKomis.Ocena = 0
@@ -689,7 +689,7 @@ Partial Class MainForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1075, 705)
+        Me.ClientSize = New System.Drawing.Size(1109, 685)
         Me.Controls.Add(Me.PictureBoxCar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.CarRateControlKomis)
@@ -714,8 +714,6 @@ Partial Class MainForm
         Me.GroupBoxWynikWyszukiwania.PerformLayout()
         CType(Me.DataGridViewPojazdy, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CarsDatabaseBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxWyposażenie.ResumeLayout(False)
         Me.GroupBoxWyposażenie.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -723,6 +721,8 @@ Partial Class MainForm
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBoxCar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KomisDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

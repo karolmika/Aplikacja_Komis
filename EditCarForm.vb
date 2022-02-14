@@ -13,6 +13,7 @@ Public Class EditCarForm
         ComboBoxModel.SelectedItem = MainForm.GlobalVariables.RowModel
         ComboBoxKolor.SelectedItem = MainForm.GlobalVariables.RowColor
         TextBoxRocznik.Text = MainForm.GlobalVariables.RowGeneration
+        TextBoxZdjecie.Text = MainForm.GlobalVariables.RowZdjecie
 
         If MainForm.GlobalVariables.RowKlima = "1" Then
             CheckBoxKlimatyzacja.Checked = True
@@ -140,7 +141,7 @@ Public Class EditCarForm
     End Function
 
     Private Sub ButtonZapisz_Click(sender As Object, e As EventArgs) Handles ButtonZapisz.Click
-        Dim UpdateQuery As String = "UPDATE dbo.CarsDatabase SET brand='{0}', model='{1}', generation='{2}', color='{3}', metalic={4}, ac={5}, abs={6}, esp={7}, park={8}, keyless={9} WHERE Id = {10};"
+        Dim UpdateQuery As String = "UPDATE dbo.CarsDatabase SET brand='{0}', model='{1}', generation='{2}', color='{3}', metalic={4}, ac={5}, abs={6}, esp={7}, park={8}, keyless={9}, image='{10}' WHERE Id = {11};"
         Dim id As Integer = MainForm.DataGridViewPojazdy.Rows(MainForm.CarsDatabaseBindingSource.Position).Cells(0).Value
         Dim metalic_val As Integer = 0
         Dim klima_val As Integer = 0
@@ -168,7 +169,7 @@ Public Class EditCarForm
             keyless_val = 1
         End If
 
-        UpdateQuery = String.Format(UpdateQuery, ComboBoxMarka.SelectedItem, ComboBoxModel.SelectedItem, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, metalic_val, klima_val, abs_val, esp_val, park_val, keyless_val, id)
+        UpdateQuery = String.Format(UpdateQuery, ComboBoxMarka.SelectedItem, ComboBoxModel.SelectedItem, TextBoxRocznik.Text, ComboBoxKolor.SelectedItem, metalic_val, klima_val, abs_val, esp_val, park_val, keyless_val, TextBoxZdjecie.Text, id)
         Console.WriteLine(UpdateQuery)
         Try
             FormLogowanie.CreateCommand(UpdateQuery, MainForm.GlobalVariables.DatabaseConStr)
