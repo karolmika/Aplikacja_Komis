@@ -501,6 +501,7 @@ Public Class MainForm
         Console.WriteLine(GlobalVariables.ImgDir + img)
         Try
             PictureBoxCar.Image = Image.FromFile(GlobalVariables.ImgDir + img)
+            'PictureBoxCar.ImageLocation = GlobalVariables.ImgDir + img
         Catch ex As Exception
             Console.WriteLine("Nie mozna zaladowac obrazu")
             PictureBoxCar.Image = Image.FromFile(GlobalVariables.ImgDir + "default.jpg")
