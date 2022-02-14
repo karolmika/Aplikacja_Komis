@@ -32,6 +32,7 @@ Public Class MainForm
         GroupBoxWynikWyszukiwania.Enabled = True
         LabelWelcome.Text = FormLogowanie.PassUserName
         FormLogowanie.Hide()
+        ''FormLogowanie.Close()
         GetCarBrandList()
         Console.WriteLine("User type: " + FormLogowanie.PassUserType)
         If FormLogowanie.PassUserType = "admin" Then
@@ -731,4 +732,8 @@ Public Class MainForm
 
         Return image_name
     End Function
+
+    Private Sub ZamknijToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZamknijToolStripMenuItem.Click
+        MainForm.ActiveForm.Close()
+    End Sub
 End Class
