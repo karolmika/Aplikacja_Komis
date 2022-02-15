@@ -31,6 +31,8 @@ Partial Class EditCarForm
         Me.CheckBoxCzujniki = New System.Windows.Forms.CheckBox()
         Me.CheckBoxABS = New System.Windows.Forms.CheckBox()
         Me.GroupBoxWybierzPojazd = New System.Windows.Forms.GroupBox()
+        Me.LabelZdjecie = New System.Windows.Forms.Label()
+        Me.TextBoxZdjecie = New System.Windows.Forms.TextBox()
         Me.TextBoxRocznik = New System.Windows.Forms.TextBox()
         Me.LabelKolor = New System.Windows.Forms.Label()
         Me.LabelOcenaPowyzej = New System.Windows.Forms.Label()
@@ -40,8 +42,6 @@ Partial Class EditCarForm
         Me.LabelMarka = New System.Windows.Forms.Label()
         Me.ComboBoxMarka = New System.Windows.Forms.ComboBox()
         Me.ButtonAnuluj = New System.Windows.Forms.Button()
-        Me.TextBoxZdjecie = New System.Windows.Forms.TextBox()
-        Me.LabelZdjecie = New System.Windows.Forms.Label()
         Me.GroupBoxWyposażenie.SuspendLayout()
         Me.GroupBoxWybierzPojazd.SuspendLayout()
         Me.SuspendLayout()
@@ -49,7 +49,7 @@ Partial Class EditCarForm
         'ButtonZapisz
         '
         Me.ButtonZapisz.Location = New System.Drawing.Point(34, 486)
-        Me.ButtonZapisz.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ButtonZapisz.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonZapisz.Name = "ButtonZapisz"
         Me.ButtonZapisz.Size = New System.Drawing.Size(138, 30)
         Me.ButtonZapisz.TabIndex = 13
@@ -65,9 +65,9 @@ Partial Class EditCarForm
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxCzujniki)
         Me.GroupBoxWyposażenie.Controls.Add(Me.CheckBoxABS)
         Me.GroupBoxWyposażenie.Location = New System.Drawing.Point(34, 336)
-        Me.GroupBoxWyposażenie.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxWyposażenie.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWyposażenie.Name = "GroupBoxWyposażenie"
-        Me.GroupBoxWyposażenie.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxWyposażenie.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWyposażenie.Size = New System.Drawing.Size(332, 137)
         Me.GroupBoxWyposażenie.TabIndex = 12
         Me.GroupBoxWyposażenie.TabStop = False
@@ -77,7 +77,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxLakierMetalik.AutoSize = True
         Me.CheckBoxLakierMetalik.Location = New System.Drawing.Point(26, 56)
-        Me.CheckBoxLakierMetalik.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxLakierMetalik.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxLakierMetalik.Name = "CheckBoxLakierMetalik"
         Me.CheckBoxLakierMetalik.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxLakierMetalik.Size = New System.Drawing.Size(107, 17)
@@ -89,7 +89,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxKeyless.AutoSize = True
         Me.CheckBoxKeyless.Location = New System.Drawing.Point(220, 82)
-        Me.CheckBoxKeyless.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxKeyless.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxKeyless.Name = "CheckBoxKeyless"
         Me.CheckBoxKeyless.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxKeyless.Size = New System.Drawing.Size(74, 17)
@@ -101,7 +101,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxESP.AutoSize = True
         Me.CheckBoxESP.Location = New System.Drawing.Point(245, 56)
-        Me.CheckBoxESP.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxESP.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxESP.Name = "CheckBoxESP"
         Me.CheckBoxESP.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxESP.Size = New System.Drawing.Size(47, 17)
@@ -113,7 +113,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxKlimatyzacja.AutoSize = True
         Me.CheckBoxKlimatyzacja.Location = New System.Drawing.Point(47, 31)
-        Me.CheckBoxKlimatyzacja.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxKlimatyzacja.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxKlimatyzacja.Name = "CheckBoxKlimatyzacja"
         Me.CheckBoxKlimatyzacja.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxKlimatyzacja.Size = New System.Drawing.Size(84, 17)
@@ -125,7 +125,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxCzujniki.AutoSize = True
         Me.CheckBoxCzujniki.Location = New System.Drawing.Point(15, 82)
-        Me.CheckBoxCzujniki.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxCzujniki.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxCzujniki.Name = "CheckBoxCzujniki"
         Me.CheckBoxCzujniki.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxCzujniki.Size = New System.Drawing.Size(120, 17)
@@ -137,7 +137,7 @@ Partial Class EditCarForm
         '
         Me.CheckBoxABS.AutoSize = True
         Me.CheckBoxABS.Location = New System.Drawing.Point(245, 31)
-        Me.CheckBoxABS.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.CheckBoxABS.Margin = New System.Windows.Forms.Padding(2)
         Me.CheckBoxABS.Name = "CheckBoxABS"
         Me.CheckBoxABS.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBoxABS.Size = New System.Drawing.Size(47, 17)
@@ -158,18 +158,36 @@ Partial Class EditCarForm
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.LabelMarka)
         Me.GroupBoxWybierzPojazd.Controls.Add(Me.ComboBoxMarka)
         Me.GroupBoxWybierzPojazd.Location = New System.Drawing.Point(34, 25)
-        Me.GroupBoxWybierzPojazd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxWybierzPojazd.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWybierzPojazd.Name = "GroupBoxWybierzPojazd"
-        Me.GroupBoxWybierzPojazd.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBoxWybierzPojazd.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBoxWybierzPojazd.Size = New System.Drawing.Size(332, 307)
         Me.GroupBoxWybierzPojazd.TabIndex = 11
         Me.GroupBoxWybierzPojazd.TabStop = False
         Me.GroupBoxWybierzPojazd.Text = "Edytuj parametry pojazdu"
         '
+        'LabelZdjecie
+        '
+        Me.LabelZdjecie.AutoSize = True
+        Me.LabelZdjecie.Location = New System.Drawing.Point(17, 236)
+        Me.LabelZdjecie.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LabelZdjecie.Name = "LabelZdjecie"
+        Me.LabelZdjecie.Size = New System.Drawing.Size(42, 13)
+        Me.LabelZdjecie.TabIndex = 12
+        Me.LabelZdjecie.Text = "Zdjecie"
+        '
+        'TextBoxZdjecie
+        '
+        Me.TextBoxZdjecie.Location = New System.Drawing.Point(20, 255)
+        Me.TextBoxZdjecie.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBoxZdjecie.Name = "TextBoxZdjecie"
+        Me.TextBoxZdjecie.Size = New System.Drawing.Size(290, 20)
+        Me.TextBoxZdjecie.TabIndex = 11
+        '
         'TextBoxRocznik
         '
         Me.TextBoxRocznik.Location = New System.Drawing.Point(20, 201)
-        Me.TextBoxRocznik.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBoxRocznik.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBoxRocznik.Name = "TextBoxRocznik"
         Me.TextBoxRocznik.Size = New System.Drawing.Size(290, 20)
         Me.TextBoxRocznik.TabIndex = 10
@@ -199,7 +217,7 @@ Partial Class EditCarForm
         Me.ComboBoxKolor.FormattingEnabled = True
         Me.ComboBoxKolor.Items.AddRange(New Object() {"biały", "brązowy", "czarny", "czerwony", "fioletowy", "niebieski", "pomarańczowy", "różowy", "srebrny", "szary", "zielony", "złoty", "żółty"})
         Me.ComboBoxKolor.Location = New System.Drawing.Point(20, 147)
-        Me.ComboBoxKolor.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboBoxKolor.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboBoxKolor.Name = "ComboBoxKolor"
         Me.ComboBoxKolor.Size = New System.Drawing.Size(290, 21)
         Me.ComboBoxKolor.TabIndex = 1
@@ -218,7 +236,7 @@ Partial Class EditCarForm
         '
         Me.ComboBoxModel.FormattingEnabled = True
         Me.ComboBoxModel.Location = New System.Drawing.Point(20, 98)
-        Me.ComboBoxModel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboBoxModel.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboBoxModel.Name = "ComboBoxModel"
         Me.ComboBoxModel.Size = New System.Drawing.Size(290, 21)
         Me.ComboBoxModel.TabIndex = 5
@@ -237,7 +255,7 @@ Partial Class EditCarForm
         '
         Me.ComboBoxMarka.FormattingEnabled = True
         Me.ComboBoxMarka.Location = New System.Drawing.Point(20, 53)
-        Me.ComboBoxMarka.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ComboBoxMarka.Margin = New System.Windows.Forms.Padding(2)
         Me.ComboBoxMarka.Name = "ComboBoxMarka"
         Me.ComboBoxMarka.Size = New System.Drawing.Size(290, 21)
         Me.ComboBoxMarka.TabIndex = 1
@@ -245,30 +263,12 @@ Partial Class EditCarForm
         'ButtonAnuluj
         '
         Me.ButtonAnuluj.Location = New System.Drawing.Point(228, 486)
-        Me.ButtonAnuluj.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ButtonAnuluj.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonAnuluj.Name = "ButtonAnuluj"
         Me.ButtonAnuluj.Size = New System.Drawing.Size(138, 30)
         Me.ButtonAnuluj.TabIndex = 14
         Me.ButtonAnuluj.Text = "Anuluj"
         Me.ButtonAnuluj.UseVisualStyleBackColor = True
-        '
-        'TextBoxZdjecie
-        '
-        Me.TextBoxZdjecie.Location = New System.Drawing.Point(20, 255)
-        Me.TextBoxZdjecie.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBoxZdjecie.Name = "TextBoxZdjecie"
-        Me.TextBoxZdjecie.Size = New System.Drawing.Size(290, 20)
-        Me.TextBoxZdjecie.TabIndex = 11
-        '
-        'LabelZdjecie
-        '
-        Me.LabelZdjecie.AutoSize = True
-        Me.LabelZdjecie.Location = New System.Drawing.Point(17, 236)
-        Me.LabelZdjecie.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.LabelZdjecie.Name = "LabelZdjecie"
-        Me.LabelZdjecie.Size = New System.Drawing.Size(46, 13)
-        Me.LabelZdjecie.TabIndex = 12
-        Me.LabelZdjecie.Text = "Rocznik"
         '
         'EditCarForm
         '
@@ -279,7 +279,7 @@ Partial Class EditCarForm
         Me.Controls.Add(Me.ButtonZapisz)
         Me.Controls.Add(Me.GroupBoxWyposażenie)
         Me.Controls.Add(Me.GroupBoxWybierzPojazd)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "EditCarForm"
         Me.Text = "EditCarForm"
         Me.GroupBoxWyposażenie.ResumeLayout(False)
