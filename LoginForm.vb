@@ -3,7 +3,13 @@ Public Class FormLogowanie
     Public PassUserName As String
     Public PassUserType As String
     Public Class GlobalVariables
-        Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        'Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf;Integrated Security=True"
+        'Public Shared database_path As String = "C:\Users\Karol\source\repos\Aplikacja_Komis\KomisDB.mdf"
+        'Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
+        Public Shared database_path As String = Application.StartupPath + "\KomisDB.mdf"
+        Public Shared ImgDir = Application.StartupPath + "\grafika\"
+        Public Shared UsersDatabaseConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + database_path + ";Integrated Security=True"
+        Public Shared SelectedModel As String
     End Class
 
     Function GuiSwitchLogowanie(ByVal State As Boolean)
@@ -51,17 +57,14 @@ Public Class FormLogowanie
         Dim Haslo As String
         msg = "INSERT INTO dbo.UsersTable (Id, Login, Haslo, Typ)" &
             " VALUES ('{0}', '{1}', '{2}', 'Klient');"
-        ' CountQuery = "SELECT COUNT(*) FROM dbo.UsersTable"
 
         Num = GetNumberOfElements(GlobalVariables.UsersDatabaseConStr)
-        'TextBox1.Text = Num.ToString()
 
         If TextBoxNoweHaslo1.Text = TextBoxNoweHaslo2.Text Then
             Haslo = TextBoxNoweHaslo1.Text
             Login = TextBoxNowyLogin.Text
 
             AddUserQuery = String.Format(msg, Num + 1, Login, Haslo)
-            TextBox1.Text = AddUserQuery
             Try
                 CreateCommand(AddUserQuery, GlobalVariables.UsersDatabaseConStr)
                 MessageBox.Show("Konto zostało utworzone, możesz się teraz zalogować.", "Potwierdzenie", MessageBoxButtons.OK)
@@ -71,9 +74,10 @@ Public Class FormLogowanie
         Else
             MessageBox.Show("Wprowadzone hasła nie są zgodne", "Blad", MessageBoxButtons.OK)
         End If
-        'CreateCommand(AddUserQuery, GlobalVariables.UsersDatabaseConStr)
+
         GuiSwitchLogowanie(True)
         GuiSwitchRejestracja(False)
+        Me.Close()
     End Sub
 
     Public Sub CreateCommand(ByVal queryString As String, ByVal connectionString As String)
@@ -111,10 +115,8 @@ Public Class FormLogowanie
                     reader = command.ExecuteReader()
                     reader.Read()
                     PassUserType = reader(2)
-                    'Console.WriteLine(reader.FieldCount.ToString())
-                    'Console.WriteLine("PassUserType" + PassUserType)
+
                     If reader(1) = TextBoxHaslo.Text Then
-                        'MessageBox.Show("Udalo sie zalogowac")
                         PassUserName = TextBoxLogin.Text
                         MainForm.Show()
                     Else
@@ -133,7 +135,7 @@ Public Class FormLogowanie
         End Using
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         MainForm.Show()
     End Sub
 
@@ -151,5 +153,14 @@ Public Class FormLogowanie
         End Using
         Return val
     End Function
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonAnuluj.Click
+        GuiSwitchLogowanie(True)
+        GuiSwitchRejestracja(False)
+        TextBoxNowyLogin.Clear()
+        TextBoxNoweHaslo1.Clear()
+        TextBoxNoweHaslo2.Clear()
+
+    End Sub
 
 End Class

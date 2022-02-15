@@ -1,0 +1,1 @@
+﻿SELECT TOP (3) WITH ties Id, brand, model, generation, ilosc_ocen FROM dbo.CarsDatabase ORDER BY ilosc_ocen DESC;

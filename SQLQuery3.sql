@@ -1,0 +1,1 @@
+﻿SELECT Id, image From dbo.CarsDatabase WHERE Id =1;

@@ -96,13 +96,29 @@
     <Compile Include="AddNewCar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CarRateControl.Designer.vb">
+      <DependentUpon>CarRateControl.vb</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="CarRateControl.vb">
+      <SubType>UserControl</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="EditCarForm.Designer.vb">
+      <DependentUpon>EditCarForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditCarForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="KomisDBDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="KomisDBDataSet.vb">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
@@ -142,6 +158,13 @@
     <EmbeddedResource Include="AddNewCar.resx">
       <DependentUpon>AddNewCar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CarRateControl.resx">
+      <DependentUpon>CarRateControl.vb</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCarForm.resx">
+      <DependentUpon>EditCarForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -158,14 +181,17 @@
   <ItemGroup>
     <None Include="KomisDBDataSet.xsc">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="KomisDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>KomisDBDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="KomisDBDataSet.xss">
       <DependentUpon>KomisDBDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -209,6 +235,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="grafika\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
